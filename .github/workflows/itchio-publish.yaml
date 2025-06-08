@@ -30,4 +30,4 @@ jobs:
           itch_user: jynus
           itch_game: gmtk25
           version: ${{ github.ref_name }}
-          files: "${{ steps.export.outputs.archive_directory }}/Web.zip"
+          files: "${{ steps.export.outputs.archive_directory }}/*.zip"
