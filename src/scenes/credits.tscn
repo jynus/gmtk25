@@ -1,7 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://cp76wk0hhmwag"]
 
 [ext_resource type="Script" uid="uid://b0l8bfxdvhkao" path="res://scripts/credits.gd" id="1_o3suw"]
-[ext_resource type="FontFile" uid="uid://btvwq11pvkgw7" path="res://assets/fonts/minimal5x7.ttf" id="2_5ad5r"]
 [ext_resource type="PackedScene" uid="uid://k635iu86fy37" path="res://scene_objects/menu_background.tscn" id="2_pa7y0"]
 [ext_resource type="PackedScene" uid="uid://bmuu7gov5nfwd" path="res://scene_objects/title_bar.tscn" id="3_nmdnh"]
 [ext_resource type="StyleBox" uid="uid://67m76h2nyeyy" path="res://resources/main_menu_button_style.tres" id="4_3veic"]
@@ -91,7 +90,6 @@ tooltip_text = "Itch.io page"
 focus_next = NodePath("../PlayButton")
 focus_previous = NodePath("../CreditsButton")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("2_5ad5r")
 theme_override_font_sizes/font_size = 16
 theme_override_styles/focus = SubResource("StyleBoxFlat_hugtt")
 theme_override_styles/disabled = ExtResource("4_3veic")
@@ -112,7 +110,6 @@ tooltip_text = "Jynus.com Website"
 focus_next = NodePath("../PlayButton")
 focus_previous = NodePath("../CreditsButton")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("2_5ad5r")
 theme_override_font_sizes/font_size = 16
 theme_override_styles/focus = SubResource("StyleBoxFlat_hugtt")
 theme_override_styles/disabled = ExtResource("4_3veic")
@@ -133,7 +130,6 @@ tooltip_text = "Bluesky account"
 focus_next = NodePath("../PlayButton")
 focus_previous = NodePath("../CreditsButton")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("2_5ad5r")
 theme_override_font_sizes/font_size = 16
 theme_override_styles/focus = SubResource("StyleBoxFlat_hugtt")
 theme_override_styles/disabled = ExtResource("4_3veic")
@@ -154,7 +150,6 @@ tooltip_text = "GitHub.com source code"
 focus_next = NodePath("../PlayButton")
 focus_previous = NodePath("../CreditsButton")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("2_5ad5r")
 theme_override_font_sizes/font_size = 16
 theme_override_styles/focus = SubResource("StyleBoxFlat_hugtt")
 theme_override_styles/disabled = ExtResource("4_3veic")
