@@ -26,6 +26,7 @@ buses/default_bus_layout="uid://cv35ba4tugfyt"
 BackgroundMusic="*res://scene_objects/background_music.tscn"
 Globals="*res://scripts/globals.gd"
 Fx="*res://scene_objects/fx.tscn"
+SceneManager="*res://scene_objects/scene_manager.tscn"
 
 [display]
 

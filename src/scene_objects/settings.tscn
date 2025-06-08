@@ -6,7 +6,7 @@
 [ext_resource type="FontFile" uid="uid://smk86k8i0gcp" path="res://assets/fonts/Montserrat-Bold.otf" id="4_chhbm"]
 [ext_resource type="FontFile" uid="uid://com4cjqc1ln44" path="res://assets/fonts/Montserrat-Medium.otf" id="5_8mqkg"]
 [ext_resource type="PackedScene" uid="uid://oq5258by1a1k" path="res://scene_objects/menu_button.tscn" id="6_k1p4f"]
-[ext_resource type="AudioStream" uid="uid://si0fmsahepcp" path="res://assets/sfx/ES_Impact, Suspense Hit 02 - Epidemic Sound.mp3" id="7_k1p4f"]
+[ext_resource type="AudioStream" uid="uid://b1h5h1gben2ro" path="res://assets/sfx/ES_Impact, Suspense Hit 02 - Epidemic Sound.ogg" id="7_k1p4f"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7a45g"]
 font = ExtResource("4_chhbm")

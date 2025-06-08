@@ -62,12 +62,9 @@ func load_settings():
 	var language_config = _configFile.get_value("settings", "language", default_language)
 	set_language(language_config)
 
-func _process(_delta):
-	pass
-
 func hide_settings():
 	"""Close the settings screen"""
-	visible = false
+	SceneManager.hide_scene(self, SceneManager.Transition.FADE_TO_BLACK)
 
 func set_window_mode(custom_window_mode : DisplayServer.WindowMode):
 	DisplayServer.window_set_mode(custom_window_mode)
@@ -130,7 +127,6 @@ func apply_language(lang: String):
 		language_option.select(1)
 	set_config("language", lang)
 
-
 func _on_language_option_item_selected(index):
 	if index == 0:
 		print("Setting language to English")
@@ -138,7 +134,6 @@ func _on_language_option_item_selected(index):
 	else:
 		print("Setting language to Spanish")
 		apply_language("es")
-
 
 func _on_vsync_toggled(button_pressed):
 	Fx.click.play()

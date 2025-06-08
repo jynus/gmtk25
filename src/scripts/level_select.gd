@@ -106,16 +106,16 @@ func level_select(level: String):
 	"""Return feedback and load the given leven on the current world"""
 	Globals.current_level = level.trim_suffix(".remap")
 	print("loading: " + Globals.current_level)
-	load_current_level(get_tree())
+	load_current_level()
 
-func load_current_level(tree):
+func load_current_level():
 	_configFile.set_value("progress", "current_world", Globals.current_world)
 	_configFile.save(LEVELS_FILE_PATH)
 	_configFile.set_value("progress", "current_level", Globals.current_level)
 	_configFile.save(LEVELS_FILE_PATH)
 	var level_path : String = levels_path + "/" + Globals.current_world + "/" + Globals.current_level
 	print("loading level " + level_path)
-	tree.change_scene_to_file(level_path)
+	SceneManager.change_scene(level_path, SceneManager.Transition.FADE_TO_BLACK)
 	
 func load_next_level(tree):
 	# TODO logic to calculate next level
@@ -130,7 +130,7 @@ func load_next_level(tree):
 		if len(levels[Globals.current_world]) > 0:
 			# if the world has levels, go to the first one
 			Globals.current.world = levels[Globals.current_world][0]
-			load_current_level(tree)
+			load_current_level()
 		else:
 			# if the world has no levels, go to the level select screen
 			tree.change_scene_to_file("res://scenes/level_select.tscn")
@@ -147,15 +147,15 @@ func load_next_level(tree):
 				tree.change_scene_to_file("res://scenes/level_select.tscn")
 			else:
 				Globals.current_level = levels[Globals.current_world][0]
-				load_current_level(tree)
+				load_current_level()
 	else:
 		# we jump to the next level
 		Globals.current_level = levels[Globals.current_world][level_index + 1]
-		load_current_level(tree)
+		load_current_level()
 
 func go_back_to_main_menu():
 	"""Return to main menu"""
-	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+	SceneManager.change_scene("res://scenes/main_menu.tscn")
 
 func _on_back_button_pressed():
 	go_back_to_main_menu()

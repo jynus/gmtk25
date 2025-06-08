@@ -2,7 +2,7 @@ extends Control
 
 var paused : bool = false
 var on_pause_menu : bool = false
-@onready var settings = $settings
+@onready var settings = %settings
 @onready var return_button = %returnButton
 var previous_music_offset : float = 0
 
@@ -23,7 +23,7 @@ func _on_return_button_pressed():
 	unpause_game("game")
 
 func hide_settings():
-	settings.visible = false
+	SceneManager.hide_scene(settings, SceneManager.Transition.FADE_TO_BLACK)
 	on_pause_menu = true
 	set_focus()
 
@@ -31,15 +31,15 @@ func _on_settings_button_pressed():
 	show_settings()
 
 func show_settings():
-	settings.visible = true
 	on_pause_menu = false
+	SceneManager.show_scene(settings, SceneManager.Transition.FADE_TO_BLACK)
 
 func set_focus():
 	return_button.grab_focus()
 
 func _on_main_menu_button_pressed():
 	unpause_game("menu")
-	get_tree().change_scene_to_file("res://scenes/level_select.tscn")
+	SceneManager.change_scene("res://scenes/level_select.tscn", SceneManager.Transition.FADE_TO_BLACK)
 
 func pause_game():
 	previous_music_offset = BackgroundMusic.fade_into("pause")
@@ -57,4 +57,7 @@ func unpause_game(screen: String):
 func _on_reset_level_button_pressed():
 	previous_music_offset = 0.0
 	unpause_game("game")
-	get_tree().reload_current_scene()
+	SceneManager.reload_current_scene(SceneManager.Transition.FADE_TO_BLACK)
+
+func _on_pause_button_pressed() -> void:
+	pause_game()

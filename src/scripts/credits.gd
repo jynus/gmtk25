@@ -23,7 +23,7 @@ func set_focus():
 
 func return_to_main_menu():
 	"""Go back to main menu screen"""
-	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+	SceneManager.change_scene("res://scenes/main_menu.tscn", SceneManager.Transition.FADE_TO_BLACK, 0.5)
 
 func _on_done_button_pressed():
 	return_to_main_menu()

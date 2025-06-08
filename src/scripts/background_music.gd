@@ -30,9 +30,6 @@ func _set_current_song(value):
 func _ready():
 	music_player.volume_db = DEFAULT_MUSIC_VOLUME
 
-func _process(_delta):
-	pass
-
 func play_song(screen: String, offset : float = 0.0):
 	if screen not in playlist.keys() or current_song == screen:
 		print_debug(screen, " song wasn't found")

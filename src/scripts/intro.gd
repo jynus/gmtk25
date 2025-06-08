@@ -36,4 +36,4 @@ func _on_skip_intro_button_pressed() -> void:
 	change_to_level_select()
 
 func change_to_level_select():
-	get_tree().change_scene_to_file("res://scenes/level_select.tscn")
+	SceneManager.change_scene("res://scenes/level_select.tscn", SceneManager.Transition.FADE_TO_BLACK)

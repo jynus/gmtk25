@@ -24,19 +24,19 @@ func set_focus() -> void:
 
 func start_new_game() -> void:
 	"""Start new play session"""
-	get_tree().change_scene_to_file("res://scenes/intro.tscn")
+	SceneManager.change_scene("res://scenes/intro.tscn", SceneManager.Transition.FADE_TO_BLACK)
 
 func show_how_to_play_screen() -> void:
 	"""Show the instructions and key bindings"""
-	get_tree().change_scene_to_file("res://scenes/how_to_play.tscn")
+	SceneManager.change_scene("res://scenes/how_to_play.tscn", SceneManager.Transition.FADE_TO_BLACK)
 
 func show_settings() -> void:
 	"""Show the settings screen"""
-	settings.visible = true
+	SceneManager.show_scene(settings, SceneManager.Transition.FADE_TO_BLACK)
 
 func show_credits() -> void:
 	"""Show the credits screen"""
-	get_tree().change_scene_to_file("res://scenes/credits.tscn")
+	SceneManager.change_scene("res://scenes/credits.tscn", SceneManager.Transition.FADE_TO_BLACK)
 
 func exit_game() -> void:
 	""""Exit to OS"""

@@ -27,7 +27,7 @@ func on_animation_finish():
 	typing_sound.stop()
 	
 func _on_back_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+	SceneManager.change_scene("res://scenes/main_menu.tscn", SceneManager.Transition.FADE_TO_BLACK)
 
 func _on_credits_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/credits.tscn")
+	SceneManager.change_scene("res://scenes/credits.tscn", SceneManager.Transition.FADE_TO_BLACK)

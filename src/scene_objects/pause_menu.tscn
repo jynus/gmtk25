@@ -97,6 +97,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_hugtt")
 text = "Back to level selection"
 
 [node name="settings" parent="." instance=ExtResource("4_cgqpe")]
+unique_name_in_owner = true
 process_mode = 2
 visible = false
 
