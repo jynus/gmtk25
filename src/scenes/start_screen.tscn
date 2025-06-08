@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://djsn6u6bq4qmm"]
+
+[ext_resource type="Script" uid="uid://btk33bl428dss" path="res://scripts/start_screen.gd" id="1_he1sj"]
+[ext_resource type="PackedScene" uid="uid://k635iu86fy37" path="res://scene_objects/menu_background.tscn" id="2_o30b1"]
+[ext_resource type="PackedScene" uid="uid://oq5258by1a1k" path="res://scene_objects/menu_button.tscn" id="4_ws7p0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r2jwc"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[node name="startScreen" type="Node2D"]
+script = ExtResource("1_he1sj")
+
+[node name="backgroudMenu" parent="." instance=ExtResource("2_o30b1")]
+
+[node name="menuContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 680.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PlayButton" parent="menuContainer" instance=ExtResource("4_ws7p0")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_colors/font_pressed_color = Color(0.52156866, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxFlat_r2jwc")
+text = "Press any key "
+
+[connection signal="button_down" from="menuContainer/PlayButton" to="." method="_on_play_button_button_down"]
+[connection signal="pressed" from="menuContainer/PlayButton" to="." method="_on_play_button_pressed"]

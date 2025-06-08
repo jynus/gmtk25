@@ -1,0 +1,159 @@
+[gd_scene load_steps=12 format=3 uid="uid://b7fkndcm0e336"]
+
+[ext_resource type="Script" uid="uid://chdr6gawlg0ne" path="res://scripts/settings.gd" id="1_6tbik"]
+[ext_resource type="PackedScene" uid="uid://k635iu86fy37" path="res://scene_objects/menu_background.tscn" id="2_y53hl"]
+[ext_resource type="PackedScene" uid="uid://bmuu7gov5nfwd" path="res://scene_objects/title_bar.tscn" id="3_k1p4f"]
+[ext_resource type="FontFile" uid="uid://smk86k8i0gcp" path="res://assets/fonts/Montserrat-Bold.otf" id="4_chhbm"]
+[ext_resource type="FontFile" uid="uid://com4cjqc1ln44" path="res://assets/fonts/Montserrat-Medium.otf" id="5_8mqkg"]
+[ext_resource type="PackedScene" uid="uid://oq5258by1a1k" path="res://scene_objects/menu_button.tscn" id="6_k1p4f"]
+[ext_resource type="AudioStream" uid="uid://si0fmsahepcp" path="res://assets/sfx/ES_Impact, Suspense Hit 02 - Epidemic Sound.mp3" id="7_k1p4f"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7a45g"]
+font = ExtResource("4_chhbm")
+font_size = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_odafv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5xau5"]
+bg_color = Color(1, 0.345098, 0.133333, 1)
+
+[sub_resource type="Theme" id="Theme_42gtq"]
+default_font = ExtResource("5_8mqkg")
+default_font_size = 50
+OptionButton/styles/hover = SubResource("StyleBoxFlat_odafv")
+OptionButton/styles/normal = SubResource("StyleBoxFlat_5xau5")
+
+[node name="settings" type="Node2D"]
+script = ExtResource("1_6tbik")
+
+[node name="backgroudMenu" parent="." instance=ExtResource("2_y53hl")]
+
+[node name="menuContainer" type="VBoxContainer" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme_override_constants/separation = 40
+
+[node name="Title" parent="menuContainer" instance=ExtResource("3_k1p4f")]
+layout_mode = 2
+text = "Settings"
+
+[node name="SettingsGrid" type="GridContainer" parent="menuContainer"]
+custom_minimum_size = Vector2(1000, 550)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 50
+theme_override_constants/v_separation = 50
+columns = 2
+
+[node name="LanguageLabel" type="Label" parent="menuContainer/SettingsGrid"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+text = "Language"
+label_settings = SubResource("LabelSettings_7a45g")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="LanguageOption" type="OptionButton" parent="menuContainer/SettingsGrid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme = SubResource("Theme_42gtq")
+theme_override_constants/outline_size = 1
+flat = true
+selected = 0
+item_count = 2
+popup/item_0/text = "English"
+popup/item_0/id = 0
+popup/item_1/text = "Español"
+popup/item_1/id = 1
+
+[node name="musicLabel" type="Label" parent="menuContainer/SettingsGrid"]
+layout_mode = 2
+text = "Music"
+label_settings = SubResource("LabelSettings_7a45g")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="musicVolume" type="HSlider" parent="menuContainer/SettingsGrid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+
+[node name="sfxLabel" type="Label" parent="menuContainer/SettingsGrid"]
+layout_mode = 2
+text = "SFX"
+label_settings = SubResource("LabelSettings_7a45g")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="sfxVolume" type="HSlider" parent="menuContainer/SettingsGrid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+
+[node name="fullScreenLabel" type="Label" parent="menuContainer/SettingsGrid"]
+layout_mode = 2
+text = "Full screen"
+label_settings = SubResource("LabelSettings_7a45g")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="fullScreenCheckbox" type="CheckBox" parent="menuContainer/SettingsGrid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/h_separation = 50
+theme_override_fonts/font = ExtResource("4_chhbm")
+theme_override_font_sizes/font_size = 50
+text = "on"
+
+[node name="vsyncLabel" type="Label" parent="menuContainer/SettingsGrid"]
+layout_mode = 2
+text = "Vsync"
+label_settings = SubResource("LabelSettings_7a45g")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="vsyncCheckbox" type="CheckBox" parent="menuContainer/SettingsGrid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/h_separation = 50
+theme_override_fonts/font = ExtResource("4_chhbm")
+theme_override_font_sizes/font_size = 50
+theme_override_constants/check_v_offset = 10
+text = "on"
+icon_alignment = 1
+
+[node name="doneButton" parent="menuContainer" instance=ExtResource("6_k1p4f")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Back"
+
+[node name="sampleFX" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("7_k1p4f")
+bus = &"sfx"
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="item_selected" from="menuContainer/SettingsGrid/LanguageOption" to="." method="_on_language_option_item_selected"]
+[connection signal="value_changed" from="menuContainer/SettingsGrid/musicVolume" to="." method="_on_music_volume_value_changed"]
+[connection signal="value_changed" from="menuContainer/SettingsGrid/sfxVolume" to="." method="_on_sfx_volume_value_changed"]
+[connection signal="toggled" from="menuContainer/SettingsGrid/fullScreenCheckbox" to="." method="_on_full_screen_checkbox_toggled"]
+[connection signal="toggled" from="menuContainer/SettingsGrid/vsyncCheckbox" to="." method="_on_vsync_toggled"]
+[connection signal="pressed" from="menuContainer/doneButton" to="." method="_on_done_button_pressed"]

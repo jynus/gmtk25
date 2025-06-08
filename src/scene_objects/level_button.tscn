@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7nuvny1ymeeb"]
+
+[ext_resource type="PackedScene" uid="uid://oq5258by1a1k" path="res://scene_objects/menu_button.tscn" id="1_r8snm"]
+[ext_resource type="Script" uid="uid://v2t8v586o24l" path="res://scripts/level_button.gd" id="7_qsbpd"]
+
+[node name="LevelButton" instance=ExtResource("1_r8snm")]
+custom_minimum_size = Vector2(200, 150)
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 200.0
+offset_bottom = 150.0
+grow_horizontal = 1
+grow_vertical = 1
+text = "01"
+script = ExtResource("7_qsbpd")
+level = ""
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

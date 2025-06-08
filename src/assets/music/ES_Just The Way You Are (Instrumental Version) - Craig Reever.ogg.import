@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://w8rd3o2mksl7"
+path="res://.godot/imported/ES_Just The Way You Are (Instrumental Version) - Craig Reever.ogg-24108abd4a340b5e585eb929f324e28f.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/ES_Just The Way You Are (Instrumental Version) - Craig Reever.ogg"
+dest_files=["res://.godot/imported/ES_Just The Way You Are (Instrumental Version) - Craig Reever.ogg-24108abd4a340b5e585eb929f324e28f.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

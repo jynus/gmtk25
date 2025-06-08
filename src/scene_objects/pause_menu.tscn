@@ -1,0 +1,106 @@
+[gd_scene load_steps=6 format=3 uid="uid://c4724smqdfkk6"]
+
+[ext_resource type="Script" uid="uid://hjx8ckprm4tl" path="res://scripts/pause_menu.gd" id="1_3hvvb"]
+[ext_resource type="PackedScene" uid="uid://oq5258by1a1k" path="res://scene_objects/menu_button.tscn" id="1_fht2j"]
+[ext_resource type="PackedScene" uid="uid://bmuu7gov5nfwd" path="res://scene_objects/title_bar.tscn" id="2_et38u"]
+[ext_resource type="PackedScene" uid="uid://b7fkndcm0e336" path="res://scene_objects/settings.tscn" id="4_cgqpe"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hugtt"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.12549, 0.384314, 0.486275, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[node name="pauseMenu" type="Control"]
+process_mode = 3
+custom_minimum_size = Vector2(320, 180)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+script = ExtResource("1_3hvvb")
+
+[node name="background" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(320, 180)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.501961, 0.501961, 0.501961, 0.501961)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="background"]
+layout_mode = 0
+offset_top = 193.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 40
+
+[node name="Title" parent="background/VBoxContainer" instance=ExtResource("2_et38u")]
+layout_mode = 2
+text = "Pause"
+
+[node name="returnButton" parent="background/VBoxContainer" instance=ExtResource("1_fht2j")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(900, 100)
+layout_mode = 2
+focus_next = NodePath("../PlayButton")
+focus_previous = NodePath("../CreditsButton")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxFlat_hugtt")
+text = "Return to game"
+
+[node name="resetLevelButton" parent="background/VBoxContainer" instance=ExtResource("1_fht2j")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(900, 100)
+layout_mode = 2
+focus_next = NodePath("../PlayButton")
+focus_previous = NodePath("../CreditsButton")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxFlat_hugtt")
+text = "Reset level"
+
+[node name="settingsButton" parent="background/VBoxContainer" instance=ExtResource("1_fht2j")]
+custom_minimum_size = Vector2(900, 100)
+layout_mode = 2
+focus_next = NodePath("../PlayButton")
+focus_previous = NodePath("../CreditsButton")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxFlat_hugtt")
+text = "Settings"
+
+[node name="levelSelectButton" parent="background/VBoxContainer" instance=ExtResource("1_fht2j")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(900, 100)
+layout_mode = 2
+focus_next = NodePath("../PlayButton")
+focus_previous = NodePath("../CreditsButton")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxFlat_hugtt")
+text = "Back to level selection"
+
+[node name="settings" parent="." instance=ExtResource("4_cgqpe")]
+process_mode = 2
+visible = false
+
+[connection signal="pressed" from="background/VBoxContainer/returnButton" to="." method="_on_return_button_pressed"]
+[connection signal="pressed" from="background/VBoxContainer/resetLevelButton" to="." method="_on_reset_level_button_pressed"]
+[connection signal="pressed" from="background/VBoxContainer/settingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="background/VBoxContainer/levelSelectButton" to="." method="_on_main_menu_button_pressed"]

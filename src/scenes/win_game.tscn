@@ -1,0 +1,72 @@
+[gd_scene load_steps=8 format=3 uid="uid://d0v75n1n4npn4"]
+
+[ext_resource type="Script" uid="uid://d3sl3csd2xnb0" path="res://scripts/win_game.gd" id="1_wl2rq"]
+[ext_resource type="PackedScene" uid="uid://k635iu86fy37" path="res://scene_objects/menu_background.tscn" id="2_kcvt6"]
+[ext_resource type="PackedScene" uid="uid://bmuu7gov5nfwd" path="res://scene_objects/title_bar.tscn" id="3_e2iwf"]
+[ext_resource type="FontFile" uid="uid://com4cjqc1ln44" path="res://assets/fonts/Montserrat-Medium.otf" id="4_87tkp"]
+[ext_resource type="FontFile" uid="uid://smk86k8i0gcp" path="res://assets/fonts/Montserrat-Bold.otf" id="5_43x4g"]
+[ext_resource type="PackedScene" uid="uid://oq5258by1a1k" path="res://scene_objects/menu_button.tscn" id="6_an7h7"]
+[ext_resource type="AudioStream" uid="uid://dni54tcejhs1c" path="res://assets/sfx/Sequence, Typing Burst, Variations, Perspective 02, Clicking 03.ogg" id="9_kqugs"]
+
+[node name="YouWonScreen" type="Node2D"]
+script = ExtResource("1_wl2rq")
+
+[node name="backgroudMenu" parent="." instance=ExtResource("2_kcvt6")]
+modulate = Color(1, 0.295309, 0.679364, 1)
+
+[node name="menuContainer" type="VBoxContainer" parent="."]
+offset_right = 1920.0
+offset_bottom = 1052.0
+theme_override_constants/separation = 40
+
+[node name="Title" parent="menuContainer" instance=ExtResource("3_e2iwf")]
+layout_mode = 2
+text = "You Won!"
+
+[node name="youWonText" type="RichTextLabel" parent="menuContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(1300, 550)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_constants/line_separation = 25
+theme_override_fonts/normal_font = ExtResource("4_87tkp")
+theme_override_fonts/bold_font = ExtResource("5_43x4g")
+theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/bold_font_size = 60
+bbcode_enabled = true
+text = "[center]Congratulations!
+
+Thanks to your great efforts optimizing textures and 3d models, the videogame project size has been shrinked down to a mere 455 GB!
+
+The project, however, could not be shipped in time due to management issues. Despite eveyone giving it a 200%, the project went over budget and milestones were not met.
+
+The project was swiftly cancelled by the publisher and all developers were layed off, including yourself :-(
+
+Have a nice day![/center]"
+scroll_following = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="menuContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="creditsButton" parent="menuContainer/HBoxContainer" instance=ExtResource("6_an7h7")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(700, 100)
+layout_mode = 2
+text = "Credits"
+
+[node name="backButton" parent="menuContainer/HBoxContainer" instance=ExtResource("6_an7h7")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(700, 100)
+layout_mode = 2
+text = "Back to main menu"
+
+[node name="TypingSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("9_kqugs")
+
+[connection signal="pressed" from="menuContainer/HBoxContainer/creditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="menuContainer/HBoxContainer/backButton" to="." method="_on_back_button_pressed"]

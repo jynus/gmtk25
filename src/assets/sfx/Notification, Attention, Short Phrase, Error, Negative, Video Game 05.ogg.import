@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://7ogmrkdqsbel"
+path="res://.godot/imported/Notification, Attention, Short Phrase, Error, Negative, Video Game 05.ogg-74b9cd806b7dc980e0c57186351bb5d4.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sfx/Notification, Attention, Short Phrase, Error, Negative, Video Game 05.ogg"
+dest_files=["res://.godot/imported/Notification, Attention, Short Phrase, Error, Negative, Video Game 05.ogg-74b9cd806b7dc980e0c57186351bb5d4.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,11 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://c2qlpe3wovecb"]
+
+[ext_resource type="FontFile" uid="uid://smk86k8i0gcp" path="res://assets/fonts/Montserrat-Bold.otf" id="1_jne3n"]
+
+[resource]
+font = ExtResource("1_jne3n")
+font_size = 200
+font_color = Color(0.976471, 0.67451, 0.976471, 1)
+outline_size = 20
+outline_color = Color(0.00820202, 0.00820202, 0.00820202, 1)
+shadow_size = 0

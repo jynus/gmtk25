@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmuu7gov5nfwd"]
+
+[ext_resource type="LabelSettings" uid="uid://tje0ygjwilaf" path="res://resources/title_label_settings.tres" id="1_aauo1"]
+
+[node name="Title" type="Label"]
+texture_filter = 2
+custom_minimum_size = Vector2(0, 250)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -83.0
+offset_right = 83.0
+offset_bottom = 250.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+text = "Title"
+label_settings = ExtResource("1_aauo1")
+horizontal_alignment = 1
+vertical_alignment = 1

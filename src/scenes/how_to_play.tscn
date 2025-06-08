@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://bwrrvkapk66v3"]
+
+[ext_resource type="Script" uid="uid://c34auxtthyb3o" path="res://scripts/how_to_play.gd" id="1_pevma"]
+[ext_resource type="PackedScene" uid="uid://k635iu86fy37" path="res://scene_objects/menu_background.tscn" id="2_03hht"]
+[ext_resource type="PackedScene" uid="uid://bmuu7gov5nfwd" path="res://scene_objects/title_bar.tscn" id="3_crhno"]
+[ext_resource type="FontFile" uid="uid://com4cjqc1ln44" path="res://assets/fonts/Montserrat-Medium.otf" id="4_p2vhh"]
+[ext_resource type="FontFile" uid="uid://smk86k8i0gcp" path="res://assets/fonts/Montserrat-Bold.otf" id="5_uo5nw"]
+[ext_resource type="PackedScene" uid="uid://oq5258by1a1k" path="res://scene_objects/menu_button.tscn" id="6_e0xnd"]
+
+[node name="HowToPlay" type="Node2D"]
+script = ExtResource("1_pevma")
+
+[node name="backgroudMenu" parent="." instance=ExtResource("2_03hht")]
+modulate = Color(1, 0.442395, 0.29116, 1)
+
+[node name="menuContainer" type="VBoxContainer" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme_override_constants/separation = 50
+
+[node name="Title" parent="menuContainer" instance=ExtResource("3_crhno")]
+layout_mode = 2
+text = "How to play"
+
+[node name="optionsContainer" type="HBoxContainer" parent="menuContainer"]
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 2
+size_flags_vertical = 2
+alignment = 1
+
+[node name="howToPlayText" type="RichTextLabel" parent="menuContainer/optionsContainer"]
+unique_name_in_owner = true
+texture_filter = 2
+custom_minimum_size = Vector2(1200, 550)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_constants/line_separation = 25
+theme_override_fonts/normal_font = ExtResource("4_p2vhh")
+theme_override_fonts/bold_font = ExtResource("5_uo5nw")
+theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/bold_font_size = 60
+bbcode_enabled = true
+text = "Instructions"
+
+[node name="backButton" parent="menuContainer" instance=ExtResource("6_e0xnd")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 6
+text = "Back to main menu"
+
+[connection signal="pressed" from="menuContainer/backButton" to="." method="_on_back_button_pressed"]

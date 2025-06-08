@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://tje0ygjwilaf"]
+
+[ext_resource type="FontFile" uid="uid://dl08lq2uisn26" path="res://assets/fonts/Ghastly Panic.ttf" id="1_5n6gu"]
+
+[resource]
+font = ExtResource("1_5n6gu")
+font_size = 250
+shadow_size = 0

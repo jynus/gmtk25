@@ -1,0 +1,41 @@
+keys,en,es
+GMTKJam2025,GMTKJam 2025 Title,Título GMTKJam 2025
+VersionString,v0.1.0,v0.1.0
+Play,Play,Jugar
+Settings,Settings,Configuración
+Credits,Credits,Créditos
+Exit,Exit,Salir
+Language,Language,Idioma
+Music,Music,Música
+SFX,SFX,Efectos
+Skip intro,Skip intro,Saltar introducción
+How to play,How to play,Cómo jugar
+Full screen,Full screen,Pantalla completa
+How To Play,How To Play,Cómo jugar
+Done,Done,Hecho
+Level select,Level select,Seleción de nivel
+Back,Back,Volver
+Back to main menu,Back to main menu,Menú principal
+Back to level selection,Back to level selection,Volver a selección de nivel
+Replay level again,Replay level again,Volver a jugar el nivel
+Reset level,Reset level,Reiniciar nivel
+Retry level,Retry level,Reintentar el nivel
+Return to game,Return to game,Volver al juego
+Pause,Pause,Pausa
+on,on,sí
+off,off,no
+Level complete!,Level complete!,¡Nivel completado!
+Next level,Next level,Siguiente nivel
+Replay,Replay,Volver a jugar
+You Won!,You Won!,¡Ganaste!
+"Please Confirm...","Please Confirm...","Por favor, confirma..."
+"Design & programming","Design & programming","Diseño y programación"
+"Music & Sounds","Music & Sounds","Música y sonido"
+"Courtesy of Epidemic Sound","Courtesy of Epidemic Sound","Cortesía de Epidemic Sound"
+"See [url=https://github.com/jynus/gmtk25]README[/url] or [url=https://jynus.itch.io/XXXXXX]Itch.io page[/url] for the full attribution list.","See [url=https://github.com/jynus/gmtk25]README[/url] or [url=https://jynus.itch.io]Itch.io page[/url] for the full attribution list.","Vea el archivo [url=https://github.com/jynus/gmtk25]README[/url] o la [url=https://jynus.itch.io]página de Itch.io[/url] para la lista completa de atribuciones."
+"* Made with Godot 4.5 in 4 days for the GMTK Game Jam 2025 *","* Made with Godot 4.5 in 4 days for the GMTK Game Jam 2025 *","* Hecho con Godot 4.5 en 4 días para la GMTK Game Jam 2025 *"
+"Full source code is available at GitHub under the AGPL-3.0 License","Full source code is available at GitHub under the AGPL-3.0 License","Código fuente completo disponible en GitHub bajo la licencia AGPL-3.0"
+"Itch.io page","Itch.io page","Página de Itch.io"
+"Jynus.com Website","Jynus.com Website","Sitio web de jynus.com"
+"Bluesky account","Bluesky account","Cuenta de Bluesky"
+"GitHub.com source code","GitHub.com source code","Código fuente en GitHub.com"

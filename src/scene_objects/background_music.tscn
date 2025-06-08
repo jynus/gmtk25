@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2he8iuv3dlpj"]
+
+[ext_resource type="Script" uid="uid://8bxahckmaf3d" path="res://scripts/background_music.gd" id="1_khk71"]
+
+[node name="backgroundMusic" type="Node"]
+process_mode = 3
+script = ExtResource("1_khk71")
+
+[node name="musicPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+volume_db = -15.0
+bus = &"music"

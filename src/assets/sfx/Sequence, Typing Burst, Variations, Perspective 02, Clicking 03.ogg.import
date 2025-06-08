@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dni54tcejhs1c"
+path="res://.godot/imported/Sequence, Typing Burst, Variations, Perspective 02, Clicking 03.ogg-be2b366e6a462c9388a1414ea64eb81a.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sfx/Sequence, Typing Burst, Variations, Perspective 02, Clicking 03.ogg"
+dest_files=["res://.godot/imported/Sequence, Typing Burst, Variations, Perspective 02, Clicking 03.ogg-be2b366e6a462c9388a1414ea64eb81a.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

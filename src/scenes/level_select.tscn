@@ -1,0 +1,88 @@
+[gd_scene load_steps=10 format=3 uid="uid://3dgtundptfy8"]
+
+[ext_resource type="Script" uid="uid://bggravfauka3q" path="res://scripts/level_select.gd" id="1_rs3vw"]
+[ext_resource type="PackedScene" uid="uid://k635iu86fy37" path="res://scene_objects/menu_background.tscn" id="2_kxagj"]
+[ext_resource type="PackedScene" uid="uid://bmuu7gov5nfwd" path="res://scene_objects/title_bar.tscn" id="3_4nqmc"]
+[ext_resource type="Texture2D" uid="uid://6c7mk8gmqv7q" path="res://assets/textures/left_arrow.webp" id="3_y6wxh"]
+[ext_resource type="Texture2D" uid="uid://bapxca70g57pj" path="res://assets/textures/right_arrow.webp" id="4_cij7b"]
+[ext_resource type="FontFile" uid="uid://smk86k8i0gcp" path="res://assets/fonts/Montserrat-Bold.otf" id="4_kufbg"]
+[ext_resource type="PackedScene" uid="uid://oq5258by1a1k" path="res://scene_objects/menu_button.tscn" id="7_4nqmc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hwumb"]
+font = ExtResource("4_kufbg")
+font_size = 50
+shadow_size = 0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m2gvb"]
+
+[node name="level_select" type="Node2D"]
+script = ExtResource("1_rs3vw")
+
+[node name="backgroudMenu" parent="." instance=ExtResource("2_kxagj")]
+
+[node name="menuContainer" type="VBoxContainer" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="Title" parent="menuContainer" instance=ExtResource("3_4nqmc")]
+layout_mode = 2
+text = "Level select"
+
+[node name="subtitle_world" type="Label" parent="menuContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "world 1"
+label_settings = SubResource("LabelSettings_hwumb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="titleBottomMargin" type="MarginContainer" parent="menuContainer"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="menuContainer"]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="menuContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 500)
+layout_mode = 2
+
+[node name="previousWorldButton" type="Button" parent="menuContainer/HBoxContainer/CenterContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/normal = SubResource("StyleBoxEmpty_m2gvb")
+icon = ExtResource("3_y6wxh")
+icon_alignment = 1
+
+[node name="levelsContainer" type="GridContainer" parent="menuContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(1000, 400)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 4
+
+[node name="CenterContainer2" type="CenterContainer" parent="menuContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 500)
+layout_mode = 2
+
+[node name="nextWorldButton" type="Button" parent="menuContainer/HBoxContainer/CenterContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/normal = SubResource("StyleBoxEmpty_m2gvb")
+icon = ExtResource("4_cij7b")
+icon_alignment = 1
+
+[node name="backButton" parent="menuContainer" instance=ExtResource("7_4nqmc")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Back to main menu"
+
+[connection signal="pressed" from="menuContainer/HBoxContainer/CenterContainer/previousWorldButton" to="." method="_on_previous_world_button_pressed"]
+[connection signal="pressed" from="menuContainer/HBoxContainer/CenterContainer2/nextWorldButton" to="." method="_on_next_world_button_pressed"]
+[connection signal="pressed" from="menuContainer/backButton" to="." method="_on_back_button_pressed"]
