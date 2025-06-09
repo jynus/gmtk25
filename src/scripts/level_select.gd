@@ -155,7 +155,7 @@ func load_next_level(tree):
 
 func go_back_to_main_menu():
 	"""Return to main menu"""
-	SceneManager.change_scene("res://scenes/main_menu.tscn")
+	SceneManager.change_scene("res://scenes/main_menu.tscn", SceneManager.Transition.FADE_TO_BLACK)
 
 func _on_back_button_pressed():
 	go_back_to_main_menu()
@@ -176,10 +176,11 @@ func show_world(offset: int):
 	_configFile.set_value("progress", "current_world", Globals.current_world)
 	_configFile.save(LEVELS_FILE_PATH)
 
+	SceneManager.reload_current_scene(SceneManager.Transition.FADE_TO_BLACK)
 	# remove buttons and then redraw the screen
-	for node in levels_container.get_children():
-		node.queue_free()
-	_ready()
+	#for node in levels_container.get_children():
+	#	node.queue_free()
+	#_ready()
 
 func _on_previous_world_button_pressed():
 	Fx.click.play()

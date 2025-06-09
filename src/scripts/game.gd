@@ -12,7 +12,7 @@ func _on_lose_button_pressed() -> void:
 	lose_level()
 
 func win_level():
-	level_complete_screen.level_complete()
+	level_complete_screen.level_complete(true)
 
 func lose_level():
-	level_complete_screen.level_complete()
+	level_complete_screen.level_complete(false)
