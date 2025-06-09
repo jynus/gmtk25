@@ -10,4 +10,4 @@ func _on_play_button_button_down() -> void:
 	Fx.big_click.play()
 
 func _on_play_button_pressed() -> void:
-	SceneManager.change_scene("res://scenes/main_menu.tscn", SceneManager.Transition.FADE_TO_BLACK)
+	SceneManager.change_scene("res://scenes/main_menu.tscn", SceneManager.Transition.CURTAIN_LEFT, 0.7)

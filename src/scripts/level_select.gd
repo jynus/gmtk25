@@ -177,10 +177,6 @@ func show_world(offset: int):
 	_configFile.save(LEVELS_FILE_PATH)
 
 	SceneManager.reload_current_scene(SceneManager.Transition.FADE_TO_BLACK)
-	# remove buttons and then redraw the screen
-	#for node in levels_container.get_children():
-	#	node.queue_free()
-	#_ready()
 
 func _on_previous_world_button_pressed():
 	Fx.click.play()
