@@ -36,15 +36,7 @@ theme_override_fonts/bold_font = ExtResource("5_43x4g")
 theme_override_font_sizes/normal_font_size = 40
 theme_override_font_sizes/bold_font_size = 60
 bbcode_enabled = true
-text = "[center]Congratulations!
-
-Thanks to your great efforts optimizing textures and 3d models, the videogame project size has been shrinked down to a mere 455 GB!
-
-The project, however, could not be shipped in time due to management issues. Despite eveyone giving it a 200%, the project went over budget and milestones were not met.
-
-The project was swiftly cancelled by the publisher and all developers were layed off, including yourself :-(
-
-Have a nice day![/center]"
+text = "Explanation."
 scroll_following = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="menuContainer"]
