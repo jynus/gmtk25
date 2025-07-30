@@ -1,51 +1,25 @@
 [gd_scene load_steps=5 format=3 uid="uid://dcltua5522myp"]
 
 [ext_resource type="Script" uid="uid://jwlqjsysikrc" path="res://scripts/game.gd" id="1_be1gn"]
-[ext_resource type="PackedScene" uid="uid://oq5258by1a1k" path="res://scene_objects/menu_button.tscn" id="1_ce3w3"]
 [ext_resource type="PackedScene" uid="uid://c4724smqdfkk6" path="res://scene_objects/pause_menu.tscn" id="1_xt3oq"]
 [ext_resource type="PackedScene" uid="uid://buqvr00anmyup" path="res://scene_objects/level_complete.tscn" id="3_be1gn"]
+[ext_resource type="PackedScene" uid="uid://cbbf1sclpb2aw" path="res://scenes/hero.tscn" id="4_be1gn"]
 
 [node name="00Level1" type="Node2D"]
+scale = Vector2(8, 8)
 script = ExtResource("1_be1gn")
-
-[node name="PauseButton" parent="." instance=ExtResource("1_ce3w3")]
-custom_minimum_size = Vector2(100, 100)
-offset_left = 1113.0
-offset_top = 70.0
-offset_right = 1438.0
-offset_bottom = 170.0
-text = "Pause"
-
-[node name="WinButton" parent="." instance=ExtResource("1_ce3w3")]
-custom_minimum_size = Vector2(100, 100)
-offset_left = 108.0
-offset_top = 70.0
-offset_right = 433.0
-offset_bottom = 170.0
-text = "Win"
-
-[node name="LoseButton" parent="." instance=ExtResource("1_ce3w3")]
-custom_minimum_size = Vector2(100, 100)
-offset_left = 609.0
-offset_top = 70.0
-offset_right = 934.0
-offset_bottom = 170.0
-text = "Lose"
 
 [node name="LevelCompleteScreen" parent="." instance=ExtResource("3_be1gn")]
 unique_name_in_owner = true
 visible = false
+anchors_preset = -1
 offset_right = 320.0
 offset_bottom = 180.0
 
 [node name="pauseMenu" parent="." instance=ExtResource("1_xt3oq")]
 unique_name_in_owner = true
 visible = false
+anchors_preset = -1
 
-[connection signal="pressed" from="PauseButton" to="pauseMenu" method="_on_pause_button_pressed"]
-[connection signal="pressed" from="WinButton" to="." method="_on_win_button_pressed"]
-[connection signal="pressed" from="LoseButton" to="." method="_on_lose_button_pressed"]
-
-[editable path="PauseButton"]
-[editable path="WinButton"]
-[editable path="LoseButton"]
+[node name="CharacterBody2D" parent="." instance=ExtResource("4_be1gn")]
+position = Vector2(117.125, 75)
