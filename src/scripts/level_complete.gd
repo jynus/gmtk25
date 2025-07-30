@@ -27,7 +27,7 @@ func enable_next_level_button(won):
 func load_next_level():
 	var level_select = load("res://scripts/level_select.gd")
 	var ls = level_select.new()
-	ls.load_next_level()
+	ls.load_next_level(get_tree())
 
 func return_to_main_menu():
 	SceneManager.change_scene("res://scenes/level_select.tscn", SceneManager.Transition.FADE_TO_BLACK)
