@@ -3,21 +3,33 @@
 [ext_resource type="Texture2D" uid="uid://boqax66a0370t" path="res://assets/textures/tilemap_packed.png" id="1_3uyx6"]
 [ext_resource type="Script" uid="uid://506gqxshcsc7" path="res://scenes/hero.gd" id="1_yvbpl"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_06baw"]
-radius = 4.0
-height = 12.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_yvbpl"]
+radius = 3.0
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="Hero" type="CharacterBody2D"]
+collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_yvbpl")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-8, -13)
+position = Vector2(0, -1)
 texture = ExtResource("1_3uyx6")
-centered = false
+offset = Vector2(0, -4.5)
 region_enabled = true
-region_rect = Rect2(0, 114.961464, 16, 13.038536)
+region_rect = Rect2(0, 112, 16, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -6)
-shape = SubResource("CapsuleShape2D_06baw")
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_yvbpl")
+
+[node name="RangeAttackPosRight" type="Marker2D" parent="."]
+position = Vector2(10, -7)
+
+[node name="RangeAttackPosLeft" type="Marker2D" parent="."]
+position = Vector2(-11, -7)
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
