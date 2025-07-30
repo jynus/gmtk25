@@ -1,13 +1,12 @@
-[gd_scene load_steps=7 format=4 uid="uid://dcltua5522myp"]
+[gd_scene load_steps=6 format=4 uid="uid://dcltua5522myp"]
 
 [ext_resource type="Script" uid="uid://jwlqjsysikrc" path="res://scripts/game.gd" id="1_be1gn"]
 [ext_resource type="PackedScene" uid="uid://c4724smqdfkk6" path="res://scene_objects/pause_menu.tscn" id="1_xt3oq"]
 [ext_resource type="PackedScene" uid="uid://buqvr00anmyup" path="res://scene_objects/level_complete.tscn" id="3_be1gn"]
-[ext_resource type="PackedScene" uid="uid://cbbf1sclpb2aw" path="res://scenes/hero.tscn" id="4_be1gn"]
+[ext_resource type="PackedScene" uid="uid://cbbf1sclpb2aw" path="res://scene_objects/hero.tscn" id="4_be1gn"]
 [ext_resource type="TileSet" uid="uid://3po5228lm7pd" path="res://resources/tileset_level1.tres" id="4_ju71w"]
-[ext_resource type="PackedScene" uid="uid://d2lpjvgrih1tb" path="res://scenes/enemy.tscn" id="6_ju71w"]
 
-[node name="00Level1" type="Node2D"]
+[node name="Level1" type="Node2D"]
 scale = Vector2(6, 6)
 script = ExtResource("1_be1gn")
 
@@ -35,9 +34,13 @@ tile_map_data = PackedByteArray("AAADAAMAAAAKAAYAAAAQAAMAAAAKAAYAAAADAAgAAAAKAAY
 tile_set = ExtResource("4_ju71w")
 
 [node name="Hero" parent="Board" instance=ExtResource("4_be1gn")]
+unique_name_in_owner = true
 position = Vector2(73.33333, 61.999992)
 
-[node name="Enemy" parent="Board" instance=ExtResource("6_ju71w")]
-position = Vector2(99, 117.16667)
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="SpwanEnemyTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="SpwanEnemyTimer" to="." method="_on_spwan_enemy_timer_timeout"]

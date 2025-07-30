@@ -10,19 +10,20 @@ const SPEED = 400.0
 var _can_attack: bool = true
 
 func _physics_process(_delta: float) -> void:
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_vector("left", "right", "up", "down")
+	move()
 
-	velocity = direction * SPEED
-	if velocity.x > 0:
-		sprite_2d.flip_h = false
-	if velocity.x < 0:
-		sprite_2d.flip_h = true
-	
 	if Input.is_action_just_pressed("attack"):
 		if _can_attack:
 			attack()
 
+func move() -> void:
+	var direction := Input.get_vector("left", "right", "up", "down")
+
+	if direction.x > 0:
+		sprite_2d.flip_h = false
+	elif direction.x < 0:
+		sprite_2d.flip_h = true
+	velocity = direction * SPEED	
 	move_and_slide()
 
 func attack() -> void:
