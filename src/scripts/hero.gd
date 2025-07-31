@@ -8,13 +8,18 @@ const SPEED = 400.0
 @onready var attack_timer: Timer = $AttackTimer
 
 var _can_attack: bool = true
+var can_move: bool = false
+@export var looking_right: bool = true:
+	set(value):
+		looking_right = value
+		sprite_2d.flip_h = not looking_right
 
 func _physics_process(_delta: float) -> void:
-	move()
-
-	if Input.is_action_just_pressed("attack"):
-		if _can_attack:
-			attack()
+	if can_move:
+		move()
+		if Input.is_action_just_pressed("attack"):
+			if _can_attack:
+				attack()
 
 func move() -> void:
 	var direction := Input.get_vector("left", "right", "up", "down")

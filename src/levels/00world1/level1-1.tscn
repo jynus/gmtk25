@@ -1,10 +1,465 @@
-[gd_scene load_steps=6 format=4 uid="uid://dcltua5522myp"]
+[gd_scene load_steps=23 format=4 uid="uid://dcltua5522myp"]
 
 [ext_resource type="Script" uid="uid://jwlqjsysikrc" path="res://scripts/game.gd" id="1_be1gn"]
 [ext_resource type="PackedScene" uid="uid://c4724smqdfkk6" path="res://scene_objects/pause_menu.tscn" id="1_xt3oq"]
 [ext_resource type="PackedScene" uid="uid://buqvr00anmyup" path="res://scene_objects/level_complete.tscn" id="3_be1gn"]
 [ext_resource type="PackedScene" uid="uid://cbbf1sclpb2aw" path="res://scene_objects/hero.tscn" id="4_be1gn"]
 [ext_resource type="TileSet" uid="uid://3po5228lm7pd" path="res://resources/tileset_level1.tres" id="4_ju71w"]
+[ext_resource type="Texture2D" uid="uid://boqax66a0370t" path="res://assets/textures/tilemap_packed.png" id="6_ju71w"]
+[ext_resource type="PackedScene" uid="uid://d2lpjvgrih1tb" path="res://scene_objects/enemy.tscn" id="7_e22pj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ju71w"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_al22y"]
+size = Vector2(4.833334, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e22pj"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xout0"]
+size = Vector2(4.74998, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_knyya"]
+size = Vector2(32, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p1rvu"]
+size = Vector2(40.166676, 4.083336)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h4th0"]
+size = Vector2(32, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jwvh5"]
+size = Vector2(40.999996, 5.8333282)
+
+[sub_resource type="Animation" id="Animation_e22pj"]
+resource_name = "enter_from_left"
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Board/Hero:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.20029071, 0.36666667, 0.73333335),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-8, 94), Vector2(-8, 94), Vector2(24, 94)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Board/Doors/LeftDoor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.26666668, 0.73333335, 0.8666667, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [3, 2, 1, 1, 2, 3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Board/Hero:z_index")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Board/Hero:looking_right")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Board/Doors/LeftDoor/DoorBody/CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.29051515, 0.7628428),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_knyya"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Board/Hero:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(73.33333, 61.999992)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Board/Doors/LeftDoor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Board/Hero:z_index")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Board/Hero:looking_right")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Board/Doors/RightDoor:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Board/Doors/TopDoor:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Board/Doors/TopDoor/DoorBody/CollisionShape2D:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Board/Doors/LeftDoor/DoorBody/CollisionShape2D:disabled")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Board/Doors/RightDoor/DoorBody/CollisionShape2D:disabled")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Board/Doors/BottomDoor:frame")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Board/Doors/BottomDoor/DoorBody/CollisionShape2D:disabled")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Board/Doors/LeftDoor/barsSprite:region_rect")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(80, 96, 16, 16)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Board/Doors/LeftDoor/barsSprite:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, -8)]
+}
+
+[sub_resource type="Animation" id="Animation_ju71w"]
+resource_name = "enter_from_right"
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Board/Hero:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.36073902, 0.7310977),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(328, 94), Vector2(328, 94), Vector2(296, 94)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Board/Hero:looking_right")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Board/Doors/RightDoor:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.14814349, 0.29917288, 0.7686146, 0.86769754, 0.96666664),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [3, 2, 1, 1, 2, 3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Board/Hero:z_index")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Board/Doors/RightDoor/DoorBody/CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.8321046),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_h4th0"]
+resource_name = "enter_from_top"
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Board/Hero:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.29917288, 0.6964668),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(160.66667, -2), Vector2(160.66667, -2), Vector2(160.66667, 30)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Board/Hero:z_index")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Board/Doors/TopDoor:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.7147442, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [3, 2, 1, 1, 2, 3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Board/Doors/TopDoor/DoorBody/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.24722646, 0.8301807),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
+}
+
+[sub_resource type="Animation" id="Animation_al22y"]
+resource_name = "enter_from_bottom"
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Board/Hero:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.30109683, 0.69742876),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(160, 190), Vector2(160, 190), Vector2(160, 158)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Board/Doors/BottomDoor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.09427313, 0.1866223, 0.70031464, 0.7945878, 0.88693696),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [3, 3, 1, 1, 2, 3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Board/Hero:z_index")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Board/Doors/BottomDoor/DoorBody/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2231772, 0.8369145),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_xout0"]
+resource_name = "bars_go_up"
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Board/Doors/LeftDoor/barsSprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Rect2(80, 96, 16, 0), Rect2(80, 96, 16, 16)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Board/Doors/LeftDoor/barsSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-8, 8), Vector2(-8, -8)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h4th0"]
+_data = {
+&"RESET": SubResource("Animation_knyya"),
+&"bars_go_up": SubResource("Animation_xout0"),
+&"enter_from_bottom": SubResource("Animation_al22y"),
+&"enter_from_left": SubResource("Animation_e22pj"),
+&"enter_from_right": SubResource("Animation_ju71w"),
+&"enter_from_top": SubResource("Animation_h4th0")
+}
 
 [node name="Level1" type="Node2D"]
 scale = Vector2(6, 6)
@@ -26,21 +481,143 @@ anchors_preset = -1
 y_sort_enabled = true
 
 [node name="TileMapLayerFloor" type="TileMapLayer" parent="Board"]
-tile_map_data = PackedByteArray("AAAMAAcAAAAAAAQAAAALAAcAAAAAAAQAAAAKAAcAAAAAAAQAAAAJAAcAAAAAAAQAAAAIAAcAAAAAAAQAAAAHAAcAAAAAAAQAAAAGAAcAAAAAAAQAAAAFAAcAAAAAAAQAAAAEAAcAAAAAAAQAAAADAAcAAAAAAAQAAAACAAcAAAAAAAQAAAACAAAAAAAEAAMAAAADAAAAAAAEAAMAAAAEAAAAAAAHAAEAAAAFAAAAAAAEAAMAAAAGAAAAAAAEAAMAAAAJAAAAAAAKAAMAAAAKAAAAAAALAAMAAAALAAAAAAAEAAMAAAAMAAAAAAAEAAMAAAACAAEAAAACAAQAAAADAAEAAAACAAQAAAAEAAEAAAAHAAMAAAAFAAEAAAACAAQAAAAGAAEAAAACAAQAAAAIAAEAAAACAAQAAAAJAAEAAAACAAQAAAAKAAEAAAACAAQAAAALAAEAAAACAAQAAAAMAAEAAAADAAQAAAAMAAYAAAAAAAQAAAALAAYAAAAAAAQAAAAKAAYAAAAAAAQAAAAJAAYAAAAAAAQAAAAIAAYAAAAAAAQAAAAHAAYAAAAAAAQAAAAGAAYAAAAAAAQAAAAFAAYAAAAAAAQAAAAEAAYAAAAAAAQAAAADAAYAAAAAAAQAAAACAAYAAAAAAAQAAAACAAIAAAAAAAQAAAADAAIAAAAAAAQAAAAEAAIAAAAAAAQAAAAFAAIAAAAAAAQAAAAGAAIAAAABAAQAAAAHAAIAAAAAAAQAAAAIAAIAAAAAAAQAAAAJAAIAAAAAAAQAAAAKAAIAAAAAAAQAAAALAAIAAAAAAAQAAAAMAAIAAAAAAAQAAAAMAAMAAAAAAAQAAAAMAAUAAAAAAAQAAAAKAAUAAAAAAAQAAAAJAAUAAAAAAAQAAAAIAAUAAAABAAQAAAAHAAUAAAAAAAQAAAAGAAUAAAAAAAQAAAAFAAUAAAAAAAQAAAAEAAUAAAAAAAQAAAADAAUAAAAAAAQAAAACAAUAAAAAAAQAAAACAAQAAAAAAAQAAAACAAMAAAAAAAQAAAADAAMAAAAAAAQAAAAEAAMAAAAAAAQAAAAFAAMAAAAAAAQAAAAGAAMAAAAAAAQAAAAHAAMAAAAAAAQAAAAIAAMAAAAAAAQAAAAJAAMAAAAAAAQAAAAKAAMAAAAAAAQAAAALAAMAAAAAAAQAAAALAAQAAAAAAAQAAAALAAUAAAAAAAQAAAAKAAQAAAAAAAQAAAAJAAQAAAAAAAQAAAAIAAQAAAAAAAQAAAAHAAQAAAAAAAQAAAAGAAQAAAAAAAQAAAAFAAQAAAABAAQAAAAEAAQAAAAAAAQAAAADAAQAAAAAAAQAAAAHAAAAAAAEAAMAAAAHAAEAAAADAAQAAAAIAAAAAAAEAAMAAAADAAoAAAAEAAMAAAAEAAoAAAAEAAMAAAAFAAoAAAAEAAMAAAAGAAoAAAAEAAMAAAAHAAoAAAAEAAMAAAAIAAoAAAAEAAMAAAAJAAoAAAAKAAMAAAAKAAoAAAALAAMAAAALAAoAAAAEAAMAAAAMAAoAAAAEAAMAAAANAAoAAAAEAAMAAAAOAAoAAAAEAAMAAAAPAAoAAAAEAAMAAAAPAAkAAAAAAAQAAAAPAAgAAAABAAQAAAAPAAcAAAAAAAQAAAAPAAYAAAAAAAQAAAAPAAUAAAAAAAQAAAAPAAQAAAAAAAQAAAAPAAMAAAAAAAQAAAAPAAIAAAAAAAQAAAAPAAEAAAAHAAMAAAAPAAAAAAAHAAEAAAACAAgAAAAAAAQAAAACAAkAAAAAAAQAAAACAAoAAAAEAAMAAAAOAAAAAAAEAAMAAAANAAAAAAAEAAMAAAADAAgAAAAAAAQAAAADAAkAAAAAAAQAAAAEAAkAAAAAAAQAAAAFAAkAAAAAAAQAAAANAAcAAAAAAAQAAAANAAYAAAAAAAQAAAANAAUAAAAAAAQAAAANAAQAAAABAAQAAAANAAMAAAABAAQAAAANAAIAAAAAAAQAAAANAAEAAAACAAQAAAAOAAEAAAACAAQAAAAOAAIAAAAAAAQAAAAOAAMAAAAAAAQAAAAOAAQAAAAAAAQAAAAOAAUAAAAAAAQAAAAOAAYAAAAAAAQAAAAOAAcAAAAAAAQAAAAOAAgAAAAAAAQAAAANAAgAAAAAAAQAAAAMAAgAAAAAAAQAAAALAAgAAAAAAAQAAAAKAAgAAAAAAAQAAAAJAAgAAAAAAAQAAAAIAAgAAAAAAAQAAAAHAAgAAAAAAAQAAAAGAAgAAAAAAAQAAAAFAAgAAAAAAAQAAAAEAAgAAAABAAQAAAAGAAkAAAAAAAQAAAAHAAkAAAAAAAQAAAAIAAkAAAABAAQAAAAJAAkAAAAAAAQAAAAKAAkAAAAAAAQAAAALAAkAAAAAAAQAAAAMAAkAAAAAAAQAAAANAAkAAAAAAAQAAAAOAAkAAAAAAAQAAAAMAAQAAAAAAAQAAAAQAAoAAAAEAAMAAAARAAoAAAAEAAMAAAARAAAAAAAEAAMAAAAQAAAAAAAEAAMAAAARAAkAAAAAAAQAAAARAAgAAAAAAAQAAAARAAcAAAAAAAQAAAARAAYAAAAAAAQAAAARAAUAAAAAAAQAAAARAAQAAAAAAAQAAAARAAMAAAAAAAQAAAARAAIAAAAAAAQAAAARAAEAAAADAAQAAAAQAAkAAAAAAAQAAAAQAAgAAAAAAAQAAAAQAAcAAAAAAAQAAAAQAAYAAAAAAAQAAAAQAAUAAAAAAAQAAAAQAAQAAAAAAAQAAAAQAAMAAAAAAAQAAAAQAAIAAAAAAAQAAAAQAAEAAAADAAQAAAABAAkAAAAAAAQAAAABAAgAAAAAAAQAAAABAAcAAAAAAAQAAAABAAYAAAAAAAQAAAABAAUAAAAAAAQAAAABAAQAAAAAAAQAAAABAAMAAAAAAAQAAAABAAIAAAAAAAQAAAASAAEAAAAEAAQAAAASAAIAAAACAAQAAFASAAMAAAACAAQAAFASAAQAAAACAAQAAFASAAUAAAACAAQAAFASAAYAAAACAAQAAFASAAcAAAACAAQAAFASAAgAAAACAAQAAFASAAkAAAACAAQAAFABAAoAAAAEAAMAAAABAAEAAAADAAQAAAABAAAAAAAFAAIAAAASAAAAAAAFAAIAAAASAAoAAAAEAAMAAAATAAoAAAAEAAMAAAATAAkAAAAEAAMAAAATAAgAAAAEAAMAAAATAAcAAAAEAAMAAAATAAYAAAAEAAMAAAATAAUAAAAJAAMAAAATAAQAAAAEAAMAAAATAAMAAAAEAAMAAAATAAIAAAAEAAMAAAATAAEAAAAEAAMAAAATAAAAAAAEAAMAAAAAAAAAAAAEAAMAAAAAAAEAAAAEAAMAAAAAAAIAAAAEAAMAAAAAAAMAAAAEAAMAAAAAAAQAAAAEAAMAAAAAAAUAAAAJAAMAAAAAAAYAAAAEAAMAAAAAAAcAAAAEAAMAAAAAAAgAAAAEAAMAAAAAAAkAAAAEAAMAAAAAAAoAAAAEAAMAAAA=")
+tile_map_data = PackedByteArray("AAAMAAcAAAAAAAQAAAALAAcAAAAAAAQAAAAKAAcAAAAAAAQAAAAJAAcAAAAAAAQAAAAIAAcAAAAAAAQAAAAHAAcAAAAAAAQAAAAGAAcAAAAAAAQAAAAFAAcAAAAAAAQAAAAEAAcAAAAAAAQAAAADAAcAAAAAAAQAAAACAAcAAAAAAAQAAAACAAAAAAAEAAMAAAADAAAAAAAEAAMAAAAEAAAAAAAHAAEAAAAFAAAAAAAEAAMAAAAGAAAAAAAEAAMAAAALAAAAAAAEAAMAAAAMAAAAAAAEAAMAAAACAAEAAAACAAQAAAADAAEAAAACAAQAAAAEAAEAAAAHAAMAAAAFAAEAAAACAAQAAAAGAAEAAAACAAQAAAAIAAEAAAACAAQAAAAJAAEAAAAAAAQAAAAKAAEAAAACAAQAAAALAAEAAAACAAQAAAAMAAEAAAADAAQAAAAMAAYAAAAAAAQAAAALAAYAAAAAAAQAAAAKAAYAAAAAAAQAAAAJAAYAAAAAAAQAAAAIAAYAAAAAAAQAAAAHAAYAAAAAAAQAAAAGAAYAAAAAAAQAAAAFAAYAAAAAAAQAAAAEAAYAAAAAAAQAAAADAAYAAAAAAAQAAAACAAYAAAAAAAQAAAACAAIAAAAAAAQAAAADAAIAAAAAAAQAAAAEAAIAAAAAAAQAAAAFAAIAAAAAAAQAAAAGAAIAAAABAAQAAAAHAAIAAAAAAAQAAAAIAAIAAAAAAAQAAAAJAAIAAAAAAAQAAAAKAAIAAAAAAAQAAAALAAIAAAAAAAQAAAAMAAIAAAAAAAQAAAAMAAMAAAAAAAQAAAAMAAUAAAAAAAQAAAAKAAUAAAAAAAQAAAAJAAUAAAAAAAQAAAAIAAUAAAABAAQAAAAHAAUAAAAAAAQAAAAGAAUAAAAAAAQAAAAFAAUAAAAAAAQAAAAEAAUAAAAAAAQAAAADAAUAAAAAAAQAAAACAAUAAAAAAAQAAAACAAQAAAAAAAQAAAACAAMAAAAAAAQAAAADAAMAAAAAAAQAAAAEAAMAAAAAAAQAAAAFAAMAAAAAAAQAAAAGAAMAAAAAAAQAAAAHAAMAAAAAAAQAAAAIAAMAAAAAAAQAAAAJAAMAAAAAAAQAAAAKAAMAAAAAAAQAAAALAAMAAAAAAAQAAAALAAQAAAAAAAQAAAALAAUAAAAAAAQAAAAKAAQAAAAAAAQAAAAJAAQAAAAAAAQAAAAIAAQAAAAAAAQAAAAHAAQAAAAAAAQAAAAGAAQAAAAAAAQAAAAFAAQAAAABAAQAAAAEAAQAAAAAAAQAAAADAAQAAAAAAAQAAAAHAAAAAAAEAAMAAAAHAAEAAAADAAQAAAAIAAAAAAAEAAMAAAADAAoAAAAEAAMAAAAEAAoAAAAEAAMAAAAFAAoAAAAEAAMAAAAGAAoAAAAEAAMAAAAHAAoAAAAEAAMAAAAIAAoAAAAEAAMAAAALAAoAAAAEAAMAAAAMAAoAAAAEAAMAAAANAAoAAAAEAAMAAAAOAAoAAAAEAAMAAAAPAAoAAAAEAAMAAAAPAAkAAAAAAAQAAAAPAAgAAAABAAQAAAAPAAcAAAAAAAQAAAAPAAYAAAAAAAQAAAAPAAUAAAAAAAQAAAAPAAQAAAAAAAQAAAAPAAMAAAAAAAQAAAAPAAIAAAAAAAQAAAAPAAEAAAAHAAMAAAAPAAAAAAAHAAEAAAACAAgAAAAAAAQAAAACAAkAAAAAAAQAAAACAAoAAAAEAAMAAAAOAAAAAAAEAAMAAAANAAAAAAAEAAMAAAADAAgAAAAAAAQAAAADAAkAAAAAAAQAAAAEAAkAAAAAAAQAAAAFAAkAAAAAAAQAAAANAAcAAAAAAAQAAAANAAYAAAAAAAQAAAANAAUAAAAAAAQAAAANAAQAAAABAAQAAAANAAMAAAABAAQAAAANAAIAAAAAAAQAAAANAAEAAAACAAQAAAAOAAEAAAACAAQAAAAOAAIAAAAAAAQAAAAOAAMAAAAAAAQAAAAOAAQAAAAAAAQAAAAOAAUAAAAAAAQAAAAOAAYAAAAAAAQAAAAOAAcAAAAAAAQAAAAOAAgAAAAAAAQAAAANAAgAAAAAAAQAAAAMAAgAAAAAAAQAAAALAAgAAAAAAAQAAAAKAAgAAAAAAAQAAAAJAAgAAAAAAAQAAAAIAAgAAAAAAAQAAAAHAAgAAAAAAAQAAAAGAAgAAAAAAAQAAAAFAAgAAAAAAAQAAAAEAAgAAAABAAQAAAAGAAkAAAAAAAQAAAAHAAkAAAAAAAQAAAAIAAkAAAABAAQAAAAJAAkAAAAAAAQAAAAKAAkAAAAAAAQAAAALAAkAAAAAAAQAAAAMAAkAAAAAAAQAAAANAAkAAAAAAAQAAAAOAAkAAAAAAAQAAAAMAAQAAAAAAAQAAAAQAAoAAAAEAAMAAAARAAoAAAAEAAMAAAARAAAAAAAEAAMAAAAQAAAAAAAEAAMAAAARAAkAAAAAAAQAAAARAAgAAAAAAAQAAAARAAcAAAAAAAQAAAARAAYAAAAAAAQAAAARAAUAAAAAAAQAAAARAAQAAAAAAAQAAAARAAMAAAAAAAQAAAARAAIAAAAAAAQAAAARAAEAAAADAAQAAAAQAAkAAAAAAAQAAAAQAAgAAAAAAAQAAAAQAAcAAAAAAAQAAAAQAAYAAAAAAAQAAAAQAAUAAAAAAAQAAAAQAAQAAAAAAAQAAAAQAAMAAAAAAAQAAAAQAAIAAAAAAAQAAAAQAAEAAAADAAQAAAABAAkAAAAAAAQAAAABAAgAAAAAAAQAAAABAAcAAAAAAAQAAAABAAYAAAAAAAQAAAABAAUAAAAAAAQAAAABAAQAAAAAAAQAAAABAAMAAAAAAAQAAAABAAIAAAAAAAQAAAASAAEAAAAEAAQAAAASAAIAAAACAAQAAFASAAMAAAACAAQAAFASAAQAAAACAAQAAFASAAUAAAACAAQAAFASAAYAAAACAAQAAFASAAcAAAACAAQAAFASAAgAAAACAAQAAFASAAkAAAACAAQAAFABAAoAAAAEAAMAAAABAAEAAAADAAQAAAABAAAAAAAFAAIAAAASAAAAAAAFAAIAAAASAAoAAAAEAAMAAAATAAoAAAAEAAMAAAATAAkAAAAEAAMAAAATAAgAAAAEAAMAAAATAAcAAAAEAAMAAAATAAYAAAAEAAMAAAATAAQAAAAEAAMAAAATAAMAAAAEAAMAAAATAAIAAAAEAAMAAAATAAEAAAAEAAMAAAATAAAAAAAEAAMAAAAAAAAAAAAEAAMAAAAAAAEAAAAEAAMAAAAAAAIAAAAEAAMAAAAAAAMAAAAEAAMAAAAAAAQAAAAEAAMAAAAAAAYAAAAEAAMAAAAAAAcAAAAEAAMAAAAAAAgAAAAEAAMAAAAAAAkAAAAEAAMAAAAAAAoAAAAEAAMAAAAJAAoAAAAAAAQAAAAKAAoAAAAAAAQAAAAAAAUAAAAAAAQAAAATAAUAAAAAAAQAAAAAAAsAAAAAAAQAAAABAAsAAAAAAAQAAAACAAsAAAAAAAQAAAADAAsAAAAAAAQAAAAEAAsAAAAAAAQAAAAFAAsAAAAAAAQAAAAGAAsAAAAAAAQAAAAHAAsAAAAAAAQAAAAIAAsAAAAAAAQAAAAJAAsAAAAAAAQAAAAKAAsAAAAAAAQAAAALAAsAAAAAAAQAAAAMAAsAAAAAAAQAAAANAAsAAAAAAAQAAAAOAAsAAAAAAAQAAAAPAAsAAAAAAAQAAAAQAAsAAAAAAAQAAAARAAsAAAAAAAQAAAASAAsAAAAAAAQAAAATAAsAAAAAAAQAAAAUAAsAAAAAAAQAAAAUAAoAAAAAAAQAAAAUAAkAAAAAAAQAAAAUAAgAAAAAAAQAAAAUAAcAAAAAAAQAAAAUAAYAAAAAAAQAAAAUAAUAAAAAAAQAAAAUAAQAAAAAAAQAAAAUAAMAAAAAAAQAAAAUAAIAAAAAAAQAAAAUAAEAAAAAAAQAAAAUAAAAAAAAAAQAAAAUAP//AAAAAAQAAAATAP//AAAAAAQAAAASAP//AAAAAAQAAAARAP//AAAAAAQAAAAQAP//AAAAAAQAAAAPAP//AAAAAAQAAAAOAP//AAAAAAQAAAANAP//AAAAAAQAAAAMAP//AAAAAAQAAAALAP//AAAAAAQAAAAKAP//AAAAAAQAAAAJAP//AAAAAAQAAAAIAP//AAAAAAQAAAAHAP//AAAAAAQAAAAGAP//AAAAAAQAAAAFAP//AAAAAAQAAAAEAP//AAAAAAQAAAADAP//AAAAAAQAAAACAP//AAAAAAQAAAABAP//AAAAAAQAAAAAAP//AAAAAAQAAAD/////AAAAAAQAAAD//wAAAAAAAAQAAAD//wEAAAAAAAQAAAD//wIAAAAAAAQAAAD//wMAAAAAAAQAAAD//wQAAAAAAAQAAAD//wUAAAAAAAQAAAD//wYAAAAAAAQAAAD//wcAAAAAAAQAAAD//wgAAAAAAAQAAAD//wkAAAAAAAQAAAD//woAAAAAAAQAAAD//wsAAAAAAAQAAAA=")
 tile_set = ExtResource("4_ju71w")
 
 [node name="TileMapLayerObjects" type="TileMapLayer" parent="Board"]
-tile_map_data = PackedByteArray("AAADAAMAAAAKAAYAAAAQAAMAAAAKAAYAAAADAAgAAAAKAAYAAAAQAAgAAAAKAAYAAAAAAAUAAAAFAAYAAAATAAUAAAAFAAYAAAAKAAAAAAAGAAYAAAAKAAoAAAAGAAYAAAAJAAoAAAAEAAYAAAAJAAAAAAAEAAYAAAA=")
+tile_map_data = PackedByteArray("AAADAAMAAAAKAAYAAAAQAAMAAAAKAAYAAAADAAgAAAAKAAYAAAAQAAgAAAAKAAYAAAA=")
 tile_set = ExtResource("4_ju71w")
 
-[node name="Hero" parent="Board" instance=ExtResource("4_be1gn")]
+[node name="Hero" parent="Board" groups=["hero"] instance=ExtResource("4_be1gn")]
 unique_name_in_owner = true
 position = Vector2(73.33333, 61.999992)
 
+[node name="Enemy" parent="Board" node_paths=PackedStringArray("hero") instance=ExtResource("7_e22pj")]
+position = Vector2(157.83334, 51.00001)
+hero = NodePath("../Hero")
+
+[node name="Doors" type="Node2D" parent="Board"]
+
+[node name="LeftDoor" type="Sprite2D" parent="Board/Doors"]
+unique_name_in_owner = true
+position = Vector2(8, 88)
+texture = ExtResource("6_ju71w")
+vframes = 4
+frame = 3
+region_enabled = true
+region_rect = Rect2(144, 0, 16, 64)
+
+[node name="DoorBody" type="StaticBody2D" parent="Board/Doors/LeftDoor"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Board/Doors/LeftDoor/DoorBody"]
+shape = SubResource("RectangleShape2D_ju71w")
+
+[node name="DetectionArea" type="Area2D" parent="Board/Doors/LeftDoor"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="Collision" type="CollisionShape2D" parent="Board/Doors/LeftDoor/DetectionArea"]
+position = Vector2(10.416668, 0.16667175)
+shape = SubResource("RectangleShape2D_al22y")
+disabled = true
+debug_color = Color(0.9571087, 1.8289685e-06, 0.53694636, 0.41960785)
+
+[node name="barsSprite" type="Sprite2D" parent="Board/Doors/LeftDoor"]
+position = Vector2(-8, -8)
+texture = ExtResource("6_ju71w")
+centered = false
+region_enabled = true
+region_rect = Rect2(80, 96, 16, 16)
+
+[node name="RightDoor" type="Sprite2D" parent="Board/Doors"]
+unique_name_in_owner = true
+position = Vector2(312, 88)
+texture = ExtResource("6_ju71w")
+vframes = 4
+frame = 3
+region_enabled = true
+region_rect = Rect2(144, 0, 16, 64)
+
+[node name="DoorBody" type="StaticBody2D" parent="Board/Doors/RightDoor"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Board/Doors/RightDoor/DoorBody"]
+shape = SubResource("RectangleShape2D_e22pj")
+
+[node name="DetectionArea" type="Area2D" parent="Board/Doors/RightDoor"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="Collision" type="CollisionShape2D" parent="Board/Doors/RightDoor/DetectionArea"]
+position = Vector2(-10.375, 0.16667175)
+shape = SubResource("RectangleShape2D_xout0")
+disabled = true
+debug_color = Color(0.9571087, 1.8289685e-06, 0.53694636, 0.41960785)
+
+[node name="TopDoor" type="Sprite2D" parent="Board/Doors"]
+unique_name_in_owner = true
+position = Vector2(160, 8)
+texture = ExtResource("6_ju71w")
+vframes = 4
+frame = 3
+region_enabled = true
+region_rect = Rect2(160, 0, 32, 64)
+
+[node name="DoorBody" type="StaticBody2D" parent="Board/Doors/TopDoor"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Board/Doors/TopDoor/DoorBody"]
+shape = SubResource("RectangleShape2D_knyya")
+
+[node name="DetectionArea" type="Area2D" parent="Board/Doors/TopDoor"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="Collision" type="CollisionShape2D" parent="Board/Doors/TopDoor/DetectionArea"]
+position = Vector2(0, 10.041668)
+shape = SubResource("RectangleShape2D_p1rvu")
+disabled = true
+debug_color = Color(0.9571087, 1.8289685e-06, 0.53694636, 0.41960785)
+
+[node name="BottomDoor" type="Sprite2D" parent="Board/Doors"]
+unique_name_in_owner = true
+position = Vector2(160, 168)
+texture = ExtResource("6_ju71w")
+vframes = 4
+frame = 3
+region_enabled = true
+region_rect = Rect2(160, 0, 32, 64)
+
+[node name="DoorBody" type="StaticBody2D" parent="Board/Doors/BottomDoor"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Board/Doors/BottomDoor/DoorBody"]
+shape = SubResource("RectangleShape2D_h4th0")
+
+[node name="DetectionArea" type="Area2D" parent="Board/Doors/BottomDoor"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="Collision" type="CollisionShape2D" parent="Board/Doors/BottomDoor/DetectionArea"]
+position = Vector2(0.5, -10.9166565)
+shape = SubResource("RectangleShape2D_jwvh5")
+disabled = true
+debug_color = Color(0.9571087, 1.8289685e-06, 0.53694636, 0.41960785)
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="SpwanEnemyTimer" type="Timer" parent="."]
+[node name="SpawnEnemyTimer" type="Timer" parent="."]
 wait_time = 3.0
 autostart = true
 
-[connection signal="timeout" from="SpwanEnemyTimer" to="." method="_on_spwan_enemy_timer_timeout"]
+[node name="StateTransitionPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_h4th0")
+}
+
+[connection signal="state_changed" from="." to="." method="_on_state_changed"]
+[connection signal="body_entered" from="Board/Doors/LeftDoor/DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="timeout" from="SpawnEnemyTimer" to="." method="_on_spawn_enemy_timer_timeout"]
+[connection signal="animation_finished" from="StateTransitionPlayer" to="." method="_on_state_transition_player_animation_finished"]
