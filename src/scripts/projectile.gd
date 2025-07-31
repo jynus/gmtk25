@@ -15,6 +15,7 @@ func _on_body_entered(_body: Node2D) -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	# Impacted with enemy
-	if area.has_method("damage"):
-		area.damage(damage)
+	var enemy: Node2D = area.get_parent()
+	if enemy.has_method("damage"):
+		enemy.damage(global_position, damage)
 	queue_free()

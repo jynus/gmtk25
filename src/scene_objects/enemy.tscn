@@ -6,9 +6,9 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_7p1mj"]
 radius = 8.0
 
-[node name="Enemy" type="Area2D" groups=["enemy"]]
+[node name="Enemy" type="RigidBody2D" groups=["enemy"]]
 collision_layer = 4
-collision_mask = 0
+gravity_scale = 0.0
 script = ExtResource("1_md0e3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -16,5 +16,12 @@ texture = ExtResource("1_7p1mj")
 region_enabled = true
 region_rect = Rect2(32, 144, 16, 16)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="hurtbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
 shape = SubResource("CircleShape2D_7p1mj")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-5, -4, -7, 0, -7, 5, -5, 7, 5, 7, 7, 5, 7, 0, 5, -4)

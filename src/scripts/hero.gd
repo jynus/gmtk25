@@ -100,5 +100,6 @@ func _on_attack_timer_timeout() -> void:
 	_can_attack = true
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
-	if area.is_in_group("enemy") and can_move:
-		get_damaged(area.damage_on_touch, area.global_position)
+	var enemy: Node = area.get_parent()
+	if enemy.is_in_group("enemy") and can_move:
+		get_damaged(enemy.damage_on_touch, enemy.global_position)

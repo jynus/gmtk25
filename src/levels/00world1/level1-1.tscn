@@ -1,10 +1,11 @@
-[gd_scene load_steps=29 format=4 uid="uid://dcltua5522myp"]
+[gd_scene load_steps=30 format=4 uid="uid://dcltua5522myp"]
 
 [ext_resource type="Script" uid="uid://jwlqjsysikrc" path="res://scripts/game.gd" id="1_be1gn"]
 [ext_resource type="PackedScene" uid="uid://c4724smqdfkk6" path="res://scene_objects/pause_menu.tscn" id="1_xt3oq"]
 [ext_resource type="PackedScene" uid="uid://buqvr00anmyup" path="res://scene_objects/level_complete.tscn" id="3_be1gn"]
 [ext_resource type="PackedScene" uid="uid://cbbf1sclpb2aw" path="res://scene_objects/hero.tscn" id="4_be1gn"]
 [ext_resource type="TileSet" uid="uid://3po5228lm7pd" path="res://resources/tileset_level1.tres" id="4_ju71w"]
+[ext_resource type="Script" uid="uid://dyfptit1bbfix" path="res://scripts/enemy.gd" id="5_p1rvu"]
 [ext_resource type="Texture2D" uid="uid://boqax66a0370t" path="res://assets/textures/tilemap_packed.png" id="6_ju71w"]
 [ext_resource type="Script" uid="uid://bdwpkbt68t081" path="res://scripts/door.gd" id="6_knyya"]
 [ext_resource type="Texture2D" uid="uid://cq0rbvkmiivx0" path="res://assets/textures/hearts_empty.webp" id="7_al22y"]
@@ -45,70 +46,6 @@ outline_color = Color(0, 0, 0, 1)
 [sub_resource type="AtlasTexture" id="AtlasTexture_e22pj"]
 atlas = ExtResource("6_ju71w")
 region = Rect2(0, 144, 16, 16)
-
-[sub_resource type="Animation" id="Animation_e22pj"]
-resource_name = "enter_from_left"
-step = 0.0333333
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Board/Hero:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.20029071, 0.36666667, 0.73333335),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(-8, 94), Vector2(-8, 94), Vector2(24, 94)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Board/Doors/LeftDoor:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.13333334, 0.26666668, 0.73333335, 0.8666667, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [3, 2, 1, 1, 2, 3]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Board/Hero:z_index")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [1, 0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Board/Hero:looking_right")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Board/Doors/LeftDoor/DoorBody/CollisionShape2D:disabled")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.29051515, 0.7628428),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
 
 [sub_resource type="Animation" id="Animation_knyya"]
 length = 0.001
@@ -461,174 +398,6 @@ tracks/28/keys = {
 "values": [Rect2(80, 96, 16, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_ju71w"]
-resource_name = "enter_from_right"
-step = 0.0333333
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Board/Hero:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.36073902, 0.7310977),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(328, 94), Vector2(328, 94), Vector2(296, 94)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Board/Hero:looking_right")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Board/Doors/RightDoor:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.14814349, 0.29917288, 0.7686146, 0.86769754, 0.96666664),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [3, 2, 1, 1, 2, 3]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Board/Hero:z_index")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [1, 0]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Board/Doors/RightDoor/DoorBody/CollisionShape2D:disabled")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.26666668, 0.8321046),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
-
-[sub_resource type="Animation" id="Animation_h4th0"]
-resource_name = "enter_from_top"
-step = 0.0333333
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Board/Hero:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.29917288, 0.6964668),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(160.66667, -2), Vector2(160.66667, -2), Vector2(160.66667, 30)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Board/Hero:z_index")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [1, 0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Board/Doors/TopDoor:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.7147442, 0.8, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [3, 2, 1, 1, 2, 3]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Board/Doors/TopDoor/DoorBody/CollisionShape2D:disabled")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.24722646, 0.8301807),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, false]
-}
-
-[sub_resource type="Animation" id="Animation_al22y"]
-resource_name = "enter_from_bottom"
-step = 0.0333333
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Board/Hero:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.30109683, 0.69742876),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(160, 190), Vector2(160, 190), Vector2(160, 158)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Board/Doors/BottomDoor:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.09427313, 0.1866223, 0.70031464, 0.7945878, 0.88693696),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [3, 3, 1, 1, 2, 3]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Board/Hero:z_index")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [1, 0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Board/Doors/BottomDoor/DoorBody/CollisionShape2D:disabled")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.2231772, 0.8369145),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
-
 [sub_resource type="Animation" id="Animation_g4y0y"]
 resource_name = "bars_go_up"
 step = 0.0333333
@@ -849,6 +618,238 @@ tracks/17/keys = {
 "values": [Rect2(80, 96, 16, 0), Rect2(80, 96, 16, 16)]
 }
 
+[sub_resource type="Animation" id="Animation_al22y"]
+resource_name = "enter_from_bottom"
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Board/Hero:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.30109683, 0.69742876),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(160, 190), Vector2(160, 190), Vector2(160, 158)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Board/Doors/BottomDoor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.09427313, 0.1866223, 0.70031464, 0.7945878, 0.88693696),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [3, 3, 1, 1, 2, 3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Board/Hero:z_index")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Board/Doors/BottomDoor/DoorBody/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2231772, 0.8369145),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_e22pj"]
+resource_name = "enter_from_left"
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Board/Hero:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.20029071, 0.36666667, 0.73333335),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-8, 94), Vector2(-8, 94), Vector2(24, 94)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Board/Doors/LeftDoor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.26666668, 0.73333335, 0.8666667, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [3, 2, 1, 1, 2, 3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Board/Hero:z_index")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Board/Hero:looking_right")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Board/Doors/LeftDoor/DoorBody/CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.29051515, 0.7628428),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_ju71w"]
+resource_name = "enter_from_right"
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Board/Hero:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.36073902, 0.7310977),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(328, 94), Vector2(328, 94), Vector2(296, 94)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Board/Hero:looking_right")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Board/Doors/RightDoor:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.14814349, 0.29917288, 0.7686146, 0.86769754, 0.96666664),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [3, 2, 1, 1, 2, 3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Board/Hero:z_index")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Board/Doors/RightDoor/DoorBody/CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.8321046),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_h4th0"]
+resource_name = "enter_from_top"
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Board/Hero:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.29917288, 0.6964668),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(160.66667, -2), Vector2(160.66667, -2), Vector2(160.66667, 30)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Board/Hero:z_index")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Board/Doors/TopDoor:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.7147442, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [3, 2, 1, 1, 2, 3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Board/Doors/TopDoor/DoorBody/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.24722646, 0.8301807),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h4th0"]
 _data = {
 &"RESET": SubResource("Animation_knyya"),
@@ -879,10 +880,37 @@ unique_name_in_owner = true
 position = Vector2(73.33333, 61.999992)
 
 [node name="Enemy" parent="Board" node_paths=PackedStringArray("hero") instance=ExtResource("7_e22pj")]
-position = Vector2(157.83334, 51.00001)
+position = Vector2(243.83334, 91.833336)
 hero = NodePath("../Hero")
 
+[node name="Enemy2" parent="Board" node_paths=PackedStringArray("hero") instance=ExtResource("7_e22pj")]
+position = Vector2(95.16667, 91.833336)
+hero = NodePath("../Hero")
+
+[node name="Enemy3" type="RigidBody2D" parent="Board" node_paths=PackedStringArray("hero") groups=["enemy"]]
+collision_layer = 4
+gravity_scale = 0.0
+script = ExtResource("5_p1rvu")
+hero = NodePath("../Hero")
+
+[node name="Sprite2D" type="Sprite2D" parent="Board/Enemy3"]
+position = Vector2(160, 87)
+texture = ExtResource("6_ju71w")
+region_enabled = true
+region_rect = Rect2(32, 144, 16, 16)
+
+[node name="hurtbox" type="Area2D" parent="Board/Enemy3"]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Board/Enemy3/hurtbox"]
+polygon = PackedVector2Array(153.16667, 81.5, 153, 92.333336, 155.16667, 94, 158.33334, 94, 160.16667, 93.333336, 162, 94.16667, 165.5, 94, 167.5, 91.66667, 167.16667, 82.16667, 165, 79.833336, 155.33334, 79.66667)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Board/Enemy3"]
+polygon = PackedVector2Array(157, 83.333336, 159.5, 81.833336, 162.83334, 82.833336, 162.83334, 87.833336, 161.5, 89, 158.5, 89, 157, 87.16667)
+
 [node name="Doors" type="Node2D" parent="Board"]
+metadata/_edit_lock_ = true
 
 [node name="LeftDoor" type="Sprite2D" parent="Board/Doors"]
 unique_name_in_owner = true
