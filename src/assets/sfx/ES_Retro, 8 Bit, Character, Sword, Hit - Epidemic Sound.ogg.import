@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b8jjfaffq2dm2"
+path="res://.godot/imported/ES_Retro, 8 Bit, Character, Sword, Hit - Epidemic Sound.ogg-faeab5bb000cf65847c09a4c9859f352.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sfx/ES_Retro, 8 Bit, Character, Sword, Hit - Epidemic Sound.ogg"
+dest_files=["res://.godot/imported/ES_Retro, 8 Bit, Character, Sword, Hit - Epidemic Sound.ogg-faeab5bb000cf65847c09a4c9859f352.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

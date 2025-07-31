@@ -12,7 +12,7 @@ config_version=5
 
 config/name="GMTKJam2025"
 run/main_scene="uid://dcltua5522myp"
-config/features=PackedStringArray("4.5", "GL Compatibility")
+config/features=PackedStringArray("4.4", "GL Compatibility")
 boot_splash/image="res://assets/textures/a_game_by_jynus_background.png"
 config/icon="uid://b2ccol6my2dph"
 boot_splash/minimum_display_time=100

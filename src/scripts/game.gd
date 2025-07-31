@@ -3,7 +3,7 @@ extends Node2D
 signal state_changed(current_state)
 
 @export var coming_from : Globals.dir = Globals.dir.LEFT
-
+	
 @onready var level_complete_screen: Control = %LevelCompleteScreen
 @onready var hero: CharacterBody2D = %Hero
 @onready var state_transition_player: AnimationPlayer = %StateTransitionPlayer
@@ -31,8 +31,11 @@ var current_state : state:
  
 func _ready() -> void:
 	update_level()
+	Globals.hero_health_update.connect(update_lifebar)
 	update_lifebar()
 	current_state = state.ENTER
+	for i in range(0, Globals.level - 1):
+		spawn_enemy()
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("back"):
@@ -45,8 +48,8 @@ func update_level():
 	%Level.text = "LEVEL %02d" % Globals.level + "/20"
 
 func update_lifebar():
-	life_bar_max.size.x = hero.max_health * 5
-	life_bar_current.size.x = hero.current_health * 5
+	life_bar_max.size.x = Globals.max_health * 5
+	life_bar_current.size.x = Globals.current_health * 5
 
 func _on_spawn_enemy_timer_timeout() -> void:
 	#spawn_enemy()

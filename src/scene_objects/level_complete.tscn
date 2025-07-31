@@ -15,6 +15,7 @@
 process_mode = 3
 custom_minimum_size = Vector2(320, 180)
 layout_mode = 3
+anchors_preset = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 scale = Vector2(0.167, 0.167)

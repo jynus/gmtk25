@@ -1,18 +1,6 @@
 extends CharacterBody2D
 
-signal health_update
-
-
 @export var weapon: PackedScene = preload("res://scene_objects/projectile.tscn")
-@export var current_health: int = 6:
-	set(value):
-		current_health = value
-		health_update.emit()
-@export var max_health: int = 6:
-	set(value):
-		current_health = value
-		health_update.emit()
-
 @onready var sprite_2d: Sprite2D = $Sprite2D
 const SPEED := 400.0
 const DAMAGE_FORCE := 600.0
@@ -77,8 +65,8 @@ func attack() -> void:
 func get_damaged(points: int, damage_pos: Vector2):
 	can_move = false
 
-	current_health -= points
-	if current_health <= 0:
+	Globals.current_health -= points
+	if Globals.current_health <= 0:
 		die()
 	
 	# apply some feedback

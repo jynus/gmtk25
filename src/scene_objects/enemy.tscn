@@ -1,14 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://d2lpjvgrih1tb"]
+[gd_scene load_steps=5 format=3 uid="uid://d2lpjvgrih1tb"]
 
 [ext_resource type="Texture2D" uid="uid://boqax66a0370t" path="res://assets/textures/tilemap_packed.png" id="1_7p1mj"]
 [ext_resource type="Script" uid="uid://dyfptit1bbfix" path="res://scripts/enemy.gd" id="1_md0e3"]
+[ext_resource type="AudioStream" uid="uid://b8jjfaffq2dm2" path="res://assets/sfx/ES_Retro, 8 Bit, Character, Sword, Hit - Epidemic Sound.ogg" id="3_0qe5i"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7p1mj"]
-radius = 8.0
+radius = 9.0
 
-[node name="Enemy" type="RigidBody2D" groups=["enemy"]]
+[node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 4
-gravity_scale = 0.0
 script = ExtResource("1_md0e3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -24,4 +24,30 @@ collision_mask = 0
 shape = SubResource("CircleShape2D_7p1mj")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-5, -4, -7, 0, -7, 5, -5, 7, 5, 7, 7, 5, 7, 0, 5, -4)
+position = Vector2(-1, 0)
+scale = Vector2(6, 6)
+polygon = PackedVector2Array(-0.166667, -1, -0.5, -0.5, -0.5, 0.166667, -0.333333, 0.5, 0.666667, 0.5, 0.833333, 0.166667, 0.833333, -0.5, 0.5, -1)
+
+[node name="MaxLifeBar" type="ColorRect" parent="."]
+unique_name_in_owner = true
+offset_left = -8.0
+offset_top = -11.0
+offset_right = 8.0
+offset_bottom = -9.0
+color = Color(0.48367, 0.194275, 0.182022, 1)
+
+[node name="CurrentLifeBar" type="ColorRect" parent="."]
+unique_name_in_owner = true
+offset_left = -8.0
+offset_top = -11.0
+offset_right = 8.0
+offset_bottom = -9.0
+color = Color(0.85098, 0.133333, 0.172549, 1)
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_0qe5i")
+volume_db = -10.0
+bus = &"sfx"
+
+[connection signal="update_health" from="." to="." method="_on_update_health"]

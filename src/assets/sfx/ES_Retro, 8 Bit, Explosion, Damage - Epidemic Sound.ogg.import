@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://d1owyrla6tq1s"
+path="res://.godot/imported/ES_Retro, 8 Bit, Explosion, Damage - Epidemic Sound.ogg-e6100f0e2a242c29a69cf7a18cda655d.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sfx/ES_Retro, 8 Bit, Explosion, Damage - Epidemic Sound.ogg"
+dest_files=["res://.godot/imported/ES_Retro, 8 Bit, Explosion, Damage - Epidemic Sound.ogg-e6100f0e2a242c29a69cf7a18cda655d.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
