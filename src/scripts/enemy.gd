@@ -8,7 +8,7 @@ func _ready() -> void:
 	pass
 
 func _process(delta: float) -> void:
-	if hero:
+	if hero and hero.can_move:
 		var direction: Vector2 = (global_position - hero.global_position).normalized()
 		position -= direction * speed * delta
 
