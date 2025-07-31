@@ -11,8 +11,8 @@ signal state_changed(current_state)
 @onready var right_door: Sprite2D = %RightDoor
 @onready var top_door: Sprite2D = %TopDoor
 @onready var bottom_door: Sprite2D = %BottomDoor
-
-var _next_level_coming_from : Globals.dir
+@onready var life_bar_max: TextureRect = %LifeBarMax
+@onready var life_bar_current: TextureRect = %LifeBarCurrent
 enum state {
 	ENTER,
 	CLOSE_BARS,
@@ -31,6 +31,7 @@ var current_state : state:
  
 func _ready() -> void:
 	update_level()
+	update_lifebar()
 	current_state = state.ENTER
 
 func _process(_delta: float) -> void:
@@ -41,7 +42,12 @@ func _process(_delta: float) -> void:
 		current_state = state.OPEN_BARS
 
 func update_level():
-	%Level.text = "%02d" % Globals.level + "/20"
+	%Level.text = "LEVEL %02d" % Globals.level + "/20"
+
+func update_lifebar():
+	life_bar_max.size.x = hero.max_health * 5
+	life_bar_current.size.x = hero.current_health * 5
+
 func _on_spawn_enemy_timer_timeout() -> void:
 	#spawn_enemy()
 	pass
@@ -64,10 +70,10 @@ func _on_state_transition_player_animation_finished(_anim_name: StringName) -> v
 
 func _on_state_changed(old_state: Variant) -> void:
 	print_debug("Old state: " + str(old_state) + " Current state " + str(current_state))
-	if current_state in [state.COMBAT, state.CHOOSE_DOOR]:
-		hero.can_move = true
+	if current_state in [state.COMBAT, state.CHOOSE_DOOR, state.OPEN_BARS]:
+		hero.is_paused = false
 	else:
-		hero.can_move = false
+		hero.is_paused = true
 	if current_state == state.ENTER:
 		match Globals.coming_from:
 			Globals.dir.LEFT:
@@ -130,3 +136,7 @@ func _on_yes_button_pressed() -> void:
 func next_level():
 	Globals.level += 1
 	SceneManager.reload_current_scene()
+
+
+func _on_hero_health_update() -> void:
+	update_lifebar()
