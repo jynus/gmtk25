@@ -11,3 +11,14 @@ func _ready() -> void:
 func _on_disabled_buttons_timer_timeout() -> void:
 	retry_run_button.disabled = false
 	main_menu_button.disabled = false
+
+
+func _on_retry_run_button_pressed() -> void:
+	Globals.reset_run()
+	BackgroundMusic.fade_out(1)
+	SceneManager.change_scene("res://levels/00world1/level1.tscn")
+
+func _on_main_menu_button_pressed() -> void:
+	Globals.reset_run()
+	BackgroundMusic.fade_out(1)
+	SceneManager.change_scene("res://scenes/main_menu.tscn")

@@ -19,26 +19,34 @@ const DAMAGE_FORCE : float = 1000
 var hurt_vector : Vector2 = Vector2.ZERO
 @onready var max_life_bar: ColorRect = %MaxLifeBar
 @onready var current_life_bar: ColorRect = %CurrentLifeBar
+@onready var navigation_agent: NavigationAgent2D = %NavigationAgent
 var death_sound = preload("res://assets/sfx/ES_Retro, 8 Bit, Explosion, Damage - Epidemic Sound.ogg")
 var hit_sound = preload("res://assets/sfx/ES_Retro, 8 Bit, Character, Sword, Hit - Epidemic Sound.ogg")
 
 func _ready() -> void:
-	pass
+	hero_setup.call_deferred()
 
-func _physics_process(delta: float) -> void:
+func hero_setup():
+	await get_tree().physics_frame
+	if hero:
+		navigation_agent.target_position = hero.global_position
+	
+func _physics_process(_delta: float) -> void:
 	if hurt_vector != Vector2.ZERO:
-		velocity += hurt_vector * delta
+		velocity += hurt_vector
 		hurt_vector /= 10
-		if hurt_vector.length() < 0.01:
+		if hurt_vector.length() < 1:
 			hurt_vector = Vector2.ZERO
-	elif hero and not hero.is_paused:
-		var direction: Vector2 = (hero.global_position - global_position).normalized()
-		velocity += direction * max_speed * delta
-		if velocity.length() > max_speed * delta:
-			velocity = velocity.normalized() * max_speed * delta
+	elif hero and not hero.is_paused and not navigation_agent.is_navigation_finished():
+		var current_agent_position: Vector2 = global_position
+		var next_path_position: Vector2 = navigation_agent.get_next_path_position()
+		velocity = current_agent_position.direction_to(next_path_position) * max_speed
+		if velocity.length() > max_speed:
+			velocity = velocity.normalized() * max_speed
 	else:
 		velocity = Vector2.ZERO
-	move_and_collide(velocity)
+	move_and_slide()
+	hero_setup.call_deferred()
 
 func damage(from: Vector2, points: float = 1):
 	current_health -= points

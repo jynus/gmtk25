@@ -81,5 +81,5 @@ one_shot = true
 autostart = true
 
 [connection signal="pressed" from="MenuBackground/VBoxContainer/retryRunButton" to="." method="_on_retry_run_button_pressed"]
-[connection signal="pressed" from="MenuBackground/VBoxContainer/mainMenuButton" to="." method="return_to_main_menu"]
+[connection signal="pressed" from="MenuBackground/VBoxContainer/mainMenuButton" to="." method="_on_main_menu_button_pressed"]
 [connection signal="timeout" from="DisabledButtonsTimer" to="." method="_on_disabled_buttons_timer_timeout"]

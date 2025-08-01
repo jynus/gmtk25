@@ -42,7 +42,9 @@ texture = ExtResource("1_voba3")
 5:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 6:2/0 = 0
 7:2/0 = 0
+7:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 5, -8, 5)
 8:2/0 = 0
+8:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 5, -8, 5)
 9:2/0 = 0
 10:2/0 = 0
 11:2/0 = 0
@@ -61,7 +63,9 @@ texture = ExtResource("1_voba3")
 10:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 11:3/0 = 0
 11:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:4/next_alternative_id = 2
 0:4/0 = 0
+0:4/1 = 1
 1:4/0 = 0
 2:4/0 = 0
 3:4/0 = 0
@@ -153,5 +157,5 @@ texture = ExtResource("1_voba3")
 
 [resource]
 physics_layer_0/collision_layer = 1
-physics_layer_0/collision_mask = 0
+physics_layer_0/collision_mask = 6
 sources/0 = SubResource("TileSetAtlasSource_ju71w")
