@@ -14,7 +14,7 @@ var hurt_vector: Vector2 = Vector2.ZERO
 @onready var range_attack_pos_left: Marker2D = $RangeAttackPosLeft
 @onready var attack_timer: Timer = $AttackTimer
 var attack_sound = preload("res://assets/sfx/ES_Impact, Attack - Epidemic Sound.ogg")
-var _can_attack: bool = true
+var can_attack: bool = true
 var can_move: bool = true:
 	set(value):
 		can_move = value
@@ -40,7 +40,7 @@ func _physics_process(delta: float) -> void:
 	if not is_paused:
 		move(delta)
 		if Input.is_action_just_pressed("attack"):
-			if _can_attack:
+			if can_attack:
 				attack()
 
 func move(delta: float) -> void:
@@ -69,7 +69,7 @@ func normal_move(delta: float) -> void:
 			velocity = velocity.normalized() * max_speed
 
 func attack() -> void:
-	_can_attack = false
+	can_attack = false
 	%SFX.stream = attack_sound
 	%SFX.play()
 	var my_weapon = weapon.instantiate()
@@ -106,7 +106,7 @@ func die():
 	hero_died.emit()
 
 func _on_attack_timer_timeout() -> void:
-	_can_attack = true
+	can_attack = true
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	var enemy: Node = area.get_parent()

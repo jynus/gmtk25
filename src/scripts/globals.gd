@@ -23,6 +23,13 @@ enum dir {
 	BOTTOM
 }
 
+enum challenge {
+	CRAB,
+	INCREASED_ENEMY_HEALTH,
+	SHOP
+}
+
+var challenge_list: Array[challenge] = []
 var coming_from: dir = dir.LEFT
 
 func reset_run():

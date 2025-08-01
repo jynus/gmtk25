@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cq0rbvkmiivx0" path="res://assets/textures/hearts_empty.webp" id="7_al22y"]
 [ext_resource type="FontFile" uid="uid://d2gom50m7yb65" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="7_xout0"]
 [ext_resource type="Texture2D" uid="uid://8cyk10lvghuv" path="res://assets/textures/hearts_full.webp" id="8_xout0"]
+[ext_resource type="PackedScene" uid="uid://ca2xagvsvid5s" path="res://scene_objects/confirm_door_panel.tscn" id="12_jdw8i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ju71w"]
 size = Vector2(16, 16)
@@ -47,10 +48,6 @@ font = ExtResource("7_xout0")
 font_size = 55
 outline_size = 14
 outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e22pj"]
-atlas = ExtResource("6_ju71w")
-region = Rect2(0, 144, 16, 16)
 
 [sub_resource type="Animation" id="Animation_knyya"]
 length = 0.001
@@ -1071,6 +1068,7 @@ volume_db = -10.0
 bus = &"sfx"
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="Board"]
+visible = false
 navigation_polygon = SubResource("NavigationPolygon_qvgd2")
 metadata/_edit_lock_ = true
 
@@ -1111,6 +1109,14 @@ texture = ExtResource("8_xout0")
 expand_mode = 1
 stretch_mode = 1
 
+[node name="ConfirmDoorPanel" parent="." instance=ExtResource("12_jdw8i")]
+unique_name_in_owner = true
+visible = false
+offset_left = 62.166668
+offset_top = 32.166664
+offset_right = 262.16666
+offset_bottom = 132.16666
+
 [node name="LevelCompleteScreen" parent="." instance=ExtResource("3_be1gn")]
 unique_name_in_owner = true
 visible = false
@@ -1122,55 +1128,6 @@ offset_bottom = 180.0
 unique_name_in_owner = true
 visible = false
 anchors_preset = -1
-
-[node name="ConfirmDoorPanel" type="Control" parent="."]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(200, 100)
-layout_mode = 3
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 18.5
-offset_top = 18.0
-offset_right = 294.833
-offset_bottom = 157.167
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 6
-size_flags_vertical = 6
-
-[node name="VBoxContainer" type="VBoxContainer" parent="ConfirmDoorPanel"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -55.5
-offset_top = -48.5
-offset_right = 55.5
-offset_bottom = 48.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="ConfirmDoorPanel/VBoxContainer"]
-layout_mode = 2
-texture = SubResource("AtlasTexture_e22pj")
-expand_mode = 3
-stretch_mode = 3
-
-[node name="ConfirmText" type="Label" parent="ConfirmDoorPanel/VBoxContainer"]
-layout_mode = 2
-text = "Confirm door?"
-
-[node name="NoButton" type="Button" parent="ConfirmDoorPanel/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "No"
-
-[node name="YesButton" type="Button" parent="ConfirmDoorPanel/VBoxContainer"]
-layout_mode = 2
-text = "Yes"
 
 [node name="SpawnEnemyTimer" type="Timer" parent="."]
 wait_time = 3.0
@@ -1190,10 +1147,12 @@ bus = &"sfx"
 [connection signal="state_changed" from="." to="." method="_on_state_changed"]
 [connection signal="hero_died" from="Board/Hero" to="." method="_on_hero_died"]
 [connection signal="body_entered" from="Board/Doors/LeftDoor/DetectionArea" to="." method="_on_left_door_detected"]
+[connection signal="body_exited" from="Board/Doors/LeftDoor/DetectionArea" to="." method="_on_left_door_undetected"]
 [connection signal="body_entered" from="Board/Doors/RightDoor/DetectionArea" to="." method="_on_right_door_detected"]
+[connection signal="body_exited" from="Board/Doors/RightDoor/DetectionArea" to="." method="_on_right_door_undetected"]
 [connection signal="body_entered" from="Board/Doors/TopDoor/DetectionArea" to="." method="_on_top_door_detected"]
+[connection signal="body_exited" from="Board/Doors/TopDoor/DetectionArea" to="." method="_on_top_door_undetected"]
 [connection signal="body_entered" from="Board/Doors/BottomDoor/DetectionArea" to="." method="_on_bottom_door_detected"]
-[connection signal="pressed" from="ConfirmDoorPanel/VBoxContainer/NoButton" to="." method="_on_no_button_pressed"]
-[connection signal="pressed" from="ConfirmDoorPanel/VBoxContainer/YesButton" to="." method="_on_yes_button_pressed"]
+[connection signal="body_exited" from="Board/Doors/BottomDoor/DetectionArea" to="." method="_on_bottom_door_undetected"]
 [connection signal="timeout" from="SpawnEnemyTimer" to="." method="_on_spawn_enemy_timer_timeout"]
 [connection signal="animation_finished" from="StateTransitionPlayer" to="." method="_on_state_transition_player_animation_finished"]

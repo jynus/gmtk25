@@ -1,0 +1,81 @@
+[gd_scene load_steps=5 format=3 uid="uid://ca2xagvsvid5s"]
+
+[ext_resource type="Script" uid="uid://dckntwyr5uc8w" path="res://scripts/confirm_door_panel.gd" id="1_rcxm0"]
+[ext_resource type="Texture2D" uid="uid://dfu5anf37ogpc" path="res://resources/crab_texture.tres" id="2_kk20b"]
+[ext_resource type="FontFile" uid="uid://d2gom50m7yb65" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="2_onsoy"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kk20b"]
+font = ExtResource("2_onsoy")
+
+[node name="ConfirmDoorPanel" type="Control"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 3
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 679.0
+offset_top = 337.0
+offset_right = -704.5
+offset_bottom = -424.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+script = ExtResource("1_rcxm0")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.5
+offset_top = -48.5
+offset_right = 55.5
+offset_bottom = 48.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ChallengeIconRect" type="TextureRect" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("2_kk20b")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="ChallengeText" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "+1 Crab"
+label_settings = SubResource("LabelSettings_kk20b")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ConfirmText" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Confirm door selection?"
+label_settings = SubResource("LabelSettings_kk20b")
+
+[node name="NoButton" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_onsoy")
+text = "No"
+
+[node name="YesButton" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_onsoy")
+disabled = true
+text = "Yes"
+
+[node name="ButtonDisabledTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.5
+one_shot = true
+
+[connection signal="pressed" from="VBoxContainer/YesButton" to="." method="_on_yes_button_pressed"]
+[connection signal="timeout" from="ButtonDisabledTimer" to="." method="_on_button_disabled_timer_timeout"]
