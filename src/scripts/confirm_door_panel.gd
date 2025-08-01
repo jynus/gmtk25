@@ -15,14 +15,16 @@ func update_info():
 
 func make_active():
 	show()
-	%YesButton.grab_focus()
-	%ButtonDisabledTimer.start(0.5)
+	%ButtonDisabledTimer.start(0.8)
+	%YesButton.hide()
 
 func make_inactive():
 	hide()
 	%YesButton.disabled = true
 	
 func _on_button_disabled_timer_timeout() -> void:
+	%YesButton.show()
+	%YesButton.grab_focus()
 	%YesButton.disabled = false
 
 func _on_yes_button_pressed() -> void:

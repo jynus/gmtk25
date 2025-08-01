@@ -6,5 +6,7 @@
 [node name="Enemy" instance=ExtResource("1_01dgp")]
 max_health = 5.0
 max_speed = 100.0
-damage_on_touch = 2
+damage_force = 0.0
+damage_on_touch = 3
 texture = ExtResource("2_5uwrl")
+detection_radius = 1000.0

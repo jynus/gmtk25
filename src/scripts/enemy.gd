@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 signal update_health
 
-const DAMAGE_FORCE : float = 1000
 @export var speed : float = 3
 @export var max_health : float = 2:
 	set(value):
@@ -14,26 +13,31 @@ const DAMAGE_FORCE : float = 1000
 		update_health.emit()
 @export var hero : Node2D
 @export var max_speed: float = 200.0
+@export var damage_force : float = 1000
 @export var damage_on_touch : int = 1
 @export var texture: Texture2D
-
+@export var detection_radius: float = 500
+	
 var hurt_vector : Vector2 = Vector2.ZERO
 @onready var max_life_bar: ColorRect = %MaxLifeBar
 @onready var current_life_bar: ColorRect = %CurrentLifeBar
 @onready var navigation_agent: NavigationAgent2D = %NavigationAgent
 var death_sound = preload("res://assets/sfx/ES_Retro, 8 Bit, Explosion, Damage - Epidemic Sound.ogg")
 var hit_sound = preload("res://assets/sfx/ES_Retro, 8 Bit, Character, Sword, Hit - Epidemic Sound.ogg")
+var default_position: Vector2
 
 func _ready() -> void:
 	update_texture()
 	current_health = max_health
 	update_life_bar()
-	hero_setup.call_deferred()
+	navigation_setup.call_deferred()
 
-func hero_setup():
+func navigation_setup():
 	await get_tree().physics_frame
-	if hero:
+	if hero and (hero.global_position - global_position).length() < detection_radius:
 		navigation_agent.target_position = hero.global_position
+	else:
+		navigation_agent.target_position = default_position
 	
 func _physics_process(_delta: float) -> void:
 	if hurt_vector != Vector2.ZERO:
@@ -57,7 +61,7 @@ func damage(from: Vector2, points: float = 1):
 	$SFX.stream = hit_sound
 	%SFX.play()
 	%SFX.finished.connect(damage_end)
-	hurt_vector = (global_position - from).normalized() * DAMAGE_FORCE
+	hurt_vector = (global_position - from).normalized() * damage_force
 	if current_health <= 0:
 		die()
 
@@ -91,4 +95,4 @@ func update_texture():
 	%Sprite2D.texture = texture
 
 func _on_navigation_update_timer_timeout() -> void:
-	hero_setup.call_deferred()
+	navigation_setup.call_deferred()

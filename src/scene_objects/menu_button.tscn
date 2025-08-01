@@ -35,3 +35,4 @@ text = "Done"
 script = ExtResource("6_sryjb")
 
 [connection signal="button_down" from="." to="." method="_on_button_down"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]

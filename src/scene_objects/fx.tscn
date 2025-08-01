@@ -10,7 +10,7 @@ random_volume_offset_db = 3.0
 streams_count = 1
 stream_0/stream = ExtResource("1_id4ng")
 
-[node name="FX" type="Node2D"]
+[node name="FX" type="Node"]
 script = ExtResource("1_l6i5p")
 
 [node name="Click" type="AudioStreamPlayer" parent="."]

@@ -6,4 +6,6 @@
 [node name="Enemy" instance=ExtResource("1_pu80r")]
 max_health = 1.0
 max_speed = 300.0
+damage_force = 1500.0
 texture = ExtResource("2_w7pmk")
+detection_radius = 300.0

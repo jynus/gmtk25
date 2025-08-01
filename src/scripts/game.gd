@@ -2,8 +2,6 @@ extends Node2D
 
 signal state_changed(current_state)
 
-@export var coming_from : Globals.dir = Globals.dir.LEFT
-	
 @onready var level_complete_screen: Control = %LevelCompleteScreen
 @onready var hero: CharacterBody2D = %Hero
 @onready var state_transition_player: AnimationPlayer = %StateTransitionPlayer
@@ -92,6 +90,7 @@ func spawn_enemy(enemy_scene: PackedScene):
 	var enemy = enemy_scene.instantiate()
 	hero.add_sibling(enemy)
 	enemy.global_position = pos
+	enemy.default_position = pos
 	enemy.hero = hero
 
 func _on_state_transition_player_animation_finished(_anim_name: StringName) -> void:
@@ -131,7 +130,7 @@ func _on_state_changed(old_state: Variant) -> void:
 		%TileMapLayerObjects.set_cell(Vector2(15,0), 0, Vector2(8, 1))
 		%TileMapLayerObjects.set_cell(Vector2(4,1), 0, Vector2(8, 2))
 		%TileMapLayerObjects.set_cell(Vector2(15,1), 0, Vector2(8, 2))
-		
+
 		if Globals.coming_from != Globals.dir.LEFT:
 			left_door.get_node("DetectionArea/Collision").set_deferred("disabled", false)
 		if Globals.coming_from != Globals.dir.TOP:
@@ -145,6 +144,27 @@ func _on_state_changed(old_state: Variant) -> void:
 		SceneManager.change_scene("res://scene_objects/game_over.tscn", SceneManager.Transition.FADE_TO_BLACK, 2)
 
 func open_bars():
+	match Globals.coming_from:
+		Globals.dir.LEFT:
+			left_door.hide()
+			%TileMapLayerFloor.set_cell(Vector2(0,5), 0, Vector2(9, 3))
+			%TileMapLayerObjects.set_cell(Vector2(0,5), 0, Vector2(5, 6))
+		Globals.dir.RIGHT:
+			right_door.hide()
+			%TileMapLayerFloor.set_cell(Vector2(19,5), 0, Vector2(9, 3))
+			%TileMapLayerObjects.set_cell(Vector2(19,5), 0, Vector2(5, 6))
+		Globals.dir.TOP:
+			top_door.hide()
+			%TileMapLayerFloor.set_cell(Vector2(9,0), 0, Vector2(10, 3))
+			%TileMapLayerFloor.set_cell(Vector2(10,0), 0, Vector2(11, 3))
+			%TileMapLayerObjects.set_cell(Vector2(9,0), 0, Vector2(5, 6))
+			%TileMapLayerObjects.set_cell(Vector2(10,0), 0, Vector2(5, 6))
+		Globals.dir.BOTTOM:
+			bottom_door.hide()
+			%TileMapLayerFloor.set_cell(Vector2(9,10), 0, Vector2(10, 3))
+			%TileMapLayerFloor.set_cell(Vector2(10,10), 0, Vector2(11, 3))
+			%TileMapLayerObjects.set_cell(Vector2(9,10), 0, Vector2(5, 6))
+			%TileMapLayerObjects.set_cell(Vector2(10,10), 0, Vector2(5, 6))
 	state_transition_player.play_backwards("bars_go_up")
 
 func close_bars():

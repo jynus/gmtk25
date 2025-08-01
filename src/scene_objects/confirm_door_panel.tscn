@@ -1,11 +1,77 @@
-[gd_scene load_steps=5 format=3 uid="uid://ca2xagvsvid5s"]
+[gd_scene load_steps=11 format=3 uid="uid://ca2xagvsvid5s"]
 
 [ext_resource type="Script" uid="uid://dckntwyr5uc8w" path="res://scripts/confirm_door_panel.gd" id="1_rcxm0"]
 [ext_resource type="Texture2D" uid="uid://dfu5anf37ogpc" path="res://resources/crab_texture.tres" id="2_kk20b"]
 [ext_resource type="FontFile" uid="uid://d2gom50m7yb65" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="2_onsoy"]
+[ext_resource type="PackedScene" uid="uid://oq5258by1a1k" path="res://scene_objects/menu_button.tscn" id="4_dqdpu"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_kk20b"]
 font = ExtResource("2_onsoy")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dqdpu"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.48235294, 0.19607842, 0.18039216, 0.28235295)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.648909, 0.279105, 0.262213, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f5byo"]
+content_margin_left = 5.0
+content_margin_top = 6.0
+content_margin_right = 5.0
+content_margin_bottom = 4.0
+bg_color = Color(0.521569, 0.521569, 0.521569, 0.462745)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.521569, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vyxkf"]
+content_margin_left = 5.0
+content_margin_top = 6.0
+content_margin_right = 5.0
+content_margin_bottom = 4.0
+bg_color = Color(0.521569, 0.521569, 0.521569, 0.462745)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.648909, 0.279105, 0.262213, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_26hkk"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.521569, 0.521569, 0.521569, 0.286275)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.52, 0.52, 0.52, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pitgi"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.9893759, 0.9448053, 0.9400232, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+anti_aliasing = false
 
 [node name="ConfirmDoorPanel" type="Control"]
 custom_minimum_size = Vector2(200, 100)
@@ -23,6 +89,7 @@ size_flags_vertical = 6
 script = ExtResource("1_rcxm0")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 130)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -38,7 +105,7 @@ grow_vertical = 2
 
 [node name="ChallengeIconRect" type="TextureRect" parent="VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 texture = ExtResource("2_kk20b")
 expand_mode = 3
@@ -46,7 +113,7 @@ stretch_mode = 5
 
 [node name="ChallengeText" type="Label" parent="VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 50)
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 text = "+1 Crab"
 label_settings = SubResource("LabelSettings_kk20b")
@@ -57,6 +124,7 @@ vertical_alignment = 1
 layout_mode = 2
 text = "Confirm door selection?"
 label_settings = SubResource("LabelSettings_kk20b")
+horizontal_alignment = 1
 
 [node name="NoButton" type="Button" parent="VBoxContainer"]
 unique_name_in_owner = true
@@ -65,10 +133,26 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_onsoy")
 text = "No"
 
-[node name="YesButton" type="Button" parent="VBoxContainer"]
-unique_name_in_owner = true
+[node name="YesButtonold" type="Button" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_onsoy")
+disabled = true
+text = "Yes"
+
+[node name="YesButton" parent="VBoxContainer" instance=ExtResource("4_dqdpu")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.648909, 0.279105, 0.262213, 1)
+theme_override_colors/font_focus_color = Color(0.648909, 0.279105, 0.262213, 1)
+theme_override_colors/font_disabled_color = Color(0.53, 0.53, 0.53, 1)
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_dqdpu")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_f5byo")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vyxkf")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_26hkk")
+theme_override_styles/focus = SubResource("StyleBoxFlat_pitgi")
 disabled = true
 text = "Yes"
 
