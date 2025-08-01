@@ -60,9 +60,11 @@ func normal_move(delta: float) -> void:
 	
 	if direction == Vector2.ZERO:
 		velocity /= _friction
-		%MovingSFX.stream_paused = true
+		if not %MovingSFX.stream_paused:
+			%MovingSFX.stream_paused = true
 	else:
-		%MovingSFX.stream_paused = false
+		if %MovingSFX.stream_paused:
+			%MovingSFX.stream_paused = false
 		_acceleration = direction * 10000 * delta
 		velocity += _acceleration
 		if velocity.length() > max_speed:
