@@ -22,6 +22,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+mouse_default_cursor_shape = 2
 theme_override_colors/font_color = Color(0.91764706, 0.64705884, 0.42352942, 1)
 theme_override_colors/font_focus_color = Color(0.91764706, 0.64705884, 0.42352942, 1)
 theme_override_fonts/font = ExtResource("1_sryjb")

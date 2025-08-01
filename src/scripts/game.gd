@@ -2,6 +2,13 @@ extends Node2D
 
 signal state_changed(current_state)
 
+enum level_type {
+	NORMAL,
+	SHOP
+}
+@export var type: level_type = level_type.NORMAL
+const SHOP_CHANCE: float = 1
+
 @onready var level_complete_screen: Control = %LevelCompleteScreen
 @onready var hero: CharacterBody2D = %Hero
 @onready var state_transition_player: AnimationPlayer = %StateTransitionPlayer
@@ -40,10 +47,12 @@ func _ready() -> void:
 	update_level()
 	Globals.hero_health_update.connect(update_lifebar)
 	update_lifebar()
+	update_coins()
 	current_state = state.ENTER
 	randomize_doors()
-	for challenge in Globals.challenge_list:
-		add_challenge(challenge)
+	if type != level_type.SHOP:
+		for challenge in Globals.challenge_list:
+			add_challenge(challenge)
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("back"):
@@ -56,7 +65,6 @@ func _process(_delta: float) -> void:
 		BackgroundMusic.fade_into("win", 0.5)
 
 func randomize_doors():
-	# TODO: make it random
 	for door in [left_door, right_door, top_door, bottom_door]:
 		door.challenge = [
 			Globals.challenge.CRAB,
@@ -64,12 +72,19 @@ func randomize_doors():
 			Globals.challenge.GHOST
 		].pick_random()
 
+	# Shops should never lead to shops
+	if type != level_type.SHOP and randf() < SHOP_CHANCE:
+		[left_door, right_door, top_door, bottom_door].pick_random().challenge = Globals.challenge.SHOP
+
 func update_level():
 	%Level.text = tr("LEVEL") + " %02d" % Globals.level + "/20"
 
 func update_lifebar():
 	life_bar_max.size.x = Globals.max_health * 5
 	life_bar_current.size.x = Globals.current_health * 5
+
+func update_coins():
+	%CoinCount.text = "x" + str(Globals.coins)
 
 func _on_spawn_enemy_timer_timeout() -> void:
 	#spawn_enemy()
@@ -84,6 +99,8 @@ func add_challenge(challenge: Globals.challenge):
 		Globals.challenge.BAT:
 			for i in range (3):
 				spawn_enemy(bat_scene)
+		_:
+			pass  # shops shouldn't have any danger
 
 func spawn_enemy(enemy_scene: PackedScene):
 	var pos: Vector2 = Vector2(randf_range(300, 1500), randf_range(300, 800))
@@ -124,12 +141,13 @@ func _on_state_changed(old_state: Variant) -> void:
 	elif current_state == state.CHOOSE_DOOR:
 		hero.can_attack = false
 		BackgroundMusic.fade_into("level_complete", 0, 1)
-		%TileMapLayerObjects.set_cell(Vector2(1,0), 0, Vector2(5,2))
-		%TileMapLayerObjects.set_cell(Vector2(18,0), 0, Vector2(5,2))
-		%TileMapLayerObjects.set_cell(Vector2(4,0), 0, Vector2(8, 1))
-		%TileMapLayerObjects.set_cell(Vector2(15,0), 0, Vector2(8, 1))
-		%TileMapLayerObjects.set_cell(Vector2(4,1), 0, Vector2(8, 2))
-		%TileMapLayerObjects.set_cell(Vector2(15,1), 0, Vector2(8, 2))
+		if type == level_type.NORMAL:
+			%TileMapLayerObjects.set_cell(Vector2(1,0), 0, Vector2(5,2))
+			%TileMapLayerObjects.set_cell(Vector2(18,0), 0, Vector2(5,2))
+			%TileMapLayerObjects.set_cell(Vector2(4,0), 0, Vector2(8, 1))
+			%TileMapLayerObjects.set_cell(Vector2(15,0), 0, Vector2(8, 1))
+			%TileMapLayerObjects.set_cell(Vector2(4,1), 0, Vector2(8, 2))
+			%TileMapLayerObjects.set_cell(Vector2(15,1), 0, Vector2(8, 2))
 
 		if Globals.coming_from != Globals.dir.LEFT:
 			left_door.get_node("DetectionArea/Collision").set_deferred("disabled", false)
@@ -208,3 +226,6 @@ func _on_hero_health_update() -> void:
 
 func _on_hero_died() -> void:
 	current_state = state.GAME_OVER
+
+func _on_hero_pickedup_coins() -> void:
+	update_coins()

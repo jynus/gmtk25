@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cdmsyv6kbcxvh"]
+[gd_scene load_steps=6 format=3 uid="uid://cdmsyv6kbcxvh"]
 
 [ext_resource type="AudioStream" uid="uid://d3ixwbo1crwko" path="res://assets/sfx/Button Press Click, Tap, Video Game, Main Menu, Select, Positive 03.ogg" id="1_id4ng"]
 [ext_resource type="Script" uid="uid://oeab5muo0nr3" path="res://scripts/fx.gd" id="1_l6i5p"]
+[ext_resource type="AudioStream" uid="uid://cdi2aa1hd5nnd" path="res://assets/sfx/ES_Game, Retro, 8 Bit, Pickup Coin 01 - Epidemic Sound.ogg" id="2_nacph"]
 [ext_resource type="AudioStream" uid="uid://b1h5h1gben2ro" path="res://assets/sfx/ES_Impact, Suspense Hit 02 - Epidemic Sound.ogg" id="3_ivw8r"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_au0o3"]
@@ -12,6 +13,11 @@ stream_0/stream = ExtResource("1_id4ng")
 
 [node name="FX" type="Node"]
 script = ExtResource("1_l6i5p")
+
+[node name="CoinPickup" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("2_nacph")
+bus = &"sfx"
 
 [node name="Click" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true

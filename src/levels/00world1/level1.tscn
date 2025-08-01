@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://dcltua5522myp"]
+[gd_scene load_steps=31 format=4 uid="uid://dcltua5522myp"]
 
 [ext_resource type="Script" uid="uid://jwlqjsysikrc" path="res://scripts/game.gd" id="1_be1gn"]
 [ext_resource type="PackedScene" uid="uid://c4724smqdfkk6" path="res://scene_objects/pause_menu.tscn" id="1_xt3oq"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cq0rbvkmiivx0" path="res://assets/textures/hearts_empty.webp" id="7_al22y"]
 [ext_resource type="FontFile" uid="uid://d2gom50m7yb65" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="7_xout0"]
 [ext_resource type="Texture2D" uid="uid://8cyk10lvghuv" path="res://assets/textures/hearts_full.webp" id="8_xout0"]
+[ext_resource type="Texture2D" uid="uid://c0xy5o2bphx0p" path="res://assets/textures/coin.webp" id="10_futjo"]
 [ext_resource type="PackedScene" uid="uid://ca2xagvsvid5s" path="res://scene_objects/confirm_door_panel.tscn" id="12_jdw8i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ju71w"]
@@ -1111,6 +1112,25 @@ texture = ExtResource("8_xout0")
 expand_mode = 1
 stretch_mode = 1
 
+[node name="Coin" type="TextureRect" parent="UI"]
+anchors_preset = -1
+offset_left = 1102.0
+offset_top = 979.0
+offset_right = 1118.0
+offset_bottom = 995.0
+scale = Vector2(4, 4)
+texture = ExtResource("10_futjo")
+
+[node name="CoinCount" type="Label" parent="UI"]
+unique_name_in_owner = true
+anchors_preset = -1
+offset_left = 1176.0
+offset_top = 976.0
+offset_right = 1495.0
+offset_bottom = 1087.0
+text = "x0"
+label_settings = SubResource("LabelSettings_knyya")
+
 [node name="ConfirmDoorPanel" parent="." instance=ExtResource("12_jdw8i")]
 unique_name_in_owner = true
 visible = false
@@ -1148,6 +1168,7 @@ bus = &"sfx"
 
 [connection signal="state_changed" from="." to="." method="_on_state_changed"]
 [connection signal="hero_died" from="Board/Hero" to="." method="_on_hero_died"]
+[connection signal="pickedup_coins" from="Board/Hero" to="." method="_on_hero_pickedup_coins"]
 [connection signal="body_entered" from="Board/Doors/LeftDoor/DetectionArea" to="." method="_on_left_door_detected"]
 [connection signal="body_exited" from="Board/Doors/LeftDoor/DetectionArea" to="." method="_on_left_door_undetected"]
 [connection signal="body_entered" from="Board/Doors/RightDoor/DetectionArea" to="." method="_on_right_door_detected"]

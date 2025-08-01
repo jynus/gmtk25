@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 signal hero_died
+signal pickedup_coins
 
 @export var weapon: PackedScene = preload("res://scene_objects/projectile.tscn")
 @onready var sprite_2d: Sprite2D = $Sprite2D
@@ -114,3 +115,13 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 	var enemy: Node = area.get_parent()
 	if enemy.is_in_group("enemy") and can_move:
 		get_damaged(enemy.damage_on_touch, enemy.global_position)
+
+func pickup_coin(value: int) -> void:
+	Globals.coins += value
+	pickedup_coins.emit()
+
+func show_powerup(powerup: Globals.powerup):
+	print_debug("show_powerup")
+
+func hide_powerup():
+	print_debug("hide_powerup")

@@ -42,6 +42,7 @@ var challenge_list: Array[challenge] = []
 var powerup_list: Array[powerup] = []
 var coming_from: dir = dir.LEFT
 var user_settings: Node
+var coins: int = 0
 
 func _init() -> void:
 	# Load settings config
@@ -65,6 +66,11 @@ func get_challenge_info(c: challenge) -> Dictionary:
 				'texture': preload("res://resources/ghost_texture.tres"),
 				'text': "+1 " + tr("ghost")
 			}
+		challenge.SHOP:
+			return {
+				'texture': preload("res://resources/chest_texture.tres"),
+				'text': tr("shop")
+			}
 		_:
 			return {'texture': null, 'text': ""}
 
@@ -74,6 +80,7 @@ func reset_run():
 	challenge_list = []
 	powerup_list = []
 	level = 1
+	coins = 0
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_fullscreen"):

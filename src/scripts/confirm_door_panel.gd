@@ -32,5 +32,8 @@ func _on_yes_button_pressed() -> void:
 
 func next_level():
 	Globals.level += 1
-	Globals.challenge_list.append(challenge)
-	SceneManager.reload_current_scene()
+	if challenge == Globals.challenge.SHOP:
+		SceneManager.change_scene("res://levels/00world1/shop.tscn")
+	else:
+		Globals.challenge_list.append(challenge)
+		SceneManager.change_scene("res://levels/00world1/level1.tscn")

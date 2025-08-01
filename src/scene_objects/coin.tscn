@@ -1,0 +1,79 @@
+[gd_scene load_steps=7 format=3 uid="uid://d2p50k8g10h45"]
+
+[ext_resource type="Texture2D" uid="uid://c0xy5o2bphx0p" path="res://assets/textures/coin.webp" id="1_8h5jk"]
+[ext_resource type="Script" uid="uid://bukg25vav12ym" path="res://scripts/coin.gd" id="1_u252x"]
+
+[sub_resource type="Animation" id="Animation_ypf7s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_u252x"]
+resource_name = "rotate"
+length = 2.0
+loop_mode = 1
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 1), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cn71u"]
+_data = {
+&"RESET": SubResource("Animation_ypf7s"),
+&"rotate": SubResource("Animation_u252x")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4ppse"]
+radius = 8.6730795
+
+[node name="Coin" type="Area2D" groups=["coin"]]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_u252x")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -5)
+texture = ExtResource("1_8h5jk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_cn71u")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_4ppse")
+
+[node name="TimerVisible" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[node name="TimerDespawn" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[connection signal="area_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="TimerVisible" to="." method="_on_timer_visible_timeout"]
+[connection signal="timeout" from="TimerDespawn" to="." method="_on_timer_despawn_timeout"]
