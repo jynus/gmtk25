@@ -50,7 +50,6 @@ func _physics_process(_delta: float) -> void:
 	else:
 		velocity = Vector2.ZERO
 	move_and_slide()
-	hero_setup.call_deferred()
 
 func damage(from: Vector2, points: float = 1):
 	current_health -= points
@@ -90,3 +89,6 @@ func update_life_bar():
 
 func update_texture():
 	%Sprite2D.texture = texture
+
+func _on_navigation_update_timer_timeout() -> void:
+	hero_setup.call_deferred()

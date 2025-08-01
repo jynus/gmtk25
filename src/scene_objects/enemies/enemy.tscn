@@ -60,4 +60,9 @@ radius = 100.0
 debug_enabled = true
 debug_path_custom_color = Color(4.3317675e-07, 0, 0.65652066, 1)
 
+[node name="NavigationUpdateTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
 [connection signal="update_health" from="." to="." method="_on_update_health"]
+[connection signal="timeout" from="NavigationUpdateTimer" to="." method="_on_navigation_update_timer_timeout"]
