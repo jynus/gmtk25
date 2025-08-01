@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c4cvfq7meyk26"
+path="res://.godot/imported/ES_Goodbye Goodnight - One Two Feet.ogg-dd13d2298b8172874dee7c090425508c.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/ES_Goodbye Goodnight - One Two Feet.ogg"
+dest_files=["res://.godot/imported/ES_Goodbye Goodnight - One Two Feet.ogg-dd13d2298b8172874dee7c090425508c.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

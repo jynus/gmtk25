@@ -24,7 +24,7 @@ func set_focus() -> void:
 
 func start_new_game() -> void:
 	"""Start new play session"""
-	SceneManager.change_scene("res://scenes/intro.tscn", SceneManager.Transition.FADE_TO_BLACK)
+	SceneManager.change_scene("res://levels/00world1/level1.tscn", SceneManager.Transition.FADE_TO_BLACK)
 
 func show_how_to_play_screen() -> void:
 	"""Show the instructions and key bindings"""

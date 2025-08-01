@@ -1,43 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://k635iu86fy37"]
+[gd_scene format=3 uid="uid://k635iu86fy37"]
 
-[ext_resource type="Shader" uid="uid://dkia5e8r56mmq" path="res://shaders/menu_background.gdshader" id="1_ca5sk"]
-[ext_resource type="Texture2D" uid="uid://bbj5kwumfmq4c" path="res://assets/textures/woods_background.png" id="2_ca5sk"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ba428"]
-shader = ExtResource("1_ca5sk")
-shader_parameter/portal_texture = ExtResource("2_ca5sk")
-shader_parameter/portal_tint = Color(0.362829, 0.362829, 0.362829, 0.301961)
-shader_parameter/vortex_effect_radius = 0.5
-shader_parameter/twist_strength = 12.2
-shader_parameter/pulsation_speed = 0.1
-shader_parameter/breath_magnitude = 0.05
-shader_parameter/overall_rotation_speed = 0.25
-shader_parameter/texture_scroll_speed_x = 0.08
-shader_parameter/texture_scroll_speed_y = 0.03
-shader_parameter/edge_softness = 0.1
-
-[node name="backgroudMenu" type="Node2D"]
+[node name="MenuBackground" type="Control"]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="Background" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 1920.0
-offset_bottom = 1080.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.125911, 0.125911, 0.125911, 1)
-
-[node name="Trippy" type="ColorRect" parent="."]
-material = SubResource("ShaderMaterial_ba428")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -347.0
-offset_top = 1484.0
-offset_right = 2595.66
-offset_bottom = 3413.47
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.858407, -0.995094)
-color = Color(0.32899, 0.190565, 0, 1)
+color = Color(0.48367, 0.194275, 0.182022, 1)

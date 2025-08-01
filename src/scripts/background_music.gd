@@ -1,20 +1,18 @@
 extends Node
 
-const DEFAULT_MUSIC_VOLUME : float = -15
+const DEFAULT_MUSIC_VOLUME : float = -25
 
 @onready var music_player : AudioStreamPlayer = %musicPlayer
 var fadeout_tween : Tween
 var fadein_tween : Tween
 
 var playlist : Dictionary = {
-	"menu": "res://assets/music/ES_Beyond Barriers - Anthony Earls.ogg",
-	"pause": "res://assets/music/ES_Love and Rewind (Instrumental Version) - I'MIN.ogg",
-	"game": "res://assets/music/ES_Simple Minds (Instrumental Version) - I'MIN.ogg",
-	"game2": "res://assets/music/ES_Midnight Messages - Rebecca Mardal.ogg",
-	"level_complete": "res://assets/music/ES_Rise and Rise - Falcon Dives.ogg",
-	"lost": "res://assets/music/ES_Love and Rewind (Instrumental Version) - I'MIN.ogg",
-	"win": "res://assets/music/ES_Just The Way You Are (Instrumental Version) - Craig Reever.ogg",
-	"intro": "res://assets/music/ES_Infatuation (Instrumental Version) - I'MIN.ogg",
+	"menu": "res://assets/music/ES_Albatross - Lexica.ogg",
+	"pause": "res://assets/music/ES_Mango Fizz - Jobii.ogg",
+	"game": "res://assets/music/ES_Nintendo Revolution - Rolla Coasta.ogg",
+	"level_complete": "res://assets/music/ES_Fair N Square - William Benckert.ogg",
+	"game_over": "res://assets/music/ES_Ctrl Alt Defeat - Deskant.ogg",
+	"win": "res://assets/music/ES_Goodbye Goodnight - One Two Feet.ogg",
 }
 var _current_song : String
 @export var current_song : String :

@@ -1,19 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://bmuu7gov5nfwd"]
+[gd_scene load_steps=3 format=3 uid="uid://bmuu7gov5nfwd"]
 
 [ext_resource type="LabelSettings" uid="uid://tje0ygjwilaf" path="res://resources/title_label_settings.tres" id="1_aauo1"]
+[ext_resource type="Script" uid="uid://bw0lgg0nso6s8" path="res://addons/autosize_label/autosize_label.gd" id="2_ynxhp"]
 
 [node name="Title" type="Label"]
 texture_filter = 2
 custom_minimum_size = Vector2(0, 250)
-anchors_preset = 5
+anchors_preset = -1
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -83.0
-offset_right = 83.0
-offset_bottom = 250.0
+offset_right = 465.0
+offset_bottom = 300.0
 grow_horizontal = 2
 size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 72
 text = "Title"
 label_settings = ExtResource("1_aauo1")
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("2_ynxhp")
+metadata/_custom_type_script = "uid://bw0lgg0nso6s8"

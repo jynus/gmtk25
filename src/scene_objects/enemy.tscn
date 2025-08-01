@@ -9,6 +9,7 @@ radius = 9.0
 
 [node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 4
+collision_mask = 5
 script = ExtResource("1_md0e3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -16,20 +17,23 @@ texture = ExtResource("1_7p1mj")
 region_enabled = true
 region_rect = Rect2(32, 144, 16, 16)
 
-[node name="hurtbox" type="Area2D" parent="."]
+[node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
+[node name="HurtboxCollision" type="CollisionShape2D" parent="Hurtbox"]
+unique_name_in_owner = true
 shape = SubResource("CircleShape2D_7p1mj")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+[node name="HitboxCollision" type="CollisionPolygon2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(-1, 0)
 scale = Vector2(6, 6)
-polygon = PackedVector2Array(-0.166667, -1, -0.5, -0.5, -0.5, 0.166667, -0.333333, 0.5, 0.666667, 0.5, 0.833333, 0.166667, 0.833333, -0.5, 0.5, -1)
+polygon = PackedVector2Array(-0.6666667, -1, -1.1666667, -0.5, -1.1666667, 0.16666667, -0.8333333, 0.5, 1.1666666, 0.5, 1.5, 0.16666667, 1.5, -0.5, 1, -1)
 
 [node name="MaxLifeBar" type="ColorRect" parent="."]
 unique_name_in_owner = true
+anchors_preset = -1
 offset_left = -8.0
 offset_top = -11.0
 offset_right = 8.0
@@ -38,6 +42,7 @@ color = Color(0.48367, 0.194275, 0.182022, 1)
 
 [node name="CurrentLifeBar" type="ColorRect" parent="."]
 unique_name_in_owner = true
+anchors_preset = -1
 offset_left = -8.0
 offset_top = -11.0
 offset_right = 8.0

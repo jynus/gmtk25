@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://v115yg165tbb"
+path="res://.godot/imported/ES_Ctrl Alt Defeat - Deskant.ogg-b74f4d17145edda870f900ee234f53ac.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/ES_Ctrl Alt Defeat - Deskant.ogg"
+dest_files=["res://.godot/imported/ES_Ctrl Alt Defeat - Deskant.ogg-b74f4d17145edda870f900ee234f53ac.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

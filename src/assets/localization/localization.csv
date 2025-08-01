@@ -1,5 +1,5 @@
 keys,en,es
-GMTKJam2025,GMTKJam 2025 Title,Título GMTKJam 2025
+GMTKJam2025,The Binding of Blue Prince,The Binding of Blue Prince
 VersionString,v0.1.0,v0.1.0
 Play,Play,Jugar
 Settings,Settings,Configuración
@@ -16,6 +16,7 @@ Done,Done,Hecho
 Level select,Level select,Seleción de nivel
 Back,Back,Volver
 Back to main menu,Back to main menu,Menú principal
+Back to menu,Back to menu,Volver al menú
 Back to level selection,Back to level selection,Volver a selección de nivel
 Replay level again,Replay level again,Volver a jugar el nivel
 Reset level,Reset level,Reiniciar nivel
@@ -24,10 +25,13 @@ Return to game,Return to game,Volver al juego
 Pause,Pause,Pausa
 on,on,sí
 off,off,no
+Your adventure ends here.,Your adventure ends here.,Tu aventura termina aquí.
 Level complete!,Level complete!,¡Nivel completado!
 Next level,Next level,Siguiente nivel
 Replay,Replay,Volver a jugar
 You Won!,You Won!,¡Ganaste!
+Game over,Game over,Perdiste
+Restart from level 1,Restart from level 1,Reiniciar desde nivel 1
 "Please Confirm...","Please Confirm...","Por favor, confirma..."
 "Design & programming","Design & programming","Diseño y programación"
 "Music & Sounds","Music & Sounds","Música y sonido"

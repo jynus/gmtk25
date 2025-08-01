@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal hero_died
+
 @export var weapon: PackedScene = preload("res://scene_objects/projectile.tscn")
 @onready var sprite_2d: Sprite2D = $Sprite2D
 const SPEED := 400.0
@@ -11,15 +13,28 @@ var hurt_vector: Vector2 = Vector2.ZERO
 @onready var range_attack_pos_right: Marker2D = $RangeAttackPosRight
 @onready var range_attack_pos_left: Marker2D = $RangeAttackPosLeft
 @onready var attack_timer: Timer = $AttackTimer
-
+var attack_sound = preload("res://assets/sfx/ES_Impact, Attack - Epidemic Sound.ogg")
 var _can_attack: bool = true
-var can_move: bool = true
-var is_paused: bool = true
+var can_move: bool = true:
+	set(value):
+		can_move = value
+		if not can_move:
+			%MovingSFX.stream_paused = true
+var is_paused: bool = true:
+	set(value):
+		is_paused = value
+		if is_paused:
+			%MovingSFX.stream_paused = true
 
 @export var looking_right: bool = true:
 	set(value):
 		looking_right = value
 		sprite_2d.flip_h = not looking_right
+
+
+func _ready() -> void:
+	%MovingSFX.play()
+	%MovingSFX.stream_paused = true
 
 func _physics_process(delta: float) -> void:
 	if not is_paused:
@@ -45,7 +60,9 @@ func normal_move(delta: float) -> void:
 	
 	if direction == Vector2.ZERO:
 		velocity /= _friction
+		%MovingSFX.stream_paused = true
 	else:
+		%MovingSFX.stream_paused = false
 		_acceleration = direction * 10000 * delta
 		velocity += _acceleration
 		if velocity.length() > max_speed:
@@ -53,6 +70,8 @@ func normal_move(delta: float) -> void:
 
 func attack() -> void:
 	_can_attack = false
+	%SFX.stream = attack_sound
+	%SFX.play()
 	var my_weapon = weapon.instantiate()
 	add_sibling(my_weapon)
 	if sprite_2d.flip_h:
@@ -64,7 +83,7 @@ func attack() -> void:
 
 func get_damaged(points: int, damage_pos: Vector2):
 	can_move = false
-
+	%MovingSFX.stream_paused = true
 	Globals.current_health -= points
 	if Globals.current_health <= 0:
 		die()
@@ -82,7 +101,9 @@ func resume_moving():
 	%SFX.finished.disconnect(resume_moving)
 
 func die():
-	queue_free()
+	%MovingSFX.stream_paused = true
+	is_paused = true
+	hero_died.emit()
 
 func _on_attack_timer_timeout() -> void:
 	_can_attack = true

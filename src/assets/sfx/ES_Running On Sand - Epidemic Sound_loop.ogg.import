@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bcavcptaq0pqo"
+path="res://.godot/imported/ES_Running On Sand - Epidemic Sound_loop.ogg-465c4f6abe169d5f6e79e0dc8df00ada.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sfx/ES_Running On Sand - Epidemic Sound_loop.ogg"
+dest_files=["res://.godot/imported/ES_Running On Sand - Epidemic Sound_loop.ogg-465c4f6abe169d5f6e79e0dc8df00ada.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

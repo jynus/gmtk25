@@ -29,9 +29,12 @@ expand_margin_bottom = 5.0
 script = ExtResource("1_he1sj")
 
 [node name="backgroudMenu" parent="." instance=ExtResource("2_o30b1")]
+anchors_preset = -1
+offset_right = 1920.0
+offset_bottom = 1080.0
 
 [node name="menuContainer" type="CenterContainer" parent="."]
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 680.0

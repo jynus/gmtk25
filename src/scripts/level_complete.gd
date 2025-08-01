@@ -15,7 +15,7 @@ const TWITTER_SHARE_URL = "https://x.com/intent/tweet?text="
 
 func level_complete(won: bool):
 	SceneManager.show_scene(self, SceneManager.Transition.FADE_TO_BLACK, 1)
-	await BackgroundMusic.fade_into("level_complete", 4)
+	await BackgroundMusic.fade_into("level_complete", 0.5, 2)
 	enable_next_level_button(won)
 
 func enable_next_level_button(won):
@@ -34,3 +34,7 @@ func return_to_main_menu():
 
 func reload_current_level():
 	SceneManager.reload_current_scene(SceneManager.Transition.FADE_TO_BLACK)
+
+
+func _on_retry_run_button_pressed() -> void:
+	pass # Replace with function body.

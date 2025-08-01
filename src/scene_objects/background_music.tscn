@@ -8,5 +8,5 @@ script = ExtResource("1_khk71")
 
 [node name="musicPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
-volume_db = -15.0
+volume_db = -25.0
 bus = &"music"

@@ -3,18 +3,18 @@ extends Node2D
 const BLUSKY_URL : String = "https://bsky.app/profile/jynus.com"
 const ITCHIO_URL : String = "https://jynus.itch.io"
 const WEB_URL : String = "https://jynus.com"
-const GITHUB_URL : String = "https://github.com/jynus/gmtk24"
+const GITHUB_URL : String = "https://github.com/jynus/gmtk25"
 
 @onready var done_button : Button = %doneButton
 
 func _ready():
 	set_focus()
-	%creditsText.text = "[center][b]" + tr("Design & programming") + "[/b]:\n\n" + \
+	%creditsText.text = "[center][color=eaa56c]" + tr("Design & programming") + ":[/color]\n\n" + \
 						"Jaime Crespo \"jynus\"\n\n" + \
-						"[center][b]" + tr("Music & Sounds") + "[/b]:\n\n" + \
+						"[center][color=eaa56c]" + tr("Music & Sounds") + ":[/color]\n\n" + \
 						tr("Courtesy of Epidemic Sound") + "\n\n" + \
 						tr("See [url=https://github.com/jynus/gmtk25]README[/url] or [url=https://jynus.itch.io/XXXXXX]Itch.io page[/url] for the full attribution list.")+ "\n\n" + \
-						tr("* Made with Godot 4.5 in 4 days for the GMTK Game Jam 2025 *")+ "\n\n" + \
+						tr("Made with Godot 4.5-beta4 in 4 days for the GMTK Game Jam 2025")+ "\n\n" + \
 						tr("Full source code is available at GitHub under the AGPL-3.0 License") + \
 						"[/center]"
 

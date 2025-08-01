@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://dcltua5522myp"]
+[gd_scene load_steps=29 format=4 uid="uid://dcltua5522myp"]
 
 [ext_resource type="Script" uid="uid://jwlqjsysikrc" path="res://scripts/game.gd" id="1_be1gn"]
 [ext_resource type="PackedScene" uid="uid://c4724smqdfkk6" path="res://scene_objects/pause_menu.tscn" id="1_xt3oq"]
@@ -7,6 +7,7 @@
 [ext_resource type="TileSet" uid="uid://3po5228lm7pd" path="res://resources/tileset_level1.tres" id="4_ju71w"]
 [ext_resource type="Texture2D" uid="uid://boqax66a0370t" path="res://assets/textures/tilemap_packed.png" id="6_ju71w"]
 [ext_resource type="Script" uid="uid://bdwpkbt68t081" path="res://scripts/door.gd" id="6_knyya"]
+[ext_resource type="AudioStream" uid="uid://bmiykfny6vltn" path="res://assets/sfx/ES_Metal, Scrape, Wheel, Barrow - Epidemic Sound.ogg" id="6_xout0"]
 [ext_resource type="Texture2D" uid="uid://cq0rbvkmiivx0" path="res://assets/textures/hearts_empty.webp" id="7_al22y"]
 [ext_resource type="FontFile" uid="uid://d2gom50m7yb65" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="7_xout0"]
 [ext_resource type="Texture2D" uid="uid://8cyk10lvghuv" path="res://assets/textures/hearts_full.webp" id="8_xout0"]
@@ -395,6 +396,18 @@ tracks/28/keys = {
 "update": 0,
 "values": [Rect2(80, 96, 16, 0)]
 }
+tracks/29/type = "value"
+tracks/29/imported = false
+tracks/29/enabled = true
+tracks/29/path = NodePath("Board/Doors/BarsMovingPlayer:playing")
+tracks/29/interp = 1
+tracks/29/loop_wrap = true
+tracks/29/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_g4y0y"]
 resource_name = "bars_go_up"
@@ -574,7 +587,7 @@ tracks/14/path = NodePath("Board/Doors/BottomDoor/barsSprite:position")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0.2, 0.76666665),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(-16, 8), Vector2(-16, -8)]
@@ -586,7 +599,7 @@ tracks/15/path = NodePath("Board/Doors/BottomDoor/barsSprite2:position")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0.2, 0.76666665),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, 8), Vector2(0, -8)]
@@ -598,7 +611,7 @@ tracks/16/path = NodePath("Board/Doors/BottomDoor/barsSprite:region_rect")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0.2, 0.76666665),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Rect2(80, 96, 16, 0), Rect2(80, 96, 16, 16)]
@@ -610,10 +623,22 @@ tracks/17/path = NodePath("Board/Doors/BottomDoor/barsSprite2:region_rect")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0.2, 0.76666665),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Rect2(80, 96, 16, 0), Rect2(80, 96, 16, 16)]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("Board/Doors/BarsMovingPlayer:playing")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0, 0.01, 0.03333333, 0.98, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, true, false]
 }
 
 [sub_resource type="Animation" id="Animation_al22y"]
@@ -863,6 +888,7 @@ scale = Vector2(6, 6)
 script = ExtResource("1_be1gn")
 
 [node name="Board" type="Node2D" parent="."]
+z_as_relative = false
 y_sort_enabled = true
 
 [node name="TileMapLayerFloor" type="TileMapLayer" parent="Board"]
@@ -1031,10 +1057,17 @@ centered = false
 region_enabled = true
 region_rect = Rect2(80, 96, 16, 0)
 
+[node name="BarsMovingPlayer" type="AudioStreamPlayer" parent="Board/Doors"]
+unique_name_in_owner = true
+stream = ExtResource("6_xout0")
+volume_db = -10.0
+bus = &"sfx"
+
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="Level" type="Label" parent="UI"]
 unique_name_in_owner = true
+anchors_preset = -1
 offset_left = 1501.0
 offset_top = 979.0
 offset_right = 1820.0
@@ -1045,6 +1078,7 @@ horizontal_alignment = 2
 
 [node name="LifeBarMax" type="TextureRect" parent="UI"]
 unique_name_in_owner = true
+anchors_preset = -1
 offset_left = 100.0
 offset_top = 976.0
 offset_right = 110.0
@@ -1056,6 +1090,7 @@ stretch_mode = 1
 
 [node name="LifeBarCurrent" type="TextureRect" parent="UI"]
 unique_name_in_owner = true
+anchors_preset = -1
 offset_left = 100.0
 offset_top = 976.0
 offset_right = 110.0
@@ -1068,19 +1103,20 @@ stretch_mode = 1
 [node name="LevelCompleteScreen" parent="." instance=ExtResource("3_be1gn")]
 unique_name_in_owner = true
 visible = false
+anchors_preset = -1
 offset_right = 320.0
 offset_bottom = 180.0
 
 [node name="pauseMenu" parent="." instance=ExtResource("1_xt3oq")]
 unique_name_in_owner = true
 visible = false
+anchors_preset = -1
 
 [node name="ConfirmDoorPanel" type="Control" parent="."]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 3
-anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 18.5
@@ -1135,7 +1171,13 @@ libraries = {
 &"": SubResource("AnimationLibrary_h4th0")
 }
 
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+volume_db = -8.0
+bus = &"sfx"
+
 [connection signal="state_changed" from="." to="." method="_on_state_changed"]
+[connection signal="hero_died" from="Board/Hero" to="." method="_on_hero_died"]
 [connection signal="body_entered" from="Board/Doors/LeftDoor/DetectionArea" to="." method="_on_left_door_detected"]
 [connection signal="body_entered" from="Board/Doors/RightDoor/DetectionArea" to="." method="_on_right_door_detected"]
 [connection signal="body_entered" from="Board/Doors/TopDoor/DetectionArea" to="." method="_on_top_door_detected"]

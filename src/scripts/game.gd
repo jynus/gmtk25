@@ -13,6 +13,10 @@ signal state_changed(current_state)
 @onready var bottom_door: Sprite2D = %BottomDoor
 @onready var life_bar_max: TextureRect = %LifeBarMax
 @onready var life_bar_current: TextureRect = %LifeBarCurrent
+
+var level_completion_sound = preload("res://assets/sfx/ES_Notification, Video Game, Win, Positive, Happy 01 - Epidemic Sound.ogg")
+var bar_sound = preload("res://assets/sfx/ES_Metal, Scrape, Wheel, Barrow - Epidemic Sound.ogg")
+
 enum state {
 	ENTER,
 	CLOSE_BARS,
@@ -20,7 +24,8 @@ enum state {
 	OPEN_BARS,
 	CHOOSE_DOOR,
 	CONFIRM_DOOR,
-	EXIT
+	EXIT,
+	GAME_OVER
 }
 
 var current_state : state:
@@ -30,6 +35,7 @@ var current_state : state:
 		state_changed.emit(old_state)
  
 func _ready() -> void:
+	BackgroundMusic.fade_in("game", 1, 0.5)
 	update_level()
 	Globals.hero_health_update.connect(update_lifebar)
 	update_lifebar()
@@ -43,6 +49,9 @@ func _process(_delta: float) -> void:
 
 	if get_tree().get_node_count_in_group("enemy") <= 0 and current_state == state.COMBAT:
 		current_state = state.OPEN_BARS
+		%SFX.stream = level_completion_sound
+		%SFX.play()
+		BackgroundMusic.fade_into("win", 0.5)
 
 func update_level():
 	%Level.text = "LEVEL %02d" % Globals.level + "/20"
@@ -92,6 +101,7 @@ func _on_state_changed(old_state: Variant) -> void:
 	elif current_state == state.CLOSE_BARS:
 		close_bars()
 	elif current_state == state.CHOOSE_DOOR:
+		BackgroundMusic.fade_into("level_complete", 0, 1)
 		if Globals.coming_from != Globals.dir.LEFT:
 			left_door.get_node("DetectionArea/Collision").set_deferred("disabled", false)
 		if Globals.coming_from != Globals.dir.TOP:
@@ -100,6 +110,9 @@ func _on_state_changed(old_state: Variant) -> void:
 			right_door.get_node("DetectionArea/Collision").set_deferred("disabled", false)
 		if Globals.coming_from != Globals.dir.BOTTOM:
 			bottom_door.get_node("DetectionArea/Collision").set_deferred("disabled", false)
+	elif current_state == state.GAME_OVER:
+		BackgroundMusic.fade_out(1)
+		SceneManager.change_scene("res://scene_objects/game_over.tscn", SceneManager.Transition.FADE_TO_BLACK, 2)
 
 func open_bars():
 	state_transition_player.play_backwards("bars_go_up")
@@ -107,9 +120,6 @@ func open_bars():
 func close_bars():
 	state_transition_player.play("bars_go_up")
 	
-func _on_detection_area_body_entered(_body: Node2D) -> void:
-	pass
-
 func _on_left_door_detected(_body: Node2D) -> void:
 	show_door_dialog(left_door)
 
@@ -143,3 +153,7 @@ func next_level():
 
 func _on_hero_health_update() -> void:
 	update_lifebar()
+
+
+func _on_hero_died() -> void:
+	current_state = state.GAME_OVER

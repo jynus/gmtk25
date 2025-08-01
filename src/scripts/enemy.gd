@@ -25,20 +25,20 @@ var hit_sound = preload("res://assets/sfx/ES_Retro, 8 Bit, Character, Sword, Hit
 func _ready() -> void:
 	pass
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if hurt_vector != Vector2.ZERO:
-		velocity += hurt_vector
+		velocity += hurt_vector * delta
 		hurt_vector /= 10
-		if hurt_vector.length() < 1:
+		if hurt_vector.length() < 0.01:
 			hurt_vector = Vector2.ZERO
 	elif hero and not hero.is_paused:
 		var direction: Vector2 = (hero.global_position - global_position).normalized()
-		velocity += direction * max_speed
-		if velocity.length() > max_speed:
-			velocity = velocity.normalized() * max_speed
+		velocity += direction * max_speed * delta
+		if velocity.length() > max_speed * delta:
+			velocity = velocity.normalized() * max_speed * delta
 	else:
 		velocity = Vector2.ZERO
-	move_and_slide()
+	move_and_collide(velocity)
 
 func damage(from: Vector2, points: float = 1):
 	current_health -= points
@@ -51,6 +51,8 @@ func damage(from: Vector2, points: float = 1):
 		die()
 
 func die():
+	%HitboxCollision.set_deferred("disabled", true)
+	%HurtboxCollision.set_deferred("disabled", true)
 	var tween = create_tween()
 	tween.tween_property(self, "rotation_degrees", 90, 0.5)
 	tween.tween_property(self, "modulate", Color.TRANSPARENT, 0.5)

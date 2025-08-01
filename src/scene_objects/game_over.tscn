@@ -1,0 +1,85 @@
+[gd_scene load_steps=9 format=3 uid="uid://cjkgun2c3joyt"]
+
+[ext_resource type="Script" uid="uid://c4eaix343ryln" path="res://scripts/game_over.gd" id="1_8ikkp"]
+[ext_resource type="PackedScene" uid="uid://bmuu7gov5nfwd" path="res://scene_objects/title_bar.tscn" id="2_luxqj"]
+[ext_resource type="PackedScene" uid="uid://k635iu86fy37" path="res://scene_objects/menu_background.tscn" id="2_qq6b3"]
+[ext_resource type="Texture2D" uid="uid://boqax66a0370t" path="res://assets/textures/tilemap_packed.png" id="4_21pqt"]
+[ext_resource type="FontFile" uid="uid://d2gom50m7yb65" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="5_65ylv"]
+[ext_resource type="PackedScene" uid="uid://oq5258by1a1k" path="res://scene_objects/menu_button.tscn" id="5_gawhy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nra3u"]
+atlas = ExtResource("4_21pqt")
+region = Rect2(0, 112, 16, 16)
+
+[sub_resource type="LabelSettings" id="LabelSettings_h2cv4"]
+font = ExtResource("5_65ylv")
+font_size = 60
+
+[node name="GameOverScreen" type="Control"]
+process_mode = 3
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 3
+offset_right = 1920.0
+offset_bottom = 1080.0
+script = ExtResource("1_8ikkp")
+
+[node name="MenuBackground" parent="." instance=ExtResource("2_qq6b3")]
+layout_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuBackground"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+
+[node name="Title" parent="MenuBackground/VBoxContainer" instance=ExtResource("2_luxqj")]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+text = "Game over"
+
+[node name="TextureRect" type="TextureRect" parent="MenuBackground/VBoxContainer"]
+modulate = Color(0.22339939, 0.4220583, 0.37187544, 1)
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_nra3u")
+expand_mode = 4
+flip_h = true
+flip_v = true
+
+[node name="Label" type="Label" parent="MenuBackground/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+text = "Your adventure ends here."
+label_settings = SubResource("LabelSettings_h2cv4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="retryRunButton" parent="MenuBackground/VBoxContainer" instance=ExtResource("5_gawhy")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(800, 100)
+layout_mode = 2
+disabled = true
+text = "Restart from level 1"
+
+[node name="mainMenuButton" parent="MenuBackground/VBoxContainer" instance=ExtResource("5_gawhy")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(800, 100)
+layout_mode = 2
+disabled = true
+text = "Back to menu"
+
+[node name="DisabledButtonsTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[connection signal="pressed" from="MenuBackground/VBoxContainer/retryRunButton" to="." method="_on_retry_run_button_pressed"]
+[connection signal="pressed" from="MenuBackground/VBoxContainer/mainMenuButton" to="." method="return_to_main_menu"]
+[connection signal="timeout" from="DisabledButtonsTimer" to="." method="_on_disabled_buttons_timer_timeout"]

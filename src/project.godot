@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GMTKJam2025"
-run/main_scene="uid://dcltua5522myp"
+run/main_scene="uid://djsn6u6bq4qmm"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 boot_splash/image="res://assets/textures/a_game_by_jynus_background.png"
 config/icon="uid://b2ccol6my2dph"
@@ -36,7 +36,7 @@ window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/SimpleTODO/plugin.cfg")
+enabled=PackedStringArray("res://addons/SimpleTODO/plugin.cfg", "res://addons/autosize_label/plugin.cfg")
 
 [input]
 

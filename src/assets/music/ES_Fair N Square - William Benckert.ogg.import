@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dh6kl1p8ag3oo"
+path="res://.godot/imported/ES_Fair N Square - William Benckert.ogg-7c18ec155fdaf79c6ad89ef8038ab051.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/ES_Fair N Square - William Benckert.ogg"
+dest_files=["res://.godot/imported/ES_Fair N Square - William Benckert.ogg-7c18ec155fdaf79c6ad89ef8038ab051.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

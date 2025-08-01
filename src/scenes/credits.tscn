@@ -1,12 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://cp76wk0hhmwag"]
+[gd_scene load_steps=14 format=3 uid="uid://cp76wk0hhmwag"]
 
 [ext_resource type="Script" uid="uid://b0l8bfxdvhkao" path="res://scripts/credits.gd" id="1_o3suw"]
 [ext_resource type="PackedScene" uid="uid://k635iu86fy37" path="res://scene_objects/menu_background.tscn" id="2_pa7y0"]
 [ext_resource type="PackedScene" uid="uid://bmuu7gov5nfwd" path="res://scene_objects/title_bar.tscn" id="3_nmdnh"]
 [ext_resource type="StyleBox" uid="uid://67m76h2nyeyy" path="res://resources/main_menu_button_style.tres" id="4_3veic"]
-[ext_resource type="FontFile" uid="uid://com4cjqc1ln44" path="res://assets/fonts/Montserrat-Medium.otf" id="4_q3at0"]
+[ext_resource type="FontFile" uid="uid://d2gom50m7yb65" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="4_qbfqv"]
 [ext_resource type="StyleBox" uid="uid://cscwrtv4vl12l" path="res://resources/main_menu_button_hover_style.tres" id="5_7nd3c"]
-[ext_resource type="FontFile" uid="uid://smk86k8i0gcp" path="res://assets/fonts/Montserrat-Bold.otf" id="5_u2hon"]
 [ext_resource type="StyleBox" uid="uid://dtfd366g1j00" path="res://resources/main_menu_button_pressed_style.tres" id="6_3f04u"]
 [ext_resource type="Texture2D" uid="uid://s6q5vi3fy8bn" path="res://assets/textures/itch_icon.webp" id="11_i1l18"]
 [ext_resource type="Texture2D" uid="uid://d0jbr6bkhj2el" path="res://assets/textures/blusky_icon.webp" id="12_nmdnh"]
@@ -35,9 +34,13 @@ texture_filter = 2
 script = ExtResource("1_o3suw")
 
 [node name="background" parent="." instance=ExtResource("2_pa7y0")]
+anchors_preset = -1
+offset_right = 1920.0
+offset_bottom = 1080.0
 
 [node name="menuContainer" type="VBoxContainer" parent="."]
 texture_filter = 2
+anchors_preset = -1
 offset_right = 1920.0
 offset_bottom = 1080.0
 theme_override_constants/separation = 40
@@ -61,16 +64,16 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_constants/line_separation = 25
-theme_override_fonts/normal_font = ExtResource("4_q3at0")
-theme_override_fonts/bold_font = ExtResource("5_u2hon")
+theme_override_fonts/normal_font = ExtResource("4_qbfqv")
+theme_override_fonts/bold_font = ExtResource("4_qbfqv")
 theme_override_font_sizes/normal_font_size = 50
 theme_override_font_sizes/bold_font_size = 60
 bbcode_enabled = true
-text = "[center][b]Design & programming[/b]:
+text = "[center][color=eaa56c]Design & programming:[/color]
 
 Jaime Crespo \"jynus\"
 
- * Made with Godot 4.5 in 4 days for the Game Jam *[/center]"
+[color=eaa56c]Made with Godot 4.5 in 4 days for the Game Jam[/color][/center]"
 
 [node name="socialButtonContainer" type="VBoxContainer" parent="menuContainer/optionsContainer"]
 clip_contents = true
@@ -91,11 +94,11 @@ focus_next = NodePath("../PlayButton")
 focus_previous = NodePath("../CreditsButton")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 16
-theme_override_styles/focus = SubResource("StyleBoxFlat_hugtt")
-theme_override_styles/disabled = ExtResource("4_3veic")
-theme_override_styles/hover = ExtResource("5_7nd3c")
-theme_override_styles/pressed = ExtResource("6_3f04u")
 theme_override_styles/normal = ExtResource("4_3veic")
+theme_override_styles/pressed = ExtResource("6_3f04u")
+theme_override_styles/hover = ExtResource("5_7nd3c")
+theme_override_styles/disabled = ExtResource("4_3veic")
+theme_override_styles/focus = SubResource("StyleBoxFlat_hugtt")
 icon = ExtResource("11_i1l18")
 icon_alignment = 1
 expand_icon = true
@@ -111,11 +114,11 @@ focus_next = NodePath("../PlayButton")
 focus_previous = NodePath("../CreditsButton")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 16
-theme_override_styles/focus = SubResource("StyleBoxFlat_hugtt")
-theme_override_styles/disabled = ExtResource("4_3veic")
-theme_override_styles/hover = ExtResource("5_7nd3c")
-theme_override_styles/pressed = ExtResource("6_3f04u")
 theme_override_styles/normal = ExtResource("4_3veic")
+theme_override_styles/pressed = ExtResource("6_3f04u")
+theme_override_styles/hover = ExtResource("5_7nd3c")
+theme_override_styles/disabled = ExtResource("4_3veic")
+theme_override_styles/focus = SubResource("StyleBoxFlat_hugtt")
 icon = ExtResource("12_uoica")
 icon_alignment = 1
 expand_icon = true
@@ -131,11 +134,11 @@ focus_next = NodePath("../PlayButton")
 focus_previous = NodePath("../CreditsButton")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 16
-theme_override_styles/focus = SubResource("StyleBoxFlat_hugtt")
-theme_override_styles/disabled = ExtResource("4_3veic")
-theme_override_styles/hover = ExtResource("5_7nd3c")
-theme_override_styles/pressed = ExtResource("6_3f04u")
 theme_override_styles/normal = ExtResource("4_3veic")
+theme_override_styles/pressed = ExtResource("6_3f04u")
+theme_override_styles/hover = ExtResource("5_7nd3c")
+theme_override_styles/disabled = ExtResource("4_3veic")
+theme_override_styles/focus = SubResource("StyleBoxFlat_hugtt")
 icon = ExtResource("12_nmdnh")
 icon_alignment = 1
 expand_icon = true
@@ -151,11 +154,11 @@ focus_next = NodePath("../PlayButton")
 focus_previous = NodePath("../CreditsButton")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 16
-theme_override_styles/focus = SubResource("StyleBoxFlat_hugtt")
-theme_override_styles/disabled = ExtResource("4_3veic")
-theme_override_styles/hover = ExtResource("5_7nd3c")
-theme_override_styles/pressed = ExtResource("6_3f04u")
 theme_override_styles/normal = ExtResource("4_3veic")
+theme_override_styles/pressed = ExtResource("6_3f04u")
+theme_override_styles/hover = ExtResource("5_7nd3c")
+theme_override_styles/disabled = ExtResource("4_3veic")
+theme_override_styles/focus = SubResource("StyleBoxFlat_hugtt")
 icon = ExtResource("13_725mu")
 icon_alignment = 1
 expand_icon = true
