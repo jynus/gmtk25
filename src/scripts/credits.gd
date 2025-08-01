@@ -12,10 +12,11 @@ func _ready():
 	%creditsText.text = "[center][color=eaa56c]" + tr("Design & programming") + ":[/color]\n\n" + \
 						"Jaime Crespo \"jynus\"\n\n" + \
 						"[center][color=eaa56c]" + tr("Music & Sounds") + ":[/color]\n\n" + \
-						tr("Courtesy of Epidemic Sound") + "\n\n" + \
+						tr("Courtesy of [url=https://www.epidemicsound.com]Epidemic Sound[/url]") + "\n\n" + \
 						tr("See [url=https://github.com/jynus/gmtk25]README[/url] or [url=https://jynus.itch.io/XXXXXX]Itch.io page[/url] for the full attribution list.")+ "\n\n" + \
-						tr("Made with Godot 4.5-beta4 in 4 days for the GMTK Game Jam 2025")+ "\n\n" + \
-						tr("Full source code is available at GitHub under the AGPL-3.0 License") + \
+						tr("Made with [url=https://godotengine.org]Godot[/url] 4.5-beta4 in 4 days for the [url=https://itch.io/jam/gmtk-2025]GMTK Game Jam 2025[/url]")+ "\n\n" + \
+						tr("Full source code is available at [url=https://github.com/jynus/gmtk25]GitHub under the AGPL-3.0 License[/url]")+ "\n\n" + \
+						"[img=800]res://assets/textures/GMTKJam2025.webp[/img]\n\n" + \
 						"[/center]"
 
 func set_focus():

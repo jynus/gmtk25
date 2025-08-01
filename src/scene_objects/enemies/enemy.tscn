@@ -1,6 +1,5 @@
-[gd_scene load_steps=5 format=3 uid="uid://d2lpjvgrih1tb"]
+[gd_scene load_steps=4 format=3 uid="uid://d2lpjvgrih1tb"]
 
-[ext_resource type="Texture2D" uid="uid://boqax66a0370t" path="res://assets/textures/tilemap_packed.png" id="1_7p1mj"]
 [ext_resource type="Script" uid="uid://dyfptit1bbfix" path="res://scripts/enemy.gd" id="1_md0e3"]
 [ext_resource type="AudioStream" uid="uid://b8jjfaffq2dm2" path="res://assets/sfx/ES_Retro, 8 Bit, Character, Sword, Hit - Epidemic Sound.ogg" id="3_0qe5i"]
 
@@ -13,8 +12,7 @@ collision_mask = 5
 script = ExtResource("1_md0e3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_7p1mj")
-region_enabled = true
+unique_name_in_owner = true
 region_rect = Rect2(32, 144, 16, 16)
 
 [node name="Hurtbox" type="Area2D" parent="."]

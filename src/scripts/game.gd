@@ -16,6 +16,9 @@ signal state_changed(current_state)
 
 var level_completion_sound = preload("res://assets/sfx/ES_Notification, Video Game, Win, Positive, Happy 01 - Epidemic Sound.ogg")
 var bar_sound = preload("res://assets/sfx/ES_Metal, Scrape, Wheel, Barrow - Epidemic Sound.ogg")
+var crab_scene = preload("res://scene_objects/enemies/crab.tscn")
+var bat_scene = preload("res://scene_objects/enemies/bat.tscn")
+var ghost_scene = preload("res://scene_objects/enemies/ghost.tscn")
 
 enum state {
 	ENTER,
@@ -57,10 +60,14 @@ func _process(_delta: float) -> void:
 func randomize_doors():
 	# TODO: make it random
 	for door in [left_door, right_door, top_door, bottom_door]:
-		door.challenge = Globals.challenge.CRAB
+		door.challenge = [
+			Globals.challenge.CRAB,
+			Globals.challenge.BAT,
+			Globals.challenge.GHOST
+		].pick_random()
 
 func update_level():
-	%Level.text = "LEVEL %02d" % Globals.level + "/20"
+	%Level.text = tr("LEVEL") + " %02d" % Globals.level + "/20"
 
 func update_lifebar():
 	life_bar_max.size.x = Globals.max_health * 5
@@ -71,12 +78,17 @@ func _on_spawn_enemy_timer_timeout() -> void:
 	pass
 
 func add_challenge(challenge: Globals.challenge):
-	if challenge == Globals.challenge.CRAB:
-		spawn_enemy()
+	match challenge:
+		Globals.challenge.CRAB:
+			spawn_enemy(crab_scene)
+		Globals.challenge.GHOST:
+			spawn_enemy(ghost_scene)
+		Globals.challenge.BAT:
+			for i in range (3):
+				spawn_enemy(bat_scene)
 
-func spawn_enemy():
+func spawn_enemy(enemy_scene: PackedScene):
 	var pos: Vector2 = Vector2(randf_range(300, 1500), randf_range(300, 800))
-	var enemy_scene = preload("res://scene_objects/enemy.tscn")
 	var enemy = enemy_scene.instantiate()
 	hero.add_sibling(enemy)
 	enemy.global_position = pos
@@ -113,6 +125,13 @@ func _on_state_changed(old_state: Variant) -> void:
 	elif current_state == state.CHOOSE_DOOR:
 		hero.can_attack = false
 		BackgroundMusic.fade_into("level_complete", 0, 1)
+		%TileMapLayerObjects.set_cell(Vector2(1,0), 0, Vector2(5,2))
+		%TileMapLayerObjects.set_cell(Vector2(18,0), 0, Vector2(5,2))
+		%TileMapLayerObjects.set_cell(Vector2(4,0), 0, Vector2(8, 1))
+		%TileMapLayerObjects.set_cell(Vector2(15,0), 0, Vector2(8, 1))
+		%TileMapLayerObjects.set_cell(Vector2(4,1), 0, Vector2(8, 2))
+		%TileMapLayerObjects.set_cell(Vector2(15,1), 0, Vector2(8, 2))
+		
 		if Globals.coming_from != Globals.dir.LEFT:
 			left_door.get_node("DetectionArea/Collision").set_deferred("disabled", false)
 		if Globals.coming_from != Globals.dir.TOP:

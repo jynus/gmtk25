@@ -47,13 +47,13 @@ size_flags_vertical = 3
 
 [node name="PlayButton" parent="menuContainer" instance=ExtResource("4_ws7p0")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 50)
+custom_minimum_size = Vector2(800, 100)
 layout_mode = 2
 size_flags_vertical = 10
 theme_override_colors/font_pressed_color = Color(0.52156866, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 30
 theme_override_styles/focus = SubResource("StyleBoxFlat_r2jwc")
-text = "Press any key "
+text = "Press 'A'/'Cross' button or 'Enter' key"
 
 [connection signal="button_down" from="menuContainer/PlayButton" to="." method="_on_play_button_button_down"]
 [connection signal="pressed" from="menuContainer/PlayButton" to="." method="_on_play_button_pressed"]

@@ -6,9 +6,7 @@ extends Node2D
 @onready var title: Label = %Title
 
 func _init() -> void:
-	# Load settings config
-	var user_settings = UserSettings.new()
-	user_settings.load_settings()
+	pass
 
 func _ready() -> void:
 	# Disable exit button if we are on the web

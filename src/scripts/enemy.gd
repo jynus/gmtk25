@@ -4,7 +4,7 @@ signal update_health
 
 const DAMAGE_FORCE : float = 1000
 @export var speed : float = 3
-@onready var max_health : float = 2:
+@export var max_health : float = 2:
 	set(value):
 		max_health = value
 		update_health.emit()
@@ -14,8 +14,9 @@ const DAMAGE_FORCE : float = 1000
 		update_health.emit()
 @export var hero : Node2D
 @export var max_speed: float = 200.0
-#var _acceleration: Vector2 = Vector2.ZERO
 @export var damage_on_touch : int = 1
+@export var texture: Texture2D
+
 var hurt_vector : Vector2 = Vector2.ZERO
 @onready var max_life_bar: ColorRect = %MaxLifeBar
 @onready var current_life_bar: ColorRect = %CurrentLifeBar
@@ -24,6 +25,9 @@ var death_sound = preload("res://assets/sfx/ES_Retro, 8 Bit, Explosion, Damage -
 var hit_sound = preload("res://assets/sfx/ES_Retro, 8 Bit, Character, Sword, Hit - Epidemic Sound.ogg")
 
 func _ready() -> void:
+	update_texture()
+	current_health = max_health
+	update_life_bar()
 	hero_setup.call_deferred()
 
 func hero_setup():
@@ -78,4 +82,11 @@ func die_end():
 	queue_free()
 
 func _on_update_health() -> void:
-	current_life_bar.size.x = max_life_bar.size.x * (current_health / max_health)
+	update_life_bar()
+
+func update_life_bar():
+	if current_life_bar:
+		current_life_bar.size.x = max_life_bar.size.x * (current_health / max_health)
+
+func update_texture():
+	%Sprite2D.texture = texture

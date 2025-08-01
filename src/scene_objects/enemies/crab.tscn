@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhpsfsavil6vd"]
+
+[ext_resource type="PackedScene" uid="uid://d2lpjvgrih1tb" path="res://scene_objects/enemies/enemy.tscn" id="1_jdkr6"]
+[ext_resource type="Texture2D" uid="uid://dfu5anf37ogpc" path="res://resources/crab_texture.tres" id="2_w2wvi"]
+
+[node name="Enemy" instance=ExtResource("1_jdkr6")]
+damage_on_touch = 2
+texture = ExtResource("2_w2wvi")

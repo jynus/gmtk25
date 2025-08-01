@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8al3eq42366q"]
+
+[ext_resource type="PackedScene" uid="uid://d2lpjvgrih1tb" path="res://scene_objects/enemies/enemy.tscn" id="1_pu80r"]
+[ext_resource type="Texture2D" uid="uid://bbm2u02e1as83" path="res://resources/bat_texture.tres" id="2_w7pmk"]
+
+[node name="Enemy" instance=ExtResource("1_pu80r")]
+max_health = 1.0
+max_speed = 300.0
+texture = ExtResource("2_w7pmk")

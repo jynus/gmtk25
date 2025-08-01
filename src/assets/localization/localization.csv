@@ -8,6 +8,7 @@ Exit,Exit,Salir
 Language,Language,Idioma
 Music,Music,Música
 SFX,SFX,Efectos
+VSync,VSync,Sincronización vertical
 Skip intro,Skip intro,Saltar introducción
 How to play,How to play,Cómo jugar
 Full screen,Full screen,Pantalla completa
@@ -23,8 +24,13 @@ Reset level,Reset level,Reiniciar nivel
 Retry level,Retry level,Reintentar el nivel
 Return to game,Return to game,Volver al juego
 Pause,Pause,Pausa
+"Press 'A'/'Cross' button or 'Enter' key", "Press 'A'/'Cross' button or 'Enter' key", "Pulsa el botón 'A'/'Cruz' o la tecla 'Intro'"
 on,on,sí
 off,off,no
+ghost,ghost,fantasma
+crab,crab,cangrejo
+bats,bats,murciélagos
+LEVEL,LEVEL,NIVEL
 Your adventure ends here.,Your adventure ends here.,Tu aventura termina aquí.
 Level complete!,Level complete!,¡Nivel completado!
 Next level,Next level,Siguiente nivel

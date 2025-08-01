@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://oq5258by1a1k" path="res://scene_objects/menu_button.tscn" id="4_5dd4i"]
 [ext_resource type="Texture2D" uid="uid://cwqyupkb878g0" path="res://resources/button_icon_atlas_play.tres" id="5_tbmy8"]
 [ext_resource type="Texture2D" uid="uid://boqax66a0370t" path="res://assets/textures/tilemap_packed.png" id="6_jk1qb"]
-[ext_resource type="FontFile" uid="uid://com4cjqc1ln44" path="res://assets/fonts/Montserrat-Medium.otf" id="8_ns53n"]
+[ext_resource type="FontFile" uid="uid://d2gom50m7yb65" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="7_tbmy8"]
 [ext_resource type="PackedScene" uid="uid://b7fkndcm0e336" path="res://scene_objects/settings.tscn" id="11_5pplk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5dd4i"]
@@ -30,7 +30,7 @@ region = Rect2(144, 32, 16, 16)
 margin = Rect2(3, 3, 3, 6)
 
 [sub_resource type="LabelSettings" id="LabelSettings_cpmo2"]
-font = ExtResource("8_ns53n")
+font = ExtResource("7_tbmy8")
 font_size = 30
 shadow_size = 0
 shadow_offset = Vector2(0, 0)

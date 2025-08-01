@@ -9,13 +9,9 @@ extends Control
 		update_info()
 
 func update_info():
-	if challenge == Globals.challenge.CRAB:
-		%ChallengeIconRect.texture = preload("res://resources/crab_texture.tres")
-		%ChallengeText.text = "+1 Crab"
-	else:
-		%ChallengeIconRect.texture = null
-		%ChallengeText.text = ""
-
+	var info: Dictionary = Globals.get_challenge_info(challenge)
+	challenge_icon_rect.texture = info.texture
+	challenge_text.text = info.text
 
 func make_active():
 	show()
