@@ -1,13 +1,100 @@
-[gd_scene load_steps=6 format=3 uid="uid://cbbf1sclpb2aw"]
+[gd_scene load_steps=10 format=3 uid="uid://cbbf1sclpb2aw"]
 
 [ext_resource type="Texture2D" uid="uid://boqax66a0370t" path="res://assets/textures/tilemap_packed.png" id="1_3uyx6"]
 [ext_resource type="Script" uid="uid://506gqxshcsc7" path="res://scripts/hero.gd" id="1_yvbpl"]
 [ext_resource type="AudioStream" uid="uid://nqtmve802aja" path="res://assets/sfx/ES_Game, Retro, 8 Bit, Hit Hurt 28 - Epidemic Sound.ogg" id="3_5c32n"]
 [ext_resource type="AudioStream" uid="uid://bcavcptaq0pqo" path="res://assets/sfx/ES_Running On Sand - Epidemic Sound_loop.ogg" id="4_grqlp"]
+[ext_resource type="Texture2D" uid="uid://bajiscbpr50" path="res://resources/plus_max_life_texture.tres" id="5_j4403"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5c32n"]
 radius = 3.0
 height = 14.0
+
+[sub_resource type="Animation" id="Animation_gb3xs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Powerup:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Powerup:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Powerup:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -23)]
+}
+
+[sub_resource type="Animation" id="Animation_1t6pq"]
+resource_name = "acquire_powerup"
+length = 1.5
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Powerup:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Powerup:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.43333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Powerup:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -12), Vector2(0, -23)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vj8j2"]
+_data = {
+&"RESET": SubResource("Animation_gb3xs"),
+&"acquire_powerup": SubResource("Animation_1t6pq")
+}
 
 [node name="Hero" type="CharacterBody2D"]
 collision_layer = 2
@@ -32,6 +119,7 @@ position = Vector2(10, -7)
 position = Vector2(-11, -7)
 
 [node name="AttackTimer" type="Timer" parent="."]
+unique_name_in_owner = true
 wait_time = 0.4
 one_shot = true
 
@@ -53,6 +141,19 @@ unique_name_in_owner = true
 stream = ExtResource("4_grqlp")
 volume_db = -10.0
 bus = &"sfx"
+
+[node name="Powerup" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 1, 1, 0)
+position = Vector2(0, -23)
+texture = ExtResource("5_j4403")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_vj8j2")
+}
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

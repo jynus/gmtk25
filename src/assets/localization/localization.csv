@@ -16,7 +16,7 @@ How To Play,How To Play,Cómo jugar
 Done,Done,Hecho
 Level select,Level select,Seleción de nivel
 Back,Back,Volver
-Back to main menu,Back to main menu,Menú principal
+Back to main menu,Back to main menu,Volver al menú principal
 Back to menu,Back to menu,Volver al menú
 Back to level selection,Back to level selection,Volver a selección de nivel
 Replay level again,Replay level again,Volver a jugar el nivel
@@ -31,10 +31,16 @@ ghost,ghost,fantasma
 crab,crab,cangrejo
 bats,bats,murciélagos
 shop,shop,tienda
+"+1 heart","+1 heart","+1 corazón"
+"+1 max life","+1/2 max life","+1/2 vida máxima"
+"+1 move speed","+1 move speed","+1 al movimiento"
+"+1 attack damage","+1 attack damage","+1 daño de ataque"
+"+1 attack speed","+1 attack speed","+1 velocidad de ataque"
 LEVEL,LEVEL,NIVEL
 "Cost:","Cost:","Coste:"
 "Confirm powerup purchase?","Confirm powerup purchase?","¿Confirmar este powerup?"
 "Confirm door selection?","Confirm door selection?","¿Confirmar puerta?"
+Not enough coins,Not enough coins,No hay suficientes monedas
 Your adventure ends here.,Your adventure ends here.,Tu aventura termina aquí.
 Level complete!,Level complete!,¡Nivel completado!
 Next level,Next level,Siguiente nivel

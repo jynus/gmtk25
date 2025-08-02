@@ -1,8 +1,8 @@
 [gd_scene load_steps=13 format=3 uid="uid://ca2xagvsvid5s"]
 
 [ext_resource type="Script" uid="uid://dckntwyr5uc8w" path="res://scripts/confirm_door_panel.gd" id="1_rcxm0"]
-[ext_resource type="Texture2D" uid="uid://dfu5anf37ogpc" path="res://resources/crab_texture.tres" id="2_kk20b"]
 [ext_resource type="FontFile" uid="uid://d2gom50m7yb65" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="2_onsoy"]
+[ext_resource type="Texture2D" uid="uid://cmyv4xhujxdi7" path="res://resources/plus_attack_damage.tres" id="2_vyxkf"]
 [ext_resource type="PackedScene" uid="uid://oq5258by1a1k" path="res://scene_objects/menu_button.tscn" id="4_dqdpu"]
 [ext_resource type="Texture2D" uid="uid://c0xy5o2bphx0p" path="res://assets/textures/coin.webp" id="4_vyxkf"]
 [ext_resource type="AudioStream" uid="uid://dxbtb865m7voh" path="res://assets/sfx/ES_Alerts, Notification 12 - Epidemic Sound.ogg" id="5_f5byo"]
@@ -109,7 +109,7 @@ grow_vertical = 2
 unique_name_in_owner = true
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
-texture = ExtResource("2_kk20b")
+texture = ExtResource("2_vyxkf")
 expand_mode = 3
 stretch_mode = 5
 
@@ -178,9 +178,11 @@ text = "Yes"
 unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 30)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.648909, 0.279105, 0.262213, 1)
-theme_override_colors/font_focus_color = Color(0.648909, 0.279105, 0.262213, 1)
+theme_override_colors/font_color = Color(0.9936057, 0.9669202, 0.9640382, 1)
+theme_override_colors/font_focus_color = Color(0.9541066, 0.75979954, 0.7407282, 1)
 theme_override_colors/font_disabled_color = Color(0.53, 0.53, 0.53, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
 theme_override_font_sizes/font_size = 15
 theme_override_styles/normal = SubResource("StyleBoxFlat_dqdpu")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_f5byo")

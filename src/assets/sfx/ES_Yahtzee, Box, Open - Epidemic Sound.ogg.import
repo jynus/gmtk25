@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://clqxv8lrce14d"
+path="res://.godot/imported/ES_Yahtzee, Box, Open - Epidemic Sound.ogg-813cd771d292901f056aed4fb27002ba.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sfx/ES_Yahtzee, Box, Open - Epidemic Sound.ogg"
+dest_files=["res://.godot/imported/ES_Yahtzee, Box, Open - Epidemic Sound.ogg-813cd771d292901f056aed4fb27002ba.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

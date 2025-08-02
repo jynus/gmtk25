@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dr0mbam5riydo"
+path="res://.godot/imported/ES_Before Chill - Yomoti.ogg-9bbb22d35bf9a7b2a8de50df531e396a.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/ES_Before Chill - Yomoti.ogg"
+dest_files=["res://.godot/imported/ES_Before Chill - Yomoti.ogg-9bbb22d35bf9a7b2a8de50df531e396a.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

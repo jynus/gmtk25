@@ -3,17 +3,38 @@ extends Node
 signal hero_health_update
 
 const DEFAULT_HEALTH: int = 6
+const TOP_HEALTH: int = 16
+const DEFAULT_SPEED: float = 400
+const DEFAULT_ATTACK_SPEED: float = 0.5
+const DEFAULT_ATTACK_DAMAGE: int = 1
+
 var current_world : String
 var current_level : String
+var max_speed: float = DEFAULT_SPEED
+var attack_speed: float = DEFAULT_ATTACK_SPEED
+var attack_damage: float = DEFAULT_ATTACK_DAMAGE
 
 var level : int = 1
+var hero : Hero
+
 @onready var current_health: int = DEFAULT_HEALTH:
 	set(value):
-		current_health = value
+		if value > max_health:
+			current_health = max_health
+		else:
+			current_health = value
 		hero_health_update.emit()
 @onready var max_health: int = DEFAULT_HEALTH:
 	set(value):
-		current_health = value
+		var old_health: int = max_health
+		if value > TOP_HEALTH:
+			max_health = TOP_HEALTH
+		else:
+			max_health = value
+		if max_health < current_health:
+			current_health = max_health
+		if max_health > old_health:
+			current_health += (max_health - old_health)
 		hero_health_update.emit()
 
 enum dir {
@@ -35,7 +56,7 @@ enum powerup {
 	PLUS_LIFE,
 	PLUS_MAX_LIFE,
 	PLUS_MOVE_SPEED,
-	PLUS_DAMAGE,
+	PLUS_ATTACK_DAMAGE,
 	PLUS_ATTACK_SPEED
 }
 var challenge_list: Array[challenge] = []
@@ -77,21 +98,24 @@ func get_challenge_info(c: challenge) -> Dictionary:
 func get_powerup_info(p: powerup) -> Dictionary:
 	match p:
 		powerup.PLUS_LIFE:
-			return {'texture': null, 'cost': 10, 'text': "+1 heart"}
+			return {'texture': preload("res://resources/plus_life_texture.tres"), 'cost': 10, 'text': "+1 heart"}
 		powerup.PLUS_MAX_LIFE:
-			return {'texture': null, 'cost': 40, 'text': "+1 max life"}
+			return {'texture': preload("res://resources/plus_max_life_texture.tres"), 'cost': 40, 'text': "+1 max life"}
 		powerup.PLUS_MOVE_SPEED:
-			return {'texture': null, 'cost': 30, 'text': "+1 move speed"}
-		powerup.PLUS_DAMAGE:
-			return {'texture': null, 'cost': 40, 'text': "+1 damage"}
+			return {'texture': preload("res://resources/plus_move_speed.tres"), 'cost': 30, 'text': "+1 move speed"}
+		powerup.PLUS_ATTACK_DAMAGE:
+			return {'texture': preload("res://resources/plus_attack_damage.tres"), 'cost': 40, 'text': "+1 attack damage"}
 		powerup.PLUS_ATTACK_SPEED:
-			return {'texture': null, 'cost': 50, 'text': "+1 attack speed"}
+			return {'texture': preload("res://resources/plus_attack_speed.tres"), 'cost': 50, 'text': "+1 attack speed"}
 		_:
 			return {'texture': null, 'cost': 10, 'text': ""}
 
 func reset_run():
 	current_health = DEFAULT_HEALTH
 	max_health = DEFAULT_HEALTH
+	max_speed = DEFAULT_SPEED
+	attack_speed = DEFAULT_ATTACK_SPEED
+	attack_damage = DEFAULT_ATTACK_DAMAGE
 	challenge_list = []
 	powerup_list = []
 	level = 1
@@ -101,3 +125,18 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_fullscreen"):
 		var is_fullscreen = DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN or DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN
 		user_settings.apply_fullscreen(not is_fullscreen)
+
+func apply_powerup(selected_powerup: powerup):
+	powerup_list.append(powerup)
+	match selected_powerup:
+		powerup.PLUS_LIFE:
+			current_health += 2
+		powerup.PLUS_MAX_LIFE:
+			max_health += 1
+		powerup.PLUS_MOVE_SPEED:
+			max_speed += 50
+		powerup.PLUS_ATTACK_DAMAGE:
+			attack_damage += 1
+		powerup.PLUS_ATTACK_SPEED:
+			attack_speed *= 0.75
+			hero.update_speed_attack(attack_speed)

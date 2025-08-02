@@ -23,3 +23,4 @@ position = Vector2(230, 88.16667)
 
 [connection signal="enter_powerup_selection" from="Board/Hero" to="." method="_on_hero_enter_powerup_selection"]
 [connection signal="exit_powerup_selection" from="Board/Hero" to="." method="_on_hero_exit_powerup_selection"]
+[connection signal="powerup_selected" from="ConfirmDoorPanel" to="." method="_on_powerup_selected"]

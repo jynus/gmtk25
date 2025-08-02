@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bpwnevbs1w206"
+path="res://.godot/imported/ES_Achievement, Level Up, Notification, Goal Achieved, Positive 06 - Epidemic Sound.ogg-d21a12efe34c1b773edb769e9cfa86a3.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sfx/ES_Achievement, Level Up, Notification, Goal Achieved, Positive 06 - Epidemic Sound.ogg"
+dest_files=["res://.godot/imported/ES_Achievement, Level Up, Notification, Goal Achieved, Positive 06 - Epidemic Sound.ogg-d21a12efe34c1b773edb769e9cfa86a3.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

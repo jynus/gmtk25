@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Hero
 
 signal hero_died
 signal pickedup_coins
@@ -7,9 +8,8 @@ signal exit_powerup_selection
 
 @export var weapon: PackedScene = preload("res://scene_objects/projectile.tscn")
 @onready var sprite_2d: Sprite2D = $Sprite2D
-const SPEED := 400.0
 const DAMAGE_FORCE := 600.0
-@export var max_speed: float = 400.0
+#@export var max_speed: float = 400.0
 var _acceleration: Vector2 = Vector2.ZERO
 var _friction: float = 5
 var hurt_vector: Vector2 = Vector2.ZERO
@@ -36,6 +36,7 @@ var is_paused: bool = true:
 
 
 func _ready() -> void:
+	Globals.hero = self
 	%MovingSFX.play()
 	%MovingSFX.stream_paused = true
 
@@ -70,14 +71,15 @@ func normal_move(delta: float) -> void:
 			%MovingSFX.stream_paused = false
 		_acceleration = direction * 10000 * delta
 		velocity += _acceleration
-		if velocity.length() > max_speed:
-			velocity = velocity.normalized() * max_speed
+		if velocity.length() > Globals.max_speed:
+			velocity = velocity.normalized() * Globals.max_speed
 
 func attack() -> void:
 	can_attack = false
 	%SFX.stream = attack_sound
 	%SFX.play()
 	var my_weapon = weapon.instantiate()
+	my_weapon.damage = Globals.attack_damage
 	add_sibling(my_weapon)
 	if sprite_2d.flip_h:
 		my_weapon.scale.x *= -1
@@ -122,10 +124,17 @@ func pickup_coin(value: int) -> void:
 	Globals.coins += value
 	pickedup_coins.emit()
 
-func show_powerup(powerup: Globals.powerup):
+func show_powerup(powerup: Globals.powerup, chest: Node):
 	print_debug("show_powerup")
-	enter_powerup_selection.emit(powerup)
+	enter_powerup_selection.emit(powerup, chest)
 
 func hide_powerup():
 	print_debug("hide_powerup")
 	exit_powerup_selection.emit()
+
+func acquire_powerup(powerup: Globals.powerup):
+	%Powerup.texture = Globals.get_powerup_info(powerup).texture
+	%AnimationPlayer.play("acquire_powerup")
+	
+func update_speed_attack(time: float):
+	%AttackTimer.wait_time = time

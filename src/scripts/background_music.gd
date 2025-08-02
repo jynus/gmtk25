@@ -12,6 +12,7 @@ var playlist : Dictionary = {
 	"game": "res://assets/music/ES_Nintendo Revolution - Rolla Coasta.ogg",
 	"level_complete": "res://assets/music/ES_Fair N Square - William Benckert.ogg",
 	"game_over": "res://assets/music/ES_Ctrl Alt Defeat - Deskant.ogg",
+	"shop": "res://assets/music/ES_Before Chill - Yomoti.ogg",
 	"win": "res://assets/music/ES_Goodbye Goodnight - One Two Feet.ogg",
 }
 var _current_song : String = "menu"

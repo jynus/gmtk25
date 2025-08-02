@@ -669,6 +669,33 @@ tracks/18/keys = {
 "values": [false, true, true, true, false]
 }
 
+[sub_resource type="Animation" id="Animation_futjo"]
+resource_name = "die"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Board/Hero:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.5707964]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Board/Hero:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.13491026, 0.27592245, 0.24018076, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_al22y"]
 resource_name = "enter_from_bottom"
 step = 0.0333333
@@ -899,33 +926,6 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, false]
-}
-
-[sub_resource type="Animation" id="Animation_futjo"]
-resource_name = "die"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Board/Hero:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 1.5707964]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Board/Hero:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(0.13491026, 0.27592245, 0.24018076, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h4th0"]
@@ -1201,7 +1201,6 @@ offset_bottom = 180.0
 [node name="pauseMenu" parent="." instance=ExtResource("1_xt3oq")]
 unique_name_in_owner = true
 visible = false
-anchors_preset = -1
 
 [node name="StateTransitionPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true

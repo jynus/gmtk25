@@ -22,6 +22,8 @@ const SHOP_CHANCE: float = 0.1
 var level_completion_sound = preload("res://assets/sfx/ES_Notification, Video Game, Win, Positive, Happy 01 - Epidemic Sound.ogg")
 var die_sound = preload("res://assets/sfx/ES_Retro, Lose, Negative 03 - Epidemic Sound.ogg")
 var bar_sound = preload("res://assets/sfx/ES_Metal, Scrape, Wheel, Barrow - Epidemic Sound.ogg")
+var powerup_sound = preload("res://assets/sfx/ES_Achievement, Level Up, Notification, Goal Achieved, Positive 06 - Epidemic Sound.ogg")
+
 var crab_scene = preload("res://scene_objects/enemies/crab.tscn")
 var bat_scene = preload("res://scene_objects/enemies/bat.tscn")
 var ghost_scene = preload("res://scene_objects/enemies/ghost.tscn")
@@ -44,7 +46,10 @@ var current_state : state:
 		state_changed.emit(old_state)
  
 func _ready() -> void:
-	BackgroundMusic.fade_in("game", 1, 0.5)
+	if type == level_type.SHOP:
+		BackgroundMusic.fade_in("shop", 1, 0.5)
+	else:
+		BackgroundMusic.fade_in("game", 1, 0.5)
 	update_level()
 	Globals.hero_health_update.connect(update_lifebar)
 	update_lifebar()
@@ -65,7 +70,6 @@ func _process(_delta: float) -> void:
 		current_state = state.OPEN_BARS
 		%SFX.stream = level_completion_sound
 		%SFX.play()
-		BackgroundMusic.fade_into("win", 0.5)
 
 func randomize_doors():
 	for door in [left_door, right_door, top_door, bottom_door]:
@@ -86,7 +90,7 @@ func randomize_chests():
 			Globals.powerup.PLUS_LIFE,
 			Globals.powerup.PLUS_MAX_LIFE,
 			Globals.powerup.PLUS_MOVE_SPEED,
-			Globals.powerup.PLUS_DAMAGE,
+			Globals.powerup.PLUS_ATTACK_DAMAGE,
 			Globals.powerup.PLUS_ATTACK_SPEED
 		].pick_random()
 
@@ -152,8 +156,8 @@ func _on_state_changed(old_state: Variant) -> void:
 		close_bars()
 	elif current_state == state.CHOOSE_DOOR:
 		hero.can_attack = false
-		BackgroundMusic.fade_into("level_complete", 0, 1)
 		if type == level_type.NORMAL:
+			BackgroundMusic.fade_into("level_complete", 0, 1)
 			%TileMapLayerObjects.set_cell(Vector2(1,0), 0, Vector2(5,2))
 			%TileMapLayerObjects.set_cell(Vector2(18,0), 0, Vector2(5,2))
 			%TileMapLayerObjects.set_cell(Vector2(4,0), 0, Vector2(8, 1))
@@ -247,10 +251,19 @@ func _on_hero_died() -> void:
 func _on_hero_pickedup_coins() -> void:
 	update_coins()
 
-
-func _on_hero_enter_powerup_selection(powerup: int) -> void:
+func _on_hero_enter_powerup_selection(powerup: int, chest: Node) -> void:
 	%ConfirmDoorPanel.powerup = powerup
+	%ConfirmDoorPanel.attached_chest = chest
 	%ConfirmDoorPanel.make_active()
 
 func _on_hero_exit_powerup_selection() -> void:
 	%ConfirmDoorPanel.make_inactive()
+
+func _on_powerup_selected(powerup: int) -> void:
+	print_debug("powerup_selected")
+	Globals.apply_powerup(powerup)
+	%SFX.stream = powerup_sound
+	%SFX.play()
+	hero.acquire_powerup(powerup)
+	for chest: Node in get_tree().get_nodes_in_group("chest"):
+		chest.disable()

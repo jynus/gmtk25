@@ -1,9 +1,13 @@
 extends Control
 
+signal powerup_selected(powerup: Globals.powerup)
+
 @onready var challenge_icon_rect: TextureRect = %ChallengeIconRect
 @onready var challenge_text: Label = %ChallengeText
 
 var _is_challenge: bool = true
+var attached_chest: Node
+
 @export var challenge: Globals.challenge:
 	set(value):
 		challenge = value
@@ -27,17 +31,22 @@ func update_info():
 	if _is_challenge:
 		%CostContainer.hide()
 		%ConfirmText.text = "Confirm door selection?"
+		%ButtonDisabledTimer.start(0.8)
 	else:
 		%CostText.text = "x " + str(info.cost)
 		%CostContainer.show()
-		%ConfirmText.text = "Confirm powerup purchase?"
+		if Globals.coins < info.cost:
+			%ConfirmText.text = "Not enough coins"
+		else:
+			%ButtonDisabledTimer.start(0.8)
+			%ConfirmText.text = "Confirm powerup purchase?"
+		%YesButton.hide()
 
 
 func make_active():
 	%SFX.play()
+	update_info()
 	show()
-	%ButtonDisabledTimer.start(0.8)
-	%YesButton.hide()
 
 func make_inactive():
 	hide()
@@ -49,7 +58,10 @@ func _on_button_disabled_timer_timeout() -> void:
 	%YesButton.disabled = false
 
 func _on_yes_button_pressed() -> void:
-	next_level()
+	if _is_challenge:
+		next_level()
+	else:
+		apply_powerup()
 
 func next_level():
 	Globals.level += 1
@@ -58,3 +70,8 @@ func next_level():
 	else:
 		Globals.challenge_list.append(challenge)
 		SceneManager.change_scene("res://levels/00world1/level1.tscn")
+
+func apply_powerup():
+	make_inactive()
+	await attached_chest.open_chest()
+	powerup_selected.emit(powerup)
