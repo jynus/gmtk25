@@ -53,6 +53,5 @@ func _on_bluesky_button_pressed() -> void:
 	Fx.click.play()
 	open_web_browser(BLUSKY_URL)
 
-
 func _on_credits_text_meta_clicked(meta: Variant) -> void:
 	OS.shell_open(str(meta))

@@ -74,6 +74,21 @@ func get_challenge_info(c: challenge) -> Dictionary:
 		_:
 			return {'texture': null, 'text': ""}
 
+func get_powerup_info(p: powerup) -> Dictionary:
+	match p:
+		powerup.PLUS_LIFE:
+			return {'texture': null, 'cost': 10, 'text': "+1 heart"}
+		powerup.PLUS_MAX_LIFE:
+			return {'texture': null, 'cost': 40, 'text': "+1 max life"}
+		powerup.PLUS_MOVE_SPEED:
+			return {'texture': null, 'cost': 30, 'text': "+1 move speed"}
+		powerup.PLUS_DAMAGE:
+			return {'texture': null, 'cost': 40, 'text': "+1 damage"}
+		powerup.PLUS_ATTACK_SPEED:
+			return {'texture': null, 'cost': 50, 'text': "+1 attack speed"}
+		_:
+			return {'texture': null, 'cost': 10, 'text': ""}
+
 func reset_run():
 	current_health = DEFAULT_HEALTH
 	max_health = DEFAULT_HEALTH

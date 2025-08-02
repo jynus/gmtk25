@@ -39,7 +39,7 @@ func set_focus():
 
 func _on_main_menu_button_pressed():
 	unpause_game("menu")
-	SceneManager.change_scene("res://scenes/level_select.tscn", SceneManager.Transition.FADE_TO_BLACK)
+	SceneManager.change_scene("res://scenes/main_menu.tscn", SceneManager.Transition.FADE_TO_BLACK)
 
 func pause_game():
 	previous_music_offset = BackgroundMusic.fade_into("pause")

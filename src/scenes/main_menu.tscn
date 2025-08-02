@@ -76,18 +76,21 @@ custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
 [node name="HowToPlayButton" parent="menuContainer" instance=ExtResource("4_5dd4i")]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 focus_next = NodePath("../PlayButton")
 text = "How to play"
 
 [node name="SettingsButton" parent="menuContainer" instance=ExtResource("4_5dd4i")]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Settings"
 icon = SubResource("AtlasTexture_lgwnu")
 expand_icon = true
 
 [node name="CreditsButton" parent="menuContainer" instance=ExtResource("4_5dd4i")]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Credits"
 icon = SubResource("AtlasTexture_flqon")
@@ -115,7 +118,7 @@ unique_name_in_owner = true
 visible = false
 
 [connection signal="pressed" from="menuContainer/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="menuContainer/HowToPlayButton" to="." method="show_how_to_play_screen"]
+[connection signal="pressed" from="menuContainer/HowToPlayButton" to="." method="_on_how_to_play_button_pressed"]
 [connection signal="pressed" from="menuContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="menuContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="menuContainer/ExitButton" to="." method="_on_exit_button_pressed"]

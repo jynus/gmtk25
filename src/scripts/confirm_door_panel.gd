@@ -3,17 +3,38 @@ extends Control
 @onready var challenge_icon_rect: TextureRect = %ChallengeIconRect
 @onready var challenge_text: Label = %ChallengeText
 
+var _is_challenge: bool = true
 @export var challenge: Globals.challenge:
 	set(value):
 		challenge = value
+		_is_challenge = true
+		update_info()
+
+@export var powerup: Globals.powerup:
+	set(value):
+		powerup = value
+		_is_challenge = false
 		update_info()
 
 func update_info():
-	var info: Dictionary = Globals.get_challenge_info(challenge)
+	var info: Dictionary
+	if _is_challenge:
+		info = Globals.get_challenge_info(challenge)
+	else:
+		info = Globals.get_powerup_info(powerup)
 	challenge_icon_rect.texture = info.texture
 	challenge_text.text = info.text
+	if _is_challenge:
+		%CostContainer.hide()
+		%ConfirmText.text = "Confirm door selection?"
+	else:
+		%CostText.text = "x " + str(info.cost)
+		%CostContainer.show()
+		%ConfirmText.text = "Confirm powerup purchase?"
+
 
 func make_active():
+	%SFX.play()
 	show()
 	%ButtonDisabledTimer.start(0.8)
 	%YesButton.hide()

@@ -14,7 +14,9 @@ var playlist : Dictionary = {
 	"game_over": "res://assets/music/ES_Ctrl Alt Defeat - Deskant.ogg",
 	"win": "res://assets/music/ES_Goodbye Goodnight - One Two Feet.ogg",
 }
-var _current_song : String
+var _current_song : String = "menu"
+var playing : bool = false
+
 @export var current_song : String :
 	set (value):
 		_set_current_song(value)
@@ -35,6 +37,7 @@ func play_song(screen: String, offset : float = 0.0):
 	stop()
 	current_song = screen
 	music_player.play(offset)
+	playing = true
 
 func fade_out(duration: float = 2):
 	print_debug("fading out music")
@@ -61,6 +64,7 @@ func _fade_into2(screen: String, offset: float = 0.0, duration: float = 2):
 	if fadeout_tween.finished.is_connected(_fade_into2):
 		fadeout_tween.finished.disconnect(_fade_into2)
 	fade_in(screen, offset, duration)
+	playing = true
 
 func on_fade_out_finished():
 	stop()
@@ -71,4 +75,5 @@ func stop() -> float:
 	var pos : float = music_player.get_playback_position()
 	if music_player.playing:
 		music_player.stop()
+	playing = false
 	return pos

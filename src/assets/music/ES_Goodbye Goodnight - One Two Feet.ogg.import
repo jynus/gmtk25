@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/ES_Goodbye Goodnight - One Two Feet.ogg-dd13d
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

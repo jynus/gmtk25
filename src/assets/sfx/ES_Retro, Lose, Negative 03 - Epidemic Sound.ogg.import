@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cipvoq4hsn1ax"
+path="res://.godot/imported/ES_Retro, Lose, Negative 03 - Epidemic Sound.ogg-956585df7b8c00485c72facf097d49f5.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sfx/ES_Retro, Lose, Negative 03 - Epidemic Sound.ogg"
+dest_files=["res://.godot/imported/ES_Retro, Lose, Negative 03 - Epidemic Sound.ogg-956585df7b8c00485c72facf097d49f5.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

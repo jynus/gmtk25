@@ -7,7 +7,7 @@ enum level_type {
 	SHOP
 }
 @export var type: level_type = level_type.NORMAL
-const SHOP_CHANCE: float = 1
+const SHOP_CHANCE: float = 0.1
 
 @onready var level_complete_screen: Control = %LevelCompleteScreen
 @onready var hero: CharacterBody2D = %Hero
@@ -20,6 +20,7 @@ const SHOP_CHANCE: float = 1
 @onready var life_bar_current: TextureRect = %LifeBarCurrent
 
 var level_completion_sound = preload("res://assets/sfx/ES_Notification, Video Game, Win, Positive, Happy 01 - Epidemic Sound.ogg")
+var die_sound = preload("res://assets/sfx/ES_Retro, Lose, Negative 03 - Epidemic Sound.ogg")
 var bar_sound = preload("res://assets/sfx/ES_Metal, Scrape, Wheel, Barrow - Epidemic Sound.ogg")
 var crab_scene = preload("res://scene_objects/enemies/crab.tscn")
 var bat_scene = preload("res://scene_objects/enemies/bat.tscn")
@@ -50,7 +51,9 @@ func _ready() -> void:
 	update_coins()
 	current_state = state.ENTER
 	randomize_doors()
-	if type != level_type.SHOP:
+	if type == level_type.SHOP:
+		randomize_chests()
+	else:
 		for challenge in Globals.challenge_list:
 			add_challenge(challenge)
 
@@ -76,6 +79,17 @@ func randomize_doors():
 	if type != level_type.SHOP and randf() < SHOP_CHANCE:
 		[left_door, right_door, top_door, bottom_door].pick_random().challenge = Globals.challenge.SHOP
 
+func randomize_chests():
+	for chest in get_tree().get_nodes_in_group("chest"):
+		chest.powerup = [
+			Globals.powerup.PLUS_LIFE,
+			Globals.powerup.PLUS_LIFE,
+			Globals.powerup.PLUS_MAX_LIFE,
+			Globals.powerup.PLUS_MOVE_SPEED,
+			Globals.powerup.PLUS_DAMAGE,
+			Globals.powerup.PLUS_ATTACK_SPEED
+		].pick_random()
+
 func update_level():
 	%Level.text = tr("LEVEL") + " %02d" % Globals.level + "/20"
 
@@ -85,10 +99,6 @@ func update_lifebar():
 
 func update_coins():
 	%CoinCount.text = "x" + str(Globals.coins)
-
-func _on_spawn_enemy_timer_timeout() -> void:
-	#spawn_enemy()
-	pass
 
 func add_challenge(challenge: Globals.challenge):
 	match challenge:
@@ -117,6 +127,8 @@ func _on_state_transition_player_animation_finished(_anim_name: StringName) -> v
 		current_state = state.COMBAT
 	elif current_state == state.OPEN_BARS:
 		current_state = state.CHOOSE_DOOR
+	elif current_state == state.GAME_OVER:
+		show_gameover()
 
 func _on_state_changed(old_state: Variant) -> void:
 	print_debug("Old state: " + str(old_state) + " Current state " + str(current_state))
@@ -158,8 +170,13 @@ func _on_state_changed(old_state: Variant) -> void:
 		if Globals.coming_from != Globals.dir.BOTTOM:
 			bottom_door.get_node("DetectionArea/Collision").set_deferred("disabled", false)
 	elif current_state == state.GAME_OVER:
+		%SFX.stream = die_sound
+		%SFX.play()
+		state_transition_player.play("die")
 		BackgroundMusic.fade_out(1)
-		SceneManager.change_scene("res://scene_objects/game_over.tscn", SceneManager.Transition.FADE_TO_BLACK, 2)
+
+func show_gameover():
+	SceneManager.change_scene("res://scenes/game_over.tscn", SceneManager.Transition.FADE_TO_BLACK, 3)
 
 func open_bars():
 	match Globals.coming_from:
@@ -229,3 +246,11 @@ func _on_hero_died() -> void:
 
 func _on_hero_pickedup_coins() -> void:
 	update_coins()
+
+
+func _on_hero_enter_powerup_selection(powerup: int) -> void:
+	%ConfirmDoorPanel.powerup = powerup
+	%ConfirmDoorPanel.make_active()
+
+func _on_hero_exit_powerup_selection() -> void:
+	%ConfirmDoorPanel.make_inactive()

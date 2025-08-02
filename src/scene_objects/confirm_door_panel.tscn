@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://ca2xagvsvid5s"]
+[gd_scene load_steps=13 format=3 uid="uid://ca2xagvsvid5s"]
 
 [ext_resource type="Script" uid="uid://dckntwyr5uc8w" path="res://scripts/confirm_door_panel.gd" id="1_rcxm0"]
 [ext_resource type="Texture2D" uid="uid://dfu5anf37ogpc" path="res://resources/crab_texture.tres" id="2_kk20b"]
 [ext_resource type="FontFile" uid="uid://d2gom50m7yb65" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="2_onsoy"]
 [ext_resource type="PackedScene" uid="uid://oq5258by1a1k" path="res://scene_objects/menu_button.tscn" id="4_dqdpu"]
+[ext_resource type="Texture2D" uid="uid://c0xy5o2bphx0p" path="res://assets/textures/coin.webp" id="4_vyxkf"]
+[ext_resource type="AudioStream" uid="uid://dxbtb865m7voh" path="res://assets/sfx/ES_Alerts, Notification 12 - Epidemic Sound.ogg" id="5_f5byo"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_kk20b"]
 font = ExtResource("2_onsoy")
@@ -120,7 +122,39 @@ label_settings = SubResource("LabelSettings_kk20b")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="CostContainer" type="HBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 1
+
+[node name="CostText2" type="Label" parent="VBoxContainer/CostContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 30)
+layout_mode = 2
+text = "Cost:"
+label_settings = SubResource("LabelSettings_kk20b")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ChallengeIconRect" type="TextureRect" parent="VBoxContainer/CostContainer"]
+custom_minimum_size = Vector2(50, 30)
+layout_mode = 2
+size_flags_horizontal = 8
+texture = ExtResource("4_vyxkf")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="CostText" type="Label" parent="VBoxContainer/CostContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 30)
+layout_mode = 2
+text = "x 1"
+label_settings = SubResource("LabelSettings_kk20b")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="ConfirmText" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Confirm door selection?"
 label_settings = SubResource("LabelSettings_kk20b")
@@ -160,6 +194,12 @@ text = "Yes"
 unique_name_in_owner = true
 wait_time = 0.5
 one_shot = true
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_f5byo")
+volume_db = -8.0
+bus = &"sfx"
 
 [connection signal="pressed" from="VBoxContainer/YesButton" to="." method="_on_yes_button_pressed"]
 [connection signal="timeout" from="ButtonDisabledTimer" to="." method="_on_button_disabled_timer_timeout"]

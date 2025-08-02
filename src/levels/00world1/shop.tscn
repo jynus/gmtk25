@@ -20,3 +20,6 @@ position = Vector2(160, 88.16667)
 
 [node name="Chest3" parent="Board" index="7" instance=ExtResource("2_t3rtu")]
 position = Vector2(230, 88.16667)
+
+[connection signal="enter_powerup_selection" from="Board/Hero" to="." method="_on_hero_enter_powerup_selection"]
+[connection signal="exit_powerup_selection" from="Board/Hero" to="." method="_on_hero_exit_powerup_selection"]

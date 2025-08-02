@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/ES_Ctrl Alt Defeat - Deskant.ogg-b74f4d17145e
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 signal hero_died
 signal pickedup_coins
+signal enter_powerup_selection(powerup: Globals.powerup)
+signal exit_powerup_selection
 
 @export var weapon: PackedScene = preload("res://scene_objects/projectile.tscn")
 @onready var sprite_2d: Sprite2D = $Sprite2D
@@ -122,6 +124,8 @@ func pickup_coin(value: int) -> void:
 
 func show_powerup(powerup: Globals.powerup):
 	print_debug("show_powerup")
+	enter_powerup_selection.emit(powerup)
 
 func hide_powerup():
 	print_debug("hide_powerup")
+	exit_powerup_selection.emit()

@@ -25,7 +25,6 @@ expand_margin_bottom = 2.0
 process_mode = 3
 custom_minimum_size = Vector2(320, 180)
 layout_mode = 3
-anchors_preset = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 scale = Vector2(0.167, 0.167)
@@ -86,7 +85,7 @@ theme_override_font_sizes/font_size = 50
 theme_override_styles/focus = SubResource("StyleBoxFlat_hugtt")
 text = "Settings"
 
-[node name="levelSelectButton" parent="background/VBoxContainer" instance=ExtResource("1_fht2j")]
+[node name="mainMenuButton" parent="background/VBoxContainer" instance=ExtResource("1_fht2j")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(900, 100)
 layout_mode = 2
@@ -95,7 +94,7 @@ focus_previous = NodePath("../CreditsButton")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 50
 theme_override_styles/focus = SubResource("StyleBoxFlat_hugtt")
-text = "Back to level selection"
+text = "Back to main menu"
 
 [node name="settings" parent="." instance=ExtResource("4_cgqpe")]
 unique_name_in_owner = true
@@ -105,4 +104,4 @@ visible = false
 [connection signal="pressed" from="background/VBoxContainer/returnButton" to="." method="_on_return_button_pressed"]
 [connection signal="pressed" from="background/VBoxContainer/resetLevelButton" to="." method="_on_reset_level_button_pressed"]
 [connection signal="pressed" from="background/VBoxContainer/settingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="background/VBoxContainer/levelSelectButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="background/VBoxContainer/mainMenuButton" to="." method="_on_main_menu_button_pressed"]
