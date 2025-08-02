@@ -15,7 +15,7 @@ var attack_speed: float = DEFAULT_ATTACK_SPEED
 var attack_damage: float = DEFAULT_ATTACK_DAMAGE
 
 var level : int = 1
-var last_level : int = 2
+var last_level : int = 20
 var hero : Hero
 
 @onready var current_health: int = DEFAULT_HEALTH:
@@ -50,7 +50,8 @@ enum challenge {
 	BAT,
 	GHOST,
 	INCREASED_ENEMY_HEALTH,
-	SHOP
+	SHOP,
+	END
 }
 
 enum powerup {
@@ -92,6 +93,11 @@ func get_challenge_info(c: challenge) -> Dictionary:
 			return {
 				'texture': preload("res://resources/chest_texture.tres"),
 				'text': tr("shop")
+			}
+		challenge.END:
+			return {
+				'texture': preload("res://resources/end_texture.tres"),
+				'text': tr("the end?")
 			}
 		_:
 			return {'texture': null, 'text': ""}

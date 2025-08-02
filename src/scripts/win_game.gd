@@ -4,7 +4,6 @@ extends Node2D
 @onready var you_won_text: RichTextLabel = %youWonText
 
 func _ready() -> void:
-	BackgroundMusic.fade_into("win", 0.5, 11)
 	if Input.get_connected_joypads().size() > 0:
 		back_button.grab_focus()
 

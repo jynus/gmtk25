@@ -73,11 +73,14 @@ func _process(_delta: float) -> void:
 
 func randomize_doors():
 	for door in [left_door, right_door, top_door, bottom_door]:
-		door.challenge = [
-			Globals.challenge.CRAB,
-			Globals.challenge.BAT,
-			Globals.challenge.GHOST
-		].pick_random()
+		if Globals.level == Globals.last_level:
+			door.challenge = Globals.challenge.END
+		else:
+			door.challenge = [
+				Globals.challenge.CRAB,
+				Globals.challenge.BAT,
+				Globals.challenge.GHOST
+			].pick_random()
 
 	# Shops should never lead to shops
 	if type != level_type.SHOP and randf() < SHOP_CHANCE:

@@ -66,7 +66,8 @@ func _on_yes_button_pressed() -> void:
 func next_level():
 	Globals.level += 1
 	if Globals.level > Globals.last_level:
-		SceneManager.change_scene("res://scenes/win_game.tscn")
+		BackgroundMusic.fade_into("win", 0.5, 11)
+		SceneManager.change_scene("res://scenes/win_game.tscn", SceneManager.Transition.FADE_TO_BLACK, 5)
 	elif challenge == Globals.challenge.SHOP:
 		SceneManager.change_scene("res://levels/00world1/shop.tscn")
 	else:

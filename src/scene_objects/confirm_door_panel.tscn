@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dckntwyr5uc8w" path="res://scripts/confirm_door_panel.gd" id="1_rcxm0"]
 [ext_resource type="FontFile" uid="uid://d2gom50m7yb65" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="2_onsoy"]
-[ext_resource type="Texture2D" uid="uid://cmyv4xhujxdi7" path="res://resources/plus_attack_damage.tres" id="2_vyxkf"]
+[ext_resource type="Texture2D" uid="uid://80hgvsc6bgla" path="res://resources/end_texture.tres" id="2_vyxkf"]
 [ext_resource type="PackedScene" uid="uid://oq5258by1a1k" path="res://scene_objects/menu_button.tscn" id="4_dqdpu"]
 [ext_resource type="Texture2D" uid="uid://c0xy5o2bphx0p" path="res://assets/textures/coin.webp" id="4_vyxkf"]
 [ext_resource type="AudioStream" uid="uid://dxbtb865m7voh" path="res://assets/sfx/ES_Alerts, Notification 12 - Epidemic Sound.ogg" id="5_f5byo"]
