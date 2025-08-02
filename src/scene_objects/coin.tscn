@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://d2p50k8g10h45"]
+[gd_scene load_steps=8 format=3 uid="uid://d2p50k8g10h45"]
 
 [ext_resource type="Texture2D" uid="uid://c0xy5o2bphx0p" path="res://assets/textures/coin.webp" id="1_8h5jk"]
 [ext_resource type="Script" uid="uid://bukg25vav12ym" path="res://scripts/coin.gd" id="1_u252x"]
 
 [sub_resource type="Animation" id="Animation_ypf7s"]
 length = 0.001
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -16,6 +17,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_u252x"]
@@ -36,9 +49,39 @@ tracks/0/keys = {
 "values": [Vector2(1, 1), Vector2(0, 1), Vector2(1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_cn71u"]
+resource_name = "about_to_dissapear"
+length = 3.0
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 1), Vector2(1, 1), Vector2(0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.43333334, 0.76666665, 1.1666666, 1.6333333, 1.9333333, 2.2, 2.3666666, 2.5, 2.6, 2.7, 2.8, 2.9, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cn71u"]
 _data = {
 &"RESET": SubResource("Animation_ypf7s"),
+&"about_to_dissapear": SubResource("Animation_cn71u"),
 &"rotate": SubResource("Animation_u252x")
 }
 
@@ -55,9 +98,11 @@ position = Vector2(0, -5)
 texture = ExtResource("1_8h5jk")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_cn71u")
 }
+autoplay = "rotate"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -5)
