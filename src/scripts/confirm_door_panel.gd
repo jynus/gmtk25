@@ -83,10 +83,10 @@ func next_level():
 			transition = SceneManager.Transition.SLIDE_TOP
 		_:
 			transition = SceneManager.Transition.FADE_TO_BLACK
+	get_tree().paused = true
 	if challenge == Globals.challenge.SHOP:
 		SceneManager.change_scene("res://levels/00world1/shop.tscn", transition, 1)
 	else:
-		get_tree().paused = true
 		Globals.challenge_list.append(challenge)
 		SceneManager.change_scene("res://levels/00world1/level1.tscn", transition, 1)
 

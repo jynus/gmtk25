@@ -7,7 +7,8 @@ enum Transition {
 }
 @onready var fade_out_panel: Polygon2D = %FadeOutPanel
 @onready var fade_out_panel2: Polygon2D = %FadeOutPanel2
-var _next_level_image = preload("res://assets/textures/arena_texture_unexplored.webp")
+var _next_normal_level_image = preload("res://assets/textures/arena_texture_unexplored.webp")
+var _next_shop_level_image = preload("res://assets/textures/shop_texture_unexplored.webp")
 
 func reset_panel():
 	fade_out_panel.hide()
@@ -46,7 +47,10 @@ func _do_transition(do_stuff: Callable, transition: Transition, time: float):
 			fade_out_panel.self_modulate = Color(Color.WHITE, 1.0)
 			fade_out_panel.show()
 			do_stuff.call()
-			fade_out_panel2.texture = _next_level_image
+			if do_stuff.get_bound_arguments_count() > 0 and str(do_stuff.get_bound_arguments()[0]).ends_with("shop.tscn"):
+				fade_out_panel2.texture = _next_shop_level_image
+			else:
+				fade_out_panel2.texture = _next_normal_level_image
 			fade_out_panel.self_modulate = Color(Color.WHITE, 1.0)
 			fade_out_panel.position = Vector2.ZERO
 			fade_out_panel2.self_modulate = Color(Color.WHITE, 1.0)

@@ -7,7 +7,7 @@ enum level_type {
 	SHOP
 }
 @export var type: level_type = level_type.NORMAL
-const SHOP_CHANCE: float = 0.1
+const SHOP_CHANCE: float = 0.2
 
 @onready var level_complete_screen: Control = %LevelCompleteScreen
 @onready var hero: CharacterBody2D = %Hero
