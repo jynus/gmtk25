@@ -65,14 +65,30 @@ func _on_yes_button_pressed() -> void:
 
 func next_level():
 	Globals.level += 1
+			
 	if Globals.level > Globals.last_level:
 		BackgroundMusic.fade_into("win", 0.5, 11)
 		SceneManager.change_scene("res://scenes/win_game.tscn", SceneManager.Transition.FADE_TO_BLACK, 5)
-	elif challenge == Globals.challenge.SHOP:
-		SceneManager.change_scene("res://levels/00world1/shop.tscn")
+		return
+	
+	var transition: SceneManager.Transition
+	match Globals.coming_from:
+		Globals.dir.LEFT:
+			transition = SceneManager.Transition.SLIDE_RIGHT
+		Globals.dir.RIGHT:
+			transition = SceneManager.Transition.SLIDE_LEFT
+		Globals.dir.TOP:
+			transition = SceneManager.Transition.SLIDE_BOTTOM
+		Globals.dir.BOTTOM:
+			transition = SceneManager.Transition.SLIDE_TOP
+		_:
+			transition = SceneManager.Transition.FADE_TO_BLACK
+	if challenge == Globals.challenge.SHOP:
+		SceneManager.change_scene("res://levels/00world1/shop.tscn", transition, 1)
 	else:
+		get_tree().paused = true
 		Globals.challenge_list.append(challenge)
-		SceneManager.change_scene("res://levels/00world1/level1.tscn")
+		SceneManager.change_scene("res://levels/00world1/level1.tscn", transition, 1)
 
 func apply_powerup():
 	make_inactive()

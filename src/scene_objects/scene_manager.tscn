@@ -10,4 +10,11 @@ script = ExtResource("1_tnr2h")
 unique_name_in_owner = true
 self_modulate = Color(0, 0, 0, 0)
 z_index = 200
-polygon = PackedVector2Array(0, 0, 2468, 1, 1920, 1080, -505, 1080)
+polygon = PackedVector2Array(0, 0, 1920, 0, 1920, 1080, 0, 1080)
+
+[node name="FadeOutPanel2" type="Polygon2D" parent="."]
+unique_name_in_owner = true
+self_modulate = Color(0, 0, 0, 0)
+z_index = 200
+position = Vector2(1920, 0)
+polygon = PackedVector2Array(0, 0, 1920, 0, 1920, 1080, 0, 1080)

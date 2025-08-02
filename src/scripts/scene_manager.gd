@@ -1,13 +1,22 @@
 extends Node
 
-enum Transition {NONE, FADE_TO_BLACK, DISOLVE, SLIDE_LEFT, SLIDE_RIGHT, CURTAIN_TOP, CURTAIN_LEFT}
+enum Transition {
+	NONE, FADE_TO_BLACK, DISOLVE,
+	SLIDE_LEFT, SLIDE_RIGHT, SLIDE_TOP, SLIDE_BOTTOM,
+	CURTAIN_TOP, CURTAIN_LEFT
+}
 @onready var fade_out_panel: Polygon2D = %FadeOutPanel
+@onready var fade_out_panel2: Polygon2D = %FadeOutPanel2
 
 func reset_panel():
 	fade_out_panel.hide()
 	fade_out_panel.texture = null
 	fade_out_panel.self_modulate = Color(Color.BLACK, 0.0)
 	fade_out_panel.position = Vector2.ZERO
+	fade_out_panel2.hide()
+	fade_out_panel2.texture = null
+	fade_out_panel2.self_modulate = Color(Color.BLACK, 0.0)
+	fade_out_panel2.position = Vector2(1920, 0)
 
 func _do_transition(do_stuff: Callable, transition: Transition, time: float):
 	match transition:
@@ -30,28 +39,38 @@ func _do_transition(do_stuff: Callable, transition: Transition, time: float):
 			tween.tween_callback(do_stuff)
 			tween.tween_property(fade_out_panel, "self_modulate", Color(Color.WHITE, 0.0), time)
 			tween.tween_callback(reset_panel)
-		Transition.SLIDE_LEFT, Transition.SLIDE_RIGHT:
-			pass  # TODO
-			#var current_image: Image = get_viewport().get_texture().get_image()
-			#fade_out_panel.texture = ImageTexture.create_from_image(current_image)
-			#fade_out_panel.self_modulate = Color(Color.WHITE, 1.0)
-			#fade_out_panel.show()
-			#var tween: Tween = create_tween()
-			#tween.tween_callback(do_stuff)
-			#await get_tree().process_frame
-			#fade_out_panel.texture = ImageTexture.create_from_image(current_image)
-			#fade_out_panel.self_modulate = Color(Color.WHITE, 1.0)
-			#fade_out_panel.show()
-			#var end_offset: Vector2
-			#var screen_size_x: float = get_viewport().get_visible_rect().size.x
-			#if transition == Transition.SLIDE_LEFT:
-				#end_offset = Vector2(screen_size_x, 0)
-			#else:
-				#end_offset = Vector2(-screen_size_x, 0)
-			#tween = create_tween()
-			#tween.tween_property(fade_out_panel, "position", end_offset, time)
-			#tween = create_tween()
-			#tween.tween_callback(reset_panel)
+		Transition.SLIDE_RIGHT, Transition.SLIDE_LEFT, Transition.SLIDE_TOP, Transition.SLIDE_BOTTOM:
+			var current_image: Image = get_viewport().get_texture().get_image()
+			fade_out_panel.texture = ImageTexture.create_from_image(current_image)
+			fade_out_panel.self_modulate = Color(Color.WHITE, 1.0)
+			fade_out_panel.show()
+			do_stuff.call()
+			var next_level_image = Image.new()
+			next_level_image.load("res://assets/textures/arena_texture_unexplored.webp")
+			fade_out_panel2.texture = ImageTexture.create_from_image(next_level_image)
+			fade_out_panel.self_modulate = Color(Color.WHITE, 1.0)
+			fade_out_panel.position = Vector2.ZERO
+			fade_out_panel2.self_modulate = Color(Color.WHITE, 1.0)
+			var target: Vector2
+			match transition:
+				Transition.SLIDE_RIGHT:
+					fade_out_panel2.position = Vector2(get_viewport().get_visible_rect().size.x, 0)
+					target = Vector2(-get_viewport().get_visible_rect().size.x, 0)
+				Transition.SLIDE_LEFT:
+					fade_out_panel2.position = Vector2(-get_viewport().get_visible_rect().size.x, 0)
+					target = Vector2(get_viewport().get_visible_rect().size.x, 0)
+				Transition.SLIDE_TOP:
+					fade_out_panel2.position = Vector2(0, -get_viewport().get_visible_rect().size.y)
+					target = Vector2(0, get_viewport().get_visible_rect().size.y)
+				Transition.SLIDE_BOTTOM:
+					fade_out_panel2.position = Vector2(0, get_viewport().get_visible_rect().size.y)
+					target = Vector2(0, -get_viewport().get_visible_rect().size.y)
+			fade_out_panel2.show()
+			var tween = create_tween()
+			tween.tween_property(fade_out_panel, "position", target, time)
+			tween.parallel().tween_property(fade_out_panel2, "position", Vector2.ZERO, time)
+			tween.tween_callback(reset_panel)
+			tween.tween_callback(unpause)
 		Transition.CURTAIN_TOP:
 			var max_size_y = get_viewport().get_visible_rect().size.y
 			fade_out_panel.position.y = -max_size_y
@@ -60,7 +79,6 @@ func _do_transition(do_stuff: Callable, transition: Transition, time: float):
 			var tween = create_tween()
 			tween.tween_property(fade_out_panel, "position", Vector2.ZERO, time / 2.0)
 			tween.tween_callback(do_stuff)
-			tween.tween_property(fade_out_panel, "position", Vector2(0, -max_size_y), time / 2.0)
 			tween.tween_callback(reset_panel)
 		Transition.CURTAIN_LEFT:
 			var max_size_x = get_viewport().get_visible_rect().size.x
@@ -91,3 +109,6 @@ func hide_scene(scene: Node, transition: Transition = Transition.NONE, time: flo
 func reload_current_scene(transition: Transition = Transition.NONE, time: float = 0.5):
 	var do_stuff : Callable = get_tree().reload_current_scene.bind()
 	_do_transition(do_stuff, transition, time)
+
+func unpause():
+	get_tree().paused = false

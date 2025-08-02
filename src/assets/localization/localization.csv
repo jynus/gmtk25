@@ -1,5 +1,5 @@
 keys,en,es
-GMTKJam2025,The Binding of Blue Prince,The Binding of Blue Prince
+GMTKJam2025,The Binding of the Red King,The Binding of the Red King
 VersionString,v0.1.0,v0.1.0
 Play,Play,Jugar
 Settings,Settings,Configuración
@@ -60,3 +60,4 @@ Restart from level 1,Restart from level 1,Reiniciar desde nivel 1
 "Jynus.com Website","Jynus.com Website","Sitio web de jynus.com"
 "Bluesky account","Bluesky account","Cuenta de Bluesky"
 "GitHub.com source code","GitHub.com source code","Código fuente en GitHub.com"
+Yes,Yes,Sí
