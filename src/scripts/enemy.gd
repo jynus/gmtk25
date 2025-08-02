@@ -59,6 +59,8 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func damage(from: Vector2, points: float = 1):
+	if modulate == Color.RED:
+		return
 	current_health -= points
 	modulate = Color.RED
 	$SFX.stream = hit_sound
