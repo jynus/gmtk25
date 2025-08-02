@@ -15,6 +15,7 @@ var attack_speed: float = DEFAULT_ATTACK_SPEED
 var attack_damage: float = DEFAULT_ATTACK_DAMAGE
 
 var level : int = 1
+var last_level : int = 2
 var hero : Hero
 
 @onready var current_health: int = DEFAULT_HEALTH:
@@ -119,6 +120,7 @@ func reset_run():
 	challenge_list = []
 	powerup_list = []
 	level = 1
+	last_level = 21
 	coins = 0
 
 func _input(event: InputEvent) -> void:
