@@ -1,14 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://ca2xagvsvid5s"]
+[gd_scene load_steps=14 format=3 uid="uid://ca2xagvsvid5s"]
 
 [ext_resource type="Script" uid="uid://dckntwyr5uc8w" path="res://scripts/confirm_door_panel.gd" id="1_rcxm0"]
 [ext_resource type="FontFile" uid="uid://d2gom50m7yb65" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="2_onsoy"]
 [ext_resource type="Texture2D" uid="uid://80hgvsc6bgla" path="res://resources/end_texture.tres" id="2_vyxkf"]
+[ext_resource type="FontFile" uid="uid://dqjrcjd2fdulc" path="res://assets/fonts/Tiny5-Regular.ttf" id="3_26hkk"]
 [ext_resource type="PackedScene" uid="uid://oq5258by1a1k" path="res://scene_objects/menu_button.tscn" id="4_dqdpu"]
 [ext_resource type="Texture2D" uid="uid://c0xy5o2bphx0p" path="res://assets/textures/coin.webp" id="4_vyxkf"]
 [ext_resource type="AudioStream" uid="uid://dxbtb865m7voh" path="res://assets/sfx/ES_Alerts, Notification 12 - Epidemic Sound.ogg" id="5_f5byo"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_kk20b"]
-font = ExtResource("2_onsoy")
+font = ExtResource("3_26hkk")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dqdpu"]
 content_margin_left = 0.0
@@ -115,7 +116,7 @@ stretch_mode = 5
 
 [node name="ChallengeText" type="Label" parent="VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 30)
+custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 text = "+1 Crab"
 label_settings = SubResource("LabelSettings_kk20b")
@@ -183,7 +184,8 @@ theme_override_colors/font_focus_color = Color(0.9541066, 0.75979954, 0.7407282,
 theme_override_colors/font_disabled_color = Color(0.53, 0.53, 0.53, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 1
-theme_override_font_sizes/font_size = 15
+theme_override_fonts/font = ExtResource("3_26hkk")
+theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxFlat_dqdpu")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_f5byo")
 theme_override_styles/hover = SubResource("StyleBoxFlat_vyxkf")
