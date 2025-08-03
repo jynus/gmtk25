@@ -12,6 +12,7 @@ signal died(location: Vector2, coin_value: int)
 	set(value):
 		current_health = value
 		update_health.emit()
+@export var type: Globals.challenge = Globals.challenge.BAT
 @export var hero : Node2D
 @export var max_speed: float = 200.0
 @export var damage_force : float = 1000
@@ -38,7 +39,10 @@ func _ready() -> void:
 func navigation_setup():
 	await get_tree().physics_frame
 	if hero and (hero.global_position - global_position).length() < detection_radius:
-		navigation_agent.target_position = hero.global_position
+		if type == Globals.challenge.GHOST:
+			navigation_agent.target_position = hero.global_position + (hero.velocity / 2)
+		else:
+			navigation_agent.target_position = hero.global_position
 	else:
 		navigation_agent.target_position = default_position
 	

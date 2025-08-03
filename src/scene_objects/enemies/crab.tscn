@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dfu5anf37ogpc" path="res://resources/crab_texture.tres" id="2_w2wvi"]
 
 [node name="Enemy" instance=ExtResource("1_jdkr6")]
+type = 0
 damage_force = 500.0
 damage_on_touch = 2
 texture = ExtResource("2_w2wvi")
