@@ -7,6 +7,21 @@
 [ext_resource type="PackedScene" uid="uid://oq5258by1a1k" path="res://scene_objects/menu_button.tscn" id="6_an7h7"]
 [ext_resource type="Texture2D" uid="uid://boqax66a0370t" path="res://assets/textures/tilemap_packed.png" id="6_e2iwf"]
 
+[sub_resource type="Animation" id="Animation_d6s7s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("menuContainer/HBoxContainer/Sprite2D:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="Animation" id="Animation_an7h7"]
 resource_name = "dance"
 length = 1.2766
@@ -23,21 +38,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
-}
-
-[sub_resource type="Animation" id="Animation_d6s7s"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("menuContainer/HBoxContainer/Sprite2D:flip_h")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_du558"]
@@ -83,13 +83,13 @@ theme_override_constants/line_separation = 25
 theme_override_fonts/normal_font = ExtResource("4_d6ige")
 theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
-text = "[center]Congratulations. You are the RED KING.
+text = "[center]Congratulations.
+You reached the last level of this mace.
 
 
 
 
-
-Please consider [color=darkblue][url=https://itch.io/jam/gmtk-2025]rating this game for the GMTK Jam[/url][/color] or leaving [color=darkblue][url=https://jynus.itch.io/]a comment[/url][/color].[/center]"
+Please consider [color=darkblue][url=https://itch.io/jam/gmtk-2025/rate/3627164]rating this game for the GMTK Jam[/url][/color] or leaving [color=darkblue][url=https://jynus.itch.io/cursed-room]a comment[/url][/color].[/center]"
 scroll_following = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="menuContainer"]
@@ -110,7 +110,7 @@ layout_mode = 2
 text = "Back to main menu"
 
 [node name="Sprite2D" type="Sprite2D" parent="menuContainer/HBoxContainer"]
-position = Vector2(975, -353)
+position = Vector2(975, -324)
 scale = Vector2(12, 12)
 texture = ExtResource("6_e2iwf")
 region_enabled = true

@@ -11,6 +11,8 @@ func _ready():
 	set_focus()
 	%creditsText.text = "[center][color=eaa56c]" + tr("Design & programming") + ":[/color]\n\n" + \
 						"Jaime Crespo \"jynus\"\n\n" + \
+						"[center][color=eaa56c]" + tr("Pixel art") + ":[/color]\n\n" + \
+						tr("[url=https://kenney.nl/]Kenney.nl[/url]") + "\n\n" + \
 						"[center][color=eaa56c]" + tr("Music & Sounds") + ":[/color]\n\n" + \
 						tr("Courtesy of [url=https://www.epidemicsound.com]Epidemic Sound[/url]") + "\n\n" + \
 						tr("See [url=https://github.com/jynus/gmtk25]README[/url] or [url=https://jynus.itch.io/XXXXXX]Itch.io page[/url] for the full attribution list.")+ "\n\n" + \
