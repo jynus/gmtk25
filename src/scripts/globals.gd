@@ -68,8 +68,10 @@ var powerup_list: Array[powerup] = []
 var coming_from: dir = dir.LEFT
 var user_settings: Node
 var coins: int = 0
+var osk_config: String = "auto"
 
-func _init() -> void:
+
+func _ready() -> void:
 	# Load settings config
 	user_settings = UserSettings.new()
 	user_settings.load_settings()

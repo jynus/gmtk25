@@ -52,6 +52,7 @@ var current_state : state:
 @onready var _this_room_coming_from : Globals.dir = Globals.coming_from
  
 func _ready() -> void:
+	apply_osk_config()
 	if type == level_type.SHOP:
 		BackgroundMusic.fade_in("shop", 1, 0.5)
 	else:
@@ -71,6 +72,12 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("back"):
 		%pauseMenu.pause_game()
+
+func apply_osk_config():
+	if (Globals.osk_config == "auto" and DisplayServer.is_touchscreen_available()) or Globals.osk_config == "on":
+		%VirtualInterface.show()
+	if (Globals.osk_config == "auto" and not DisplayServer.is_touchscreen_available()) or Globals.osk_config == "off":
+		%VirtualInterface.hide()
 
 func randomize_doors():
 	for door in [left_door, right_door, top_door, bottom_door]:

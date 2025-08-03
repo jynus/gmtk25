@@ -7,6 +7,8 @@ class_name UserSettings extends Node2D
 @onready var language_option = %LanguageOption
 @onready var vsync_checkbox: CheckBox = %vsyncCheckbox
 @onready var sample_fx: AudioStreamPlayer = %sampleFX
+@onready var osk_checkbox_autodetect: CheckBox = %OSKCheckboxAutodetect
+@onready var osk_checkbox_on: CheckBox = %OSKCheckboxOn
 
 @export var default_volume : float = 0.4
 
@@ -41,6 +43,11 @@ func _ready():
 	sfx_volume.set_value_no_signal(db_to_linear(AudioServer.get_bus_volume_db(sfx_bus_index)))
 	language_option.select(1 if TranslationServer.get_locale().begins_with("es") else 0)
 
+	var osk_value = Globals.osk_config
+	%OSKCheckboxAutodetect.set_pressed_no_signal(osk_value == "auto")
+	%OSKCheckboxOn.set_pressed_no_signal(osk_value == "on")
+	%OSKCheckboxOff.set_pressed_no_signal(osk_value == "off")
+
 func load_settings():
 	"""Load settings from config file and apply them"""
 	var err = _configFile.load(SETTINGS_FILE_PATH)
@@ -57,14 +64,22 @@ func load_settings():
 	set_volume("music", music_volume_config)
 	var sfx_volume_config = _configFile.get_value("settings", "sfx_volume", default_volume)
 	set_volume("sfx", sfx_volume_config)
-	
 	var default_language = "es" if TranslationServer.get_locale().begins_with("es") else "en"
 	var language_config = _configFile.get_value("settings", "language", default_language)
 	set_language(language_config)
+	var OSK_config = _configFile.get_value("settings", "osk", "auto")
+	set_osk(OSK_config)
 
 func hide_settings():
 	"""Close the settings screen"""
 	SceneManager.hide_scene(self, SceneManager.Transition.FADE_TO_BLACK)
+
+func set_osk(osk_value: String):
+	match osk_value:
+		"on", "off":
+			Globals.osk_config = osk_value
+		_:
+			Globals.osk_config = "auto"
 
 func set_window_mode(custom_window_mode : DisplayServer.WindowMode):
 	DisplayServer.window_set_mode(custom_window_mode)
@@ -75,6 +90,11 @@ func set_vsync_mode(vsync_mode : DisplayServer.VSyncMode):
 func set_config(key: String, value):
 	_configFile.set_value("settings", key, value)
 	_configFile.save(SETTINGS_FILE_PATH)
+
+func apply_osk(osk_value: String):
+	var osk = osk_value if osk_value in ["on", "off"] else "auto"
+	set_osk(osk)
+	set_config("osk", osk)
 
 func apply_fullscreen(fullscreen : bool):
 	var window_mode = DisplayServer.WINDOW_MODE_FULLSCREEN if fullscreen else DisplayServer.WINDOW_MODE_WINDOWED
@@ -141,10 +161,22 @@ func _on_vsync_toggled(button_pressed):
 	vsync_checkbox.text = "on" if button_pressed else "off"
 
 func set_focus():
-	done_button.grab_focus()
+	if done_button:
+		done_button.grab_focus()
 
 func _on_visibility_changed() -> void:
 	if visible:
 		set_focus()
 	elif get_parent() != null and get_parent().has_method("set_focus"):
 		get_parent().set_focus()
+
+func _on_osk_checkbox_toggled(_toggled_on: bool) -> void:
+	Fx.click.play()
+	var button_pressed: String
+	if %OSKCheckboxOn.button_pressed:
+		button_pressed = "on"
+	elif %OSKCheckboxOff.button_pressed:
+		button_pressed = "off"
+	else:
+		button_pressed = "auto"
+	apply_osk(button_pressed)

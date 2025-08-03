@@ -46,8 +46,6 @@ func _ready() -> void:
 	Globals.hero = self
 	%MovingSFX.play()
 	%MovingSFX.stream_paused = true
-	if DisplayServer.is_touchscreen_available():
-		%VirtualInterface.show()
 
 func _physics_process(delta: float) -> void:
 	if not is_paused:

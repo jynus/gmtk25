@@ -24,6 +24,10 @@ Reset level,Reset level,Reiniciar nivel
 Retry level,Retry level,Reintentar el nivel
 Return to game,Return to game,Volver al juego
 Pause,Pause,Pausa
+On-screen keys,On-screen keys,Interfaz táctil
+no,no,no
+always on,always on,siempre
+autodetect,autodetect,autodetectar
 "Press 'A'/'Cross' button or 'Enter' key", "Press 'A'/'Cross' button or 'Enter' key", "Pulsa el botón 'A'/'Cruz' o la tecla 'Intro'"
 on,on,sí
 off,off,no

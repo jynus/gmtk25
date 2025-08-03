@@ -53,6 +53,8 @@ func unpause_game(screen: String):
 	paused = false
 	get_tree().paused = false
 	previous_music_offset = BackgroundMusic.fade_into(screen, previous_music_offset)
+	if get_parent().has_method("apply_osk_config"):
+		get_parent().apply_osk_config()
 
 func _on_reset_level_button_pressed():
 	previous_music_offset = 0.0
