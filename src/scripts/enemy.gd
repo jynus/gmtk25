@@ -59,13 +59,11 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func damage(from: Vector2, points: float = 1):
-	if modulate == Color.RED:
-		return
 	current_health -= points
 	modulate = Color.RED
 	$SFX.stream = hit_sound
 	%SFX.play()
-	%SFX.finished.connect(damage_end)
+	%HurtTimer.start()
 	hurt_vector = (global_position - from).normalized() * damage_force
 	if current_health <= 0:
 		die()
@@ -90,7 +88,6 @@ func spawn_coin():
 
 func damage_end():
 	modulate = Color.WHITE
-	%SFX.finished.disconnect(damage_end)
 
 func die_end():
 	_coin.global_position = global_position

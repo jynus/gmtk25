@@ -115,7 +115,7 @@ func get_powerup_info(p: powerup) -> Dictionary:
 		powerup.PLUS_ATTACK_SPEED:
 			return {'texture': preload("res://resources/plus_attack_speed.tres"), 'cost': 50, 'text': "+1 attack speed"}
 		_:
-			return {'texture': null, 'cost': 10, 'text': ""}
+			return {'texture': preload("res://resources/plus_life_texture.tres"), 'cost': 0, 'text': ""}
 
 func reset_run():
 	current_health = DEFAULT_HEALTH
@@ -128,6 +128,7 @@ func reset_run():
 	level = 1
 	last_level = 21
 	coins = 0
+	coming_from = dir.LEFT
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_fullscreen"):
@@ -135,14 +136,14 @@ func _input(event: InputEvent) -> void:
 		user_settings.apply_fullscreen(not is_fullscreen)
 
 func apply_powerup(selected_powerup: powerup):
-	powerup_list.append(powerup)
+	powerup_list.append(selected_powerup)
 	match selected_powerup:
 		powerup.PLUS_LIFE:
 			current_health += 2
 		powerup.PLUS_MAX_LIFE:
 			max_health += 1
 		powerup.PLUS_MOVE_SPEED:
-			max_speed += 50
+			max_speed += 100
 		powerup.PLUS_ATTACK_DAMAGE:
 			attack_damage += 1
 		powerup.PLUS_ATTACK_SPEED:

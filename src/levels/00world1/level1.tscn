@@ -1136,6 +1136,8 @@ offset_left = 62.166668
 offset_top = 32.166664
 offset_right = 262.16666
 offset_bottom = 132.16666
+challenge = 0
+powerup = 0
 
 [node name="UI" type="Node" parent="."]
 
@@ -1214,8 +1216,9 @@ unique_name_in_owner = true
 volume_db = -8.0
 bus = &"sfx"
 
-[node name="Timer" type="Timer" parent="."]
-one_shot = true
+[node name="CheckNoEnemyTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.2
 autostart = true
 
 [connection signal="state_changed" from="." to="." method="_on_state_changed"]
@@ -1230,4 +1233,4 @@ autostart = true
 [connection signal="body_entered" from="Board/Doors/BottomDoor/DetectionArea" to="." method="_on_bottom_door_detected"]
 [connection signal="body_exited" from="Board/Doors/BottomDoor/DetectionArea" to="." method="_on_bottom_door_undetected"]
 [connection signal="animation_finished" from="StateTransitionPlayer" to="." method="_on_state_transition_player_animation_finished"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="CheckNoEnemyTimer" to="." method="_on_check_no_enemy_timer_timeout"]

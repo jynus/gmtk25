@@ -12,13 +12,15 @@ var attached_chest: Node
 	set(value):
 		challenge = value
 		_is_challenge = true
-		update_info()
+		if is_inside_tree():
+			update_info()
 
 @export var powerup: Globals.powerup:
 	set(value):
 		powerup = value
 		_is_challenge = false
-		update_info()
+		if is_inside_tree():
+			update_info()
 
 func update_info():
 	var info: Dictionary

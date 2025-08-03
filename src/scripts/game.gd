@@ -18,6 +18,7 @@ const SHOP_CHANCE: float = 0.2
 @onready var bottom_door: Sprite2D = %BottomDoor
 @onready var life_bar_max: TextureRect = %LifeBarMax
 @onready var life_bar_current: TextureRect = %LifeBarCurrent
+@onready var sfx: AudioStreamPlayer = %SFX
 
 var level_completion_sound = preload("res://assets/sfx/ES_Notification, Video Game, Win, Positive, Happy 01 - Epidemic Sound.ogg")
 var die_sound = preload("res://assets/sfx/ES_Retro, Lose, Negative 03 - Epidemic Sound.ogg")
@@ -65,11 +66,6 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("back"):
 		%pauseMenu.pause_game()
-
-	if get_tree().get_node_count_in_group("enemy") <= 0 and current_state == state.COMBAT:
-		current_state = state.OPEN_BARS
-		%SFX.stream = level_completion_sound
-		%SFX.play()
 
 func randomize_doors():
 	for door in [left_door, right_door, top_door, bottom_door]:
@@ -177,8 +173,8 @@ func _on_state_changed(old_state: Variant) -> void:
 		if Globals.coming_from != Globals.dir.BOTTOM:
 			bottom_door.get_node("DetectionArea/Collision").set_deferred("disabled", false)
 	elif current_state == state.GAME_OVER:
-		%SFX.stream = die_sound
-		%SFX.play()
+		sfx.stream = die_sound
+		sfx.play()
 		state_transition_player.play("die")
 		BackgroundMusic.fade_out(1)
 
@@ -265,8 +261,16 @@ func _on_hero_exit_powerup_selection() -> void:
 func _on_powerup_selected(powerup: int) -> void:
 	print_debug("powerup_selected")
 	Globals.apply_powerup(powerup)
-	%SFX.stream = powerup_sound
-	%SFX.play()
+	sfx.stream = powerup_sound
+	sfx.play()
 	hero.acquire_powerup(powerup)
 	for chest: Node in get_tree().get_nodes_in_group("chest"):
 		chest.disable()
+
+
+func _on_check_no_enemy_timer_timeout() -> void:
+	if get_tree().get_node_count_in_group("enemy") <= 0 and current_state == state.COMBAT:
+		current_state = state.OPEN_BARS
+		sfx.stream = level_completion_sound
+		sfx.play()
+		%CheckNoEnemyTimer.stop()

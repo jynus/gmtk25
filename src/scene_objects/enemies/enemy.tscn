@@ -64,5 +64,11 @@ debug_path_custom_color = Color(4.3317675e-07, 0, 0.65652066, 1)
 wait_time = 0.3
 autostart = true
 
+[node name="HurtTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.2
+one_shot = true
+
 [connection signal="update_health" from="." to="." method="_on_update_health"]
 [connection signal="timeout" from="NavigationUpdateTimer" to="." method="_on_navigation_update_timer_timeout"]
+[connection signal="timeout" from="HurtTimer" to="." method="damage_end"]
