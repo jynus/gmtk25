@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cpnl3o1n8g38e"
+path="res://.godot/imported/ES_Ping, Eerie 01 - Epidemic Sound.ogg-35c8931be446b2806d2c3f9719486f47.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sfx/ES_Ping, Eerie 01 - Epidemic Sound.ogg"
+dest_files=["res://.godot/imported/ES_Ping, Eerie 01 - Epidemic Sound.ogg-35c8931be446b2806d2c3f9719486f47.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

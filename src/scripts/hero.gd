@@ -6,33 +6,31 @@ signal pickedup_coins
 signal enter_powerup_selection(powerup: Globals.powerup)
 signal exit_powerup_selection
 
-@export var weapon: PackedScene = preload("res://scene_objects/projectile.tscn")
+@onready var weapon_scene: PackedScene = preload("res://scene_objects/projectile.tscn")
 @onready var sprite_2d: Sprite2D = $Sprite2D
 const DAMAGE_FORCE := 600.0
-#@export var max_speed: float = 400.0
 var _acceleration: Vector2 = Vector2.ZERO
 var _friction: float = 5
+@export var facing: Vector2 = Vector2.RIGHT
 var hurt_vector: Vector2 = Vector2.ZERO
-@onready var range_attack_pos_right: Marker2D = $RangeAttackPosRight
-@onready var range_attack_pos_left: Marker2D = $RangeAttackPosLeft
+@onready var range_attack_pos: Marker2D = %RangeAttackPos
 @onready var attack_timer: Timer = $AttackTimer
 var attack_sound = preload("res://assets/sfx/ES_Impact, Attack - Epidemic Sound.ogg")
-var can_attack: bool = false
+var melee_attack_sound = preload("res://assets/sfx/ES_Retro, 8 Bit, Character, Sword, Hit - Epidemic Sound.ogg")
+var can_attack: bool = false:
+	set(value):
+		can_attack = value
+		%MeleeWeapon.visible = can_attack
+var can_melee_attack: bool = true
 var can_move: bool = true:
 	set(value):
 		can_move = value
-		if not can_move:
-			%MovingSFX.stream_paused = true
+		%MovingSFX.stream_paused = not can_move
 var is_paused: bool = true:
 	set(value):
 		is_paused = value
-		if is_paused:
-			%MovingSFX.stream_paused = true
-
-@export var looking_right: bool = true:
-	set(value):
-		looking_right = value
-		sprite_2d.flip_h = not looking_right
+		%MovingSFX.stream_paused = is_paused
+		%MeleeWeapon.visible = not is_paused
 
 
 func _ready() -> void:
@@ -43,9 +41,10 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if not is_paused:
 		move(delta)
-		if Input.is_action_just_pressed("attack"):
-			if can_attack:
-				attack()
+		if can_attack and Input.is_action_just_pressed("range_attack"):
+				range_attack()
+		if can_melee_attack and Input.is_action_just_pressed("melee_attack"):
+				melee_attack()
 
 func move(delta: float) -> void:
 	if hurt_vector != Vector2.ZERO:
@@ -59,14 +58,17 @@ func normal_move(delta: float) -> void:
 	var direction := Input.get_vector("left", "right", "up", "down")
 	if direction.x > 0:
 		sprite_2d.flip_h = false
+		%MeleeWeapon.position.x = 7
 	elif direction.x < 0:
 		sprite_2d.flip_h = true
+		%MeleeWeapon.position.x = -9
 	
 	if direction == Vector2.ZERO:
 		velocity /= _friction
 		if not %MovingSFX.stream_paused:
 			%MovingSFX.stream_paused = true
 	else:
+		facing = direction
 		if %MovingSFX.stream_paused:
 			%MovingSFX.stream_paused = false
 		_acceleration = direction * 10000 * delta
@@ -74,20 +76,34 @@ func normal_move(delta: float) -> void:
 		if velocity.length() > Globals.max_speed:
 			velocity = velocity.normalized() * Globals.max_speed
 
-func attack() -> void:
+func range_attack() -> void:
 	can_attack = false
 	%SFX.stream = attack_sound
 	%SFX.play()
-	var my_weapon = weapon.instantiate()
-	my_weapon.damage = Globals.attack_damage
-	add_sibling(my_weapon)
-	if sprite_2d.flip_h:
-		my_weapon.scale.x *= -1
-		my_weapon.global_position = range_attack_pos_left.global_position
-	else:
-		my_weapon.global_position = range_attack_pos_right.global_position
+	var weapon = weapon_scene.instantiate()
+	weapon.damage = Globals.attack_damage
+	add_sibling(weapon)
+	weapon.global_position = range_attack_pos.global_position
+	weapon.rotate(facing.angle())
 	attack_timer.start()
 
+func melee_attack():
+	can_melee_attack = false
+	var tween = create_tween()
+	%SwordCollision.set_deferred("disabled", false)
+	%SFX.stream = melee_attack_sound
+	%SFX.play()
+	if facing.x > 0:
+		tween.tween_property(%MeleeWeapon, "rotation_degrees", 90, 0.1)
+	else:
+		tween.tween_property(%MeleeWeapon, "rotation_degrees", -90, 0.1)
+	tween.tween_callback(finish_melee_attack).set_delay(0.2)
+
+func finish_melee_attack():
+	can_melee_attack = true
+	%MeleeWeapon.rotation_degrees = 0
+	%SwordCollision.set_deferred("disabled", true)
+	
 func get_damaged(points: int, damage_pos: Vector2):
 	can_move = false
 	%MovingSFX.stream_paused = true
@@ -138,3 +154,11 @@ func acquire_powerup(powerup: Globals.powerup):
 	
 func update_speed_attack(time: float):
 	%AttackTimer.wait_time = time
+
+func _on_weapon_range_area_entered(area: Node2D) -> void:
+	if area.is_in_group("enemy") and area.has_method("damage"):
+		if area.type == Globals.challenge.CRAB:
+			%SFX.stream = preload("res://assets/sfx/ES_Metal Bar, Thin, Hit With Metal - Epidemic Sound.ogg")
+			%SFX.play()
+		else:
+			area.damage(global_position, Globals.melee_attack_damage)

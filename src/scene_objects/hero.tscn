@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://cbbf1sclpb2aw"]
+[gd_scene load_steps=11 format=3 uid="uid://cbbf1sclpb2aw"]
 
 [ext_resource type="Texture2D" uid="uid://boqax66a0370t" path="res://assets/textures/tilemap_packed.png" id="1_3uyx6"]
 [ext_resource type="Script" uid="uid://506gqxshcsc7" path="res://scripts/hero.gd" id="1_yvbpl"]
 [ext_resource type="AudioStream" uid="uid://nqtmve802aja" path="res://assets/sfx/ES_Game, Retro, 8 Bit, Hit Hurt 28 - Epidemic Sound.ogg" id="3_5c32n"]
 [ext_resource type="AudioStream" uid="uid://bcavcptaq0pqo" path="res://assets/sfx/ES_Running On Sand - Epidemic Sound_loop.ogg" id="4_grqlp"]
 [ext_resource type="Texture2D" uid="uid://bajiscbpr50" path="res://resources/plus_max_life_texture.tres" id="5_j4403"]
+[ext_resource type="Texture2D" uid="uid://cktwej70afwd6" path="res://resources/sword_texture.tres" id="6_1t6pq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5c32n"]
 radius = 3.0
@@ -112,11 +113,9 @@ position = Vector2(0, -1)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_5c32n")
 
-[node name="RangeAttackPosRight" type="Marker2D" parent="."]
-position = Vector2(10, -7)
-
-[node name="RangeAttackPosLeft" type="Marker2D" parent="."]
-position = Vector2(-11, -7)
+[node name="RangeAttackPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(1, -4)
 
 [node name="AttackTimer" type="Timer" parent="."]
 unique_name_in_owner = true
@@ -155,5 +154,26 @@ libraries = {
 &"": SubResource("AnimationLibrary_vj8j2")
 }
 
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(1, -4)
+
+[node name="MeleeWeapon" type="Sprite2D" parent="Marker2D"]
+unique_name_in_owner = true
+position = Vector2(7, 0)
+texture = ExtResource("6_1t6pq")
+offset = Vector2(0, -5)
+
+[node name="WeaponRange" type="Area2D" parent="Marker2D/MeleeWeapon"]
+position = Vector2(-7, 0)
+collision_layer = 0
+collision_mask = 4
+
+[node name="SwordCollision" type="CollisionPolygon2D" parent="Marker2D/MeleeWeapon/WeaponRange"]
+unique_name_in_owner = true
+polygon = PackedVector2Array(3, -11, 5, -13, 9, -13, 11, -11, 11, -1, 3, -1)
+disabled = true
+
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="area_entered" from="Marker2D/MeleeWeapon/WeaponRange" to="." method="_on_weapon_range_area_entered"]
+[connection signal="body_entered" from="Marker2D/MeleeWeapon/WeaponRange" to="." method="_on_weapon_range_area_entered"]

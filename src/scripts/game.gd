@@ -90,15 +90,16 @@ func randomize_doors():
 		[left_door, right_door, top_door, bottom_door].pick_random().challenge = Globals.challenge.SHOP
 
 func randomize_chests():
+	var pickable_powerups : Array[Globals.powerup] = [
+		Globals.powerup.PLUS_LIFE,
+		Globals.powerup.PLUS_MAX_LIFE,
+		Globals.powerup.PLUS_MOVE_SPEED,
+		Globals.powerup.PLUS_ATTACK_DAMAGE,
+		Globals.powerup.PLUS_ATTACK_SPEED
+	]
+	pickable_powerups.shuffle()
 	for chest in get_tree().get_nodes_in_group("chest"):
-		chest.powerup = [
-			Globals.powerup.PLUS_LIFE,
-			Globals.powerup.PLUS_LIFE,
-			Globals.powerup.PLUS_MAX_LIFE,
-			Globals.powerup.PLUS_MOVE_SPEED,
-			Globals.powerup.PLUS_ATTACK_DAMAGE,
-			Globals.powerup.PLUS_ATTACK_SPEED
-		].pick_random()
+		chest.powerup = pickable_powerups.pop_back()
 
 func update_level():
 	%Level.text = tr("LEVEL") + " %02d" % Globals.level + "/20"
@@ -126,7 +127,7 @@ func spawn_enemy(enemy_scene: PackedScene):
 	var pos: Vector2
 	var spawn_marker = spawn_positions.pop_back()
 	if spawn_marker == null:
-		pos = Vector2(randf_range(300, 1500), randf_range(300, 800))
+		pos = Vector2(randf_range(150, 1800), randf_range(200, 900))
 	else:
 		pos = spawn_marker.global_position
 	var enemy = enemy_scene.instantiate()
@@ -163,6 +164,7 @@ func _on_state_changed(_old_state: Variant) -> void:
 	match current_state:
 		state.ENTER:
 			hero.can_attack = false
+			hero.can_melee_attack = false
 			match Globals.coming_from:
 				Globals.dir.LEFT:
 					state_transition_player.play("enter_from_left")
@@ -174,12 +176,15 @@ func _on_state_changed(_old_state: Variant) -> void:
 					state_transition_player.play("enter_from_bottom")
 		state.OPEN_BARS:
 			hero.can_attack = false
+			hero.can_melee_attack = false
 			call_deferred("open_bars")
 		state.CLOSE_BARS:
 			hero.can_attack = true
+			hero.can_melee_attack = true
 			call_deferred("close_bars")
 		state.CHOOSE_DOOR:
 			hero.can_attack = false
+			hero.can_melee_attack = false
 			if type == level_type.NORMAL:
 				BackgroundMusic.fade_into("level_complete", 0, 1)
 				%TileMapLayerObjects.set_cell(Vector2(1,0), 0, Vector2(5,2))
@@ -191,6 +196,7 @@ func _on_state_changed(_old_state: Variant) -> void:
 
 		state.GAME_OVER:
 			hero.can_attack = false
+			hero.can_melee_attack = false
 			sfx.stream = die_sound
 			sfx.play()
 			state_transition_player.play("die")

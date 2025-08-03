@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://blsgiyuypbj36"]
+[gd_scene load_steps=5 format=3 uid="uid://blsgiyuypbj36"]
 
 [ext_resource type="Texture2D" uid="uid://boqax66a0370t" path="res://assets/textures/tilemap_packed.png" id="1_m6pdv"]
 [ext_resource type="Script" uid="uid://dlevn8ntwprxs" path="res://scripts/projectile.gd" id="1_n3ujg"]
+[ext_resource type="AudioStream" uid="uid://cpnl3o1n8g38e" path="res://assets/sfx/ES_Ping, Eerie 01 - Epidemic Sound.ogg" id="3_488xl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d42su"]
 radius = 3.0
@@ -22,6 +23,11 @@ region_rect = Rect2(112, 128, 16, 16)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(6, 0)
 shape = SubResource("CircleShape2D_d42su")
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_488xl")
+volume_db = -3.0
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

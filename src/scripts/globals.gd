@@ -7,12 +7,14 @@ const TOP_HEALTH: int = 16
 const DEFAULT_SPEED: float = 400
 const DEFAULT_ATTACK_SPEED: float = 0.5
 const DEFAULT_ATTACK_DAMAGE: int = 1
+const DEFAULT_MELEE_ATTACK_DAMAGE: int = 2
 
 var current_world : String
 var current_level : String
 var max_speed: float = DEFAULT_SPEED
 var attack_speed: float = DEFAULT_ATTACK_SPEED
 var attack_damage: float = DEFAULT_ATTACK_DAMAGE
+var melee_attack_damage: float = DEFAULT_MELEE_ATTACK_DAMAGE
 
 var level : int = 1
 var last_level : int = 20
@@ -71,6 +73,7 @@ func _init() -> void:
 	# Load settings config
 	user_settings = UserSettings.new()
 	user_settings.load_settings()
+	randomize()
 
 func get_challenge_info(c: challenge) -> Dictionary:
 	match c:
@@ -105,7 +108,7 @@ func get_challenge_info(c: challenge) -> Dictionary:
 func get_powerup_info(p: powerup) -> Dictionary:
 	match p:
 		powerup.PLUS_LIFE:
-			return {'texture': preload("res://resources/plus_life_texture.tres"), 'cost': 10, 'text': "+1 heart"}
+			return {'texture': preload("res://resources/plus_life_texture.tres"), 'cost': 10, 'text': "+2 hearts"}
 		powerup.PLUS_MAX_LIFE:
 			return {'texture': preload("res://resources/plus_max_life_texture.tres"), 'cost': 40, 'text': "+1 max life"}
 		powerup.PLUS_MOVE_SPEED:
@@ -123,6 +126,7 @@ func reset_run():
 	max_speed = DEFAULT_SPEED
 	attack_speed = DEFAULT_ATTACK_SPEED
 	attack_damage = DEFAULT_ATTACK_DAMAGE
+	melee_attack_damage = DEFAULT_MELEE_ATTACK_DAMAGE
 	challenge_list = []
 	powerup_list = []
 	level = 1
@@ -139,13 +143,14 @@ func apply_powerup(selected_powerup: powerup):
 	powerup_list.append(selected_powerup)
 	match selected_powerup:
 		powerup.PLUS_LIFE:
-			current_health += 2
+			current_health += 4
 		powerup.PLUS_MAX_LIFE:
-			max_health += 1
+			max_health += 2
 		powerup.PLUS_MOVE_SPEED:
-			max_speed += 100
+			max_speed += 150
 		powerup.PLUS_ATTACK_DAMAGE:
 			attack_damage += 1
+			melee_attack_damage += 2
 		powerup.PLUS_ATTACK_SPEED:
 			attack_speed *= 0.75
 			hero.update_speed_attack(attack_speed)

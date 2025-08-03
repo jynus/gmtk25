@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dfyle31vljxhu"
+path="res://.godot/imported/ES_Retro, 8 Bit, Character, Sword, Whoosh 02 - Epidemic Sound.ogg-609a6e6a002821c16bbaca5fc01e07de.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sfx/ES_Retro, 8 Bit, Character, Sword, Whoosh 02 - Epidemic Sound.ogg"
+dest_files=["res://.godot/imported/ES_Retro, 8 Bit, Character, Sword, Whoosh 02 - Epidemic Sound.ogg-609a6e6a002821c16bbaca5fc01e07de.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
