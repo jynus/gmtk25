@@ -143,49 +143,55 @@ func _on_state_transition_player_animation_finished(_anim_name: StringName) -> v
 		show_gameover()
 
 func _on_state_changed(old_state: Variant) -> void:
-	print_debug("Old state: " + str(old_state) + " Current state " + str(current_state))
-	if current_state in [state.COMBAT, state.CHOOSE_DOOR, state.OPEN_BARS]:
-		hero.is_paused = false
-	else:
-		hero.is_paused = true
-	if current_state == state.ENTER:
-		match Globals.coming_from:
-			Globals.dir.LEFT:
-				state_transition_player.play("enter_from_left")
-			Globals.dir.RIGHT:
-				state_transition_player.play("enter_from_right")
-			Globals.dir.TOP:
-				state_transition_player.play("enter_from_top")
-			Globals.dir.BOTTOM:
-				state_transition_player.play("enter_from_bottom")
-	elif current_state == state.OPEN_BARS:
-		open_bars()
-	elif current_state == state.CLOSE_BARS:
-		close_bars()
-	elif current_state == state.CHOOSE_DOOR:
-		hero.can_attack = false
-		if type == level_type.NORMAL:
-			BackgroundMusic.fade_into("level_complete", 0, 1)
-			%TileMapLayerObjects.set_cell(Vector2(1,0), 0, Vector2(5,2))
-			%TileMapLayerObjects.set_cell(Vector2(18,0), 0, Vector2(5,2))
-			%TileMapLayerObjects.set_cell(Vector2(4,0), 0, Vector2(8, 1))
-			%TileMapLayerObjects.set_cell(Vector2(15,0), 0, Vector2(8, 1))
-			%TileMapLayerObjects.set_cell(Vector2(4,1), 0, Vector2(8, 2))
-			%TileMapLayerObjects.set_cell(Vector2(15,1), 0, Vector2(8, 2))
+	#print_debug("Old state: " + str(old_state) + " Current state " + str(current_state))
+	match current_state:
+		state.COMBAT, state.CHOOSE_DOOR, state.OPEN_BARS:
+			hero.is_paused = false
+		_:
+			hero.is_paused = true
+	match current_state:
+		state.ENTER:
+			hero.can_attack = false
+			match Globals.coming_from:
+				Globals.dir.LEFT:
+					state_transition_player.play("enter_from_left")
+				Globals.dir.RIGHT:
+					state_transition_player.play("enter_from_right")
+				Globals.dir.TOP:
+					state_transition_player.play("enter_from_top")
+				Globals.dir.BOTTOM:
+					state_transition_player.play("enter_from_bottom")
+		state.OPEN_BARS:
+			hero.can_attack = false
+			call_deferred("open_bars")
+		state.CLOSE_BARS:
+			hero.can_attack = true
+			call_deferred("close_bars")
+		state.CHOOSE_DOOR:
+			hero.can_attack = false
+			if type == level_type.NORMAL:
+				BackgroundMusic.fade_into("level_complete", 0, 1)
+				%TileMapLayerObjects.set_cell(Vector2(1,0), 0, Vector2(5,2))
+				%TileMapLayerObjects.set_cell(Vector2(18,0), 0, Vector2(5,2))
+				%TileMapLayerObjects.set_cell(Vector2(4,0), 0, Vector2(8, 1))
+				%TileMapLayerObjects.set_cell(Vector2(15,0), 0, Vector2(8, 1))
+				%TileMapLayerObjects.set_cell(Vector2(4,1), 0, Vector2(8, 2))
+				%TileMapLayerObjects.set_cell(Vector2(15,1), 0, Vector2(8, 2))
 
-		if Globals.coming_from != Globals.dir.LEFT:
-			left_door.get_node("DetectionArea/Collision").set_deferred("disabled", false)
-		if Globals.coming_from != Globals.dir.TOP:
-			top_door.get_node("DetectionArea/Collision").set_deferred("disabled", false)
-		if Globals.coming_from != Globals.dir.RIGHT:
-			right_door.get_node("DetectionArea/Collision").set_deferred("disabled", false)
-		if Globals.coming_from != Globals.dir.BOTTOM:
-			bottom_door.get_node("DetectionArea/Collision").set_deferred("disabled", false)
-	elif current_state == state.GAME_OVER:
-		sfx.stream = die_sound
-		sfx.play()
-		state_transition_player.play("die")
-		BackgroundMusic.fade_out(1)
+			if Globals.coming_from != Globals.dir.LEFT:
+				left_door.get_node("DetectionArea/Collision").set_deferred("disabled", false)
+			if Globals.coming_from != Globals.dir.TOP:
+				top_door.get_node("DetectionArea/Collision").set_deferred("disabled", false)
+			if Globals.coming_from != Globals.dir.RIGHT:
+				right_door.get_node("DetectionArea/Collision").set_deferred("disabled", false)
+			if Globals.coming_from != Globals.dir.BOTTOM:
+				bottom_door.get_node("DetectionArea/Collision").set_deferred("disabled", false)
+		state.GAME_OVER:
+			hero.can_attack = false
+			sfx.stream = die_sound
+			sfx.play()
+			state_transition_player.play("die")
+			BackgroundMusic.fade_out(1)
 
 func show_gameover():
 	SceneManager.change_scene("res://scenes/game_over.tscn", SceneManager.Transition.FADE_TO_BLACK, 3)

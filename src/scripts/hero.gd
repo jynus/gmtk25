@@ -17,7 +17,7 @@ var hurt_vector: Vector2 = Vector2.ZERO
 @onready var range_attack_pos_left: Marker2D = $RangeAttackPosLeft
 @onready var attack_timer: Timer = $AttackTimer
 var attack_sound = preload("res://assets/sfx/ES_Impact, Attack - Epidemic Sound.ogg")
-var can_attack: bool = true
+var can_attack: bool = false
 var can_move: bool = true:
 	set(value):
 		can_move = value

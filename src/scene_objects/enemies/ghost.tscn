@@ -10,3 +10,4 @@ damage_force = 0.0
 damage_on_touch = 3
 texture = ExtResource("2_5uwrl")
 detection_radius = 1000.0
+coin_value = 3
