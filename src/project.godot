@@ -180,6 +180,7 @@ locale/translations=PackedStringArray("res://assets/localization/localization.en
 2d_navigation/layer_1="enemy_path"
 2d_physics/layer_2="hero"
 2d_physics/layer_3="enemy"
+2d_physics/layer_4="projectile"
 avoidance/layer_1="enemy"
 
 [rendering]

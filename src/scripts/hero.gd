@@ -11,7 +11,15 @@ signal exit_powerup_selection
 const DAMAGE_FORCE := 600.0
 var _acceleration: Vector2 = Vector2.ZERO
 var _friction: float = 5
-@export var facing: Vector2 = Vector2.RIGHT
+@export var facing: Vector2 = Vector2.RIGHT:
+	set(value):
+		facing = value
+		if facing.x > 0 and is_inside_tree():
+			sprite_2d.flip_h = false
+			%MeleeWeapon.position.x = 7
+		if facing.x < 0 and is_inside_tree():
+			sprite_2d.flip_h = true
+			%MeleeWeapon.position.x = -9
 var hurt_vector: Vector2 = Vector2.ZERO
 @onready var range_attack_pos: Marker2D = %RangeAttackPos
 @onready var attack_timer: Timer = $AttackTimer
@@ -56,12 +64,6 @@ func move(delta: float) -> void:
 
 func normal_move(delta: float) -> void:
 	var direction := Input.get_vector("left", "right", "up", "down")
-	if direction.x > 0:
-		sprite_2d.flip_h = false
-		%MeleeWeapon.position.x = 7
-	elif direction.x < 0:
-		sprite_2d.flip_h = true
-		%MeleeWeapon.position.x = -9
 	
 	if direction == Vector2.ZERO:
 		velocity /= _friction
@@ -156,9 +158,14 @@ func update_speed_attack(time: float):
 	%AttackTimer.wait_time = time
 
 func _on_weapon_range_area_entered(area: Node2D) -> void:
-	if area.is_in_group("enemy") and area.has_method("damage"):
-		if area.type == Globals.challenge.CRAB:
+	var body: Node2D
+	if area.is_in_group("enemy"):
+		body = area
+	elif area.get_parent().is_in_group("enemy"):
+		body = area.get_parent()
+	if body.has_method("damage"):
+		if body.type == Globals.challenge.CRAB:
 			%SFX.stream = preload("res://assets/sfx/ES_Metal Bar, Thin, Hit With Metal - Epidemic Sound.ogg")
 			%SFX.play()
 		else:
-			area.damage(global_position, Globals.melee_attack_damage)
+			body.damage(global_position, Globals.melee_attack_damage)

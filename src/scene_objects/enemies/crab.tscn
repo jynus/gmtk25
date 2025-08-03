@@ -9,3 +9,9 @@ damage_force = 500.0
 damage_on_touch = 2
 texture = ExtResource("2_w2wvi")
 coin_value = 2
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_w2wvi")
+
+[node name="HitboxCollision" parent="." index="2"]
+polygon = PackedVector2Array(-0.6666667, -1, -1.0000001, -0.5, -1.0000001, 0.16666667, -0.6666667, 0.6666667, 1, 0.6666667, 1.3333334, 0.16666667, 1.3333334, -0.5, 1, -1)

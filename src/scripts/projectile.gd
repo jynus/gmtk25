@@ -9,18 +9,16 @@ func _process(delta: float) -> void:
 	position += dir * speed * delta
 
 
-func _on_body_entered(_body: Node2D) -> void:
-	if _body.is_in_group("enemy") and _body.type == Globals.challenge.GHOST:
-		return
-	queue_free()
-
-
-func _on_area_entered(area: Area2D) -> void:
-	# Impacted with enemy
-	var enemy: Node2D = area.get_parent()
-	if enemy.has_method("damage"):
-		if enemy.type == Globals.challenge.GHOST:
+func _on_area_entered(area: Node2D) -> void:
+	var body: Node2D
+	if area.get_parent().is_in_group("enemy"):
+		body = area.get_parent()
+	else:
+		body = area
+	#it is an enemy
+	if body.is_in_group("enemy") and body.has_method("damage"):
+		if body.type == Globals.challenge.GHOST:
 			%SFX.play()
-		else:
-			enemy.damage(global_position, damage)
-			queue_free()
+			return
+		body.damage(global_position, damage)
+	queue_free()
