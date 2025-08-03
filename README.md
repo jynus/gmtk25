@@ -8,10 +8,10 @@ More info at: https://jynus.itch.io/cursed-room
 
 ## Screenshots
 
-![Title1](screenshots/path1.png)
-![Title2](screenshots/path2.png)
-![Title3](screenshots/path3.png)
-![Title4](screenshots/path4.png)
+![In the middle of the game](screenshots/screenshot1.png)
+![Shop interface](screenshots/screenshot2.png)
+![Door interface](screenshots/screenshot4.png)
+![Full localization into English and Spanish](screenshots/screenshot6.png)
 
 
 ## Credits
@@ -21,6 +21,7 @@ Developed in 4 days for the theme "GAME JAM THEME" with Godot Engine 4.5-beta4.
 
 All design and programming was made by Jynus. Code available under the `AGPL3 <LICENSE>`_
 Sound effects and music courtesy of `<www.epidemicsound.com>`_. See below for individual attribution.
+Pixel art by `Kenney<kenney.nl>`_. Used under `Creative Commons CC0 license<https://creativecommons.org/publicdomain/zero/1.0/>`_.
 Godot is created and distributed under the MIT License. See also `Third Party Licenses <GODOT_COPYRIGHT.txt>`_
 
 ## Godot Engine
@@ -47,9 +48,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-### Individual asset credits
-
-* Credit 1
-* Credit 2
-* Credit 3
