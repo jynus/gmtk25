@@ -206,6 +206,12 @@ rotates = false
 rotation = 0.72854894
 scale = Vector2(10.000001, 10.000001)
 
+[node name="SFX" parent="Path2D/PathFollow2D/Hero" index="5"]
+volume_db = -15.0
+
+[node name="MovingSFX" parent="Path2D/PathFollow2D/Hero" index="6"]
+volume_db = -15.0
+
 [node name="MeleeWeapon" parent="Path2D/PathFollow2D/Hero/Marker2D" index="0"]
 visible = false
 
@@ -213,12 +219,24 @@ visible = false
 position = Vector2(932, 504)
 scale = Vector2(10, 10)
 
+[node name="SFX" parent="Hero2" index="5"]
+volume_db = -15.0
+
+[node name="MovingSFX" parent="Hero2" index="6"]
+volume_db = -15.0
+
 [node name="Hero3" parent="." instance=ExtResource("4_o30b1")]
 position = Vector2(1547, 504)
 scale = Vector2(10, 10)
 
 [node name="CollisionPolygon2D" parent="Hero3/Hurtbox" index="0"]
 position = Vector2(8.499999, 0)
+
+[node name="SFX" parent="Hero3" index="5"]
+volume_db = -15.0
+
+[node name="MovingSFX" parent="Hero3" index="6"]
+volume_db = -15.0
 
 [node name="MeleeWeapon" parent="Hero3/Marker2D" index="0"]
 visible = false
@@ -355,4 +373,5 @@ region_rect = Rect2(112, 128, 16, 16)
 [connection signal="pressed" from="menuContainer/PlayButton" to="." method="_on_play_button_pressed"]
 
 [editable path="Path2D/PathFollow2D/Hero"]
+[editable path="Hero2"]
 [editable path="Hero3"]
