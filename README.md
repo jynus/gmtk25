@@ -16,12 +16,12 @@ More info at: https://jynus.itch.io/cursed-room
 
 ## Credits
 
-<em>The Cursed Room</em> is a game design and development for the `GMTK Game Jame 2025 <https://itch.io/jam/gmtk-2025>`_.
+<em>The Cursed Room</em> is a game design and development for the [GMTK Game Jame 2025](https://itch.io/jam/gmtk-2025).
 Developed in 4 days for the theme "GAME JAM THEME" with Godot Engine 4.5-beta4.
 
-All design and programming was made by Jynus. Code available under the `AGPL3 <LICENSE>`_
-Sound effects and music courtesy of `<www.epidemicsound.com>`_. See below for individual attribution.
-Pixel art by `Kenney<kenney.nl>`_. Used under `Creative Commons CC0 license<https://creativecommons.org/publicdomain/zero/1.0/>`_.
+All design and programming was made by Jynus. Code available under the [`AGPL3 <LICENSE>`](LICENSE).
+Sound effects and music courtesy of [Epidemic Sound](https://www.epidemicsound.com).
+Pixel art by `Kenney<kenney.nl>`_. Used under the [`Creative Commons CC0 license`](https://creativecommons.org/publicdomain/zero/1.0/).
 Godot is created and distributed under the MIT License. See also `Third Party Licenses <GODOT_COPYRIGHT.txt>`_
 
 ## Godot Engine
