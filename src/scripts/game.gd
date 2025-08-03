@@ -171,12 +171,12 @@ func _on_state_changed(old_state: Variant) -> void:
 			hero.can_attack = false
 			if type == level_type.NORMAL:
 				BackgroundMusic.fade_into("level_complete", 0, 1)
-				#%TileMapLayerObjects.set_cell(Vector2(1,0), 0, Vector2(5,2))
-				#%TileMapLayerObjects.set_cell(Vector2(18,0), 0, Vector2(5,2))
-				#%TileMapLayerObjects.set_cell(Vector2(4,0), 0, Vector2(8, 1))
-				#%TileMapLayerObjects.set_cell(Vector2(15,0), 0, Vector2(8, 1))
-				#%TileMapLayerObjects.set_cell(Vector2(4,1), 0, Vector2(8, 2))
-				#%TileMapLayerObjects.set_cell(Vector2(15,1), 0, Vector2(8, 2))
+				%TileMapLayerObjects.set_cell(Vector2(1,0), 0, Vector2(5,2))
+				%TileMapLayerObjects.set_cell(Vector2(18,0), 0, Vector2(5,2))
+				%TileMapLayerObjects.set_cell(Vector2(4,0), 0, Vector2(8, 1))
+				%TileMapLayerObjects.set_cell(Vector2(15,0), 0, Vector2(8, 1))
+				%TileMapLayerObjects.set_cell(Vector2(4,1), 0, Vector2(8, 2))
+				%TileMapLayerObjects.set_cell(Vector2(15,1), 0, Vector2(8, 2))
 
 			if Globals.coming_from != Globals.dir.LEFT:
 				left_door.get_node("DetectionArea/Collision").set_deferred("disabled", false)
@@ -199,25 +199,25 @@ func show_gameover():
 func open_bars():
 	match Globals.coming_from:
 		Globals.dir.LEFT:
-			left_door.hide()
-			#%TileMapLayerFloor.set_cell(Vector2(0,5), 0, Vector2(9, 3))
-			#%TileMapLayerObjects.set_cell(Vector2(0,5), 0, Vector2(5, 6))
+			#left_door.hide()
+			%TileMapLayerFloor.set_cell(Vector2(0,5), 0, Vector2(9, 3))
+			%TileMapLayerObjects.set_cell(Vector2(0,5), 0, Vector2(5, 6))
 		Globals.dir.RIGHT:
-			right_door.hide()
-			#%TileMapLayerFloor.set_cell(Vector2(19,5), 0, Vector2(9, 3))
-			#%TileMapLayerObjects.set_cell(Vector2(19,5), 0, Vector2(5, 6))
+			#right_door.hide()
+			%TileMapLayerFloor.set_cell(Vector2(19,5), 0, Vector2(9, 3))
+			%TileMapLayerObjects.set_cell(Vector2(19,5), 0, Vector2(5, 6))
 		Globals.dir.TOP:
-			top_door.hide()
-			#%TileMapLayerFloor.set_cell(Vector2(9,0), 0, Vector2(10, 3))
-			#%TileMapLayerFloor.set_cell(Vector2(10,0), 0, Vector2(11, 3))
-			#%TileMapLayerObjects.set_cell(Vector2(9,0), 0, Vector2(5, 6))
-			#%TileMapLayerObjects.set_cell(Vector2(10,0), 0, Vector2(5, 6))
+			#top_door.hide()
+			%TileMapLayerFloor.set_cell(Vector2(9,0), 0, Vector2(10, 3))
+			%TileMapLayerFloor.set_cell(Vector2(10,0), 0, Vector2(11, 3))
+			%TileMapLayerObjects.set_cell(Vector2(9,0), 0, Vector2(5, 6))
+			%TileMapLayerObjects.set_cell(Vector2(10,0), 0, Vector2(5, 6))
 		Globals.dir.BOTTOM:
-			bottom_door.hide()
-			#%TileMapLayerFloor.set_cell(Vector2(9,10), 0, Vector2(10, 3))
-			#%TileMapLayerFloor.set_cell(Vector2(10,10), 0, Vector2(11, 3))
-			#%TileMapLayerObjects.set_cell(Vector2(9,10), 0, Vector2(5, 6))
-			#%TileMapLayerObjects.set_cell(Vector2(10,10), 0, Vector2(5, 6))
+			#bottom_door.hide()
+			%TileMapLayerFloor.set_cell(Vector2(9,10), 0, Vector2(10, 3))
+			%TileMapLayerFloor.set_cell(Vector2(10,10), 0, Vector2(11, 3))
+			%TileMapLayerObjects.set_cell(Vector2(9,10), 0, Vector2(5, 6))
+			%TileMapLayerObjects.set_cell(Vector2(10,10), 0, Vector2(5, 6))
 	state_transition_player.play_backwards("bars_go_up")
 
 func close_bars():
