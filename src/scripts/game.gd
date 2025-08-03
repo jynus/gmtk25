@@ -29,6 +29,7 @@ var crab_scene = preload("res://scene_objects/enemies/crab.tscn")
 var bat_scene = preload("res://scene_objects/enemies/bat.tscn")
 var ghost_scene = preload("res://scene_objects/enemies/ghost.tscn")
 var coin_scene = preload("res://scene_objects/coin.tscn")
+@onready var spawn_positions: Array = %SpawnMarkers.get_children()
 
 enum state {
 	ENTER,
@@ -117,7 +118,12 @@ func add_challenge(challenge: Globals.challenge):
 			pass  # shops shouldn't have any danger
 
 func spawn_enemy(enemy_scene: PackedScene):
-	var pos: Vector2 = Vector2(randf_range(300, 1500), randf_range(300, 800))
+	var pos: Vector2
+	var spawn_marker = spawn_positions.pop_back()
+	if spawn_marker == null:
+		pos = Vector2(randf_range(300, 1500), randf_range(300, 800))
+	else:
+		pos = spawn_marker.global_position
 	var enemy = enemy_scene.instantiate()
 	hero.add_sibling(enemy)
 	enemy.global_position = pos
@@ -142,7 +148,7 @@ func _on_state_transition_player_animation_finished(_anim_name: StringName) -> v
 	elif current_state == state.GAME_OVER:
 		show_gameover()
 
-func _on_state_changed(old_state: Variant) -> void:
+func _on_state_changed(_old_state: Variant) -> void:
 	#print_debug("Old state: " + str(old_state) + " Current state " + str(current_state))
 	match current_state:
 		state.COMBAT, state.CHOOSE_DOOR, state.OPEN_BARS:
@@ -199,26 +205,26 @@ func show_gameover():
 func open_bars():
 	match Globals.coming_from:
 		Globals.dir.LEFT:
-			#left_door.hide()
+			left_door.hide()
 			%TileMapLayerFloor.set_cell(Vector2(0,5), 0, Vector2(9, 3))
 			%TileMapLayerObjects.set_cell(Vector2(0,5), 0, Vector2(5, 6))
 		Globals.dir.RIGHT:
-			#right_door.hide()
+			right_door.hide()
 			%TileMapLayerFloor.set_cell(Vector2(19,5), 0, Vector2(9, 3))
 			%TileMapLayerObjects.set_cell(Vector2(19,5), 0, Vector2(5, 6))
 		Globals.dir.TOP:
-			#top_door.hide()
+			top_door.hide()
 			%TileMapLayerFloor.set_cell(Vector2(9,0), 0, Vector2(10, 3))
 			%TileMapLayerFloor.set_cell(Vector2(10,0), 0, Vector2(11, 3))
 			%TileMapLayerObjects.set_cell(Vector2(9,0), 0, Vector2(5, 6))
 			%TileMapLayerObjects.set_cell(Vector2(10,0), 0, Vector2(5, 6))
 		Globals.dir.BOTTOM:
-			#bottom_door.hide()
+			bottom_door.hide()
 			%TileMapLayerFloor.set_cell(Vector2(9,10), 0, Vector2(10, 3))
 			%TileMapLayerFloor.set_cell(Vector2(10,10), 0, Vector2(11, 3))
 			%TileMapLayerObjects.set_cell(Vector2(9,10), 0, Vector2(5, 6))
 			%TileMapLayerObjects.set_cell(Vector2(10,10), 0, Vector2(5, 6))
-	state_transition_player.play_backwards("bars_go_up")
+	#state_transition_player.play_backwards("bars_go_up")
 
 func close_bars():
 	state_transition_player.play("bars_go_up")
