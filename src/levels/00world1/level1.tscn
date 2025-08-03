@@ -1130,6 +1130,89 @@ visible = false
 navigation_polygon = SubResource("NavigationPolygon_qvgd2")
 metadata/_edit_lock_ = true
 
+[node name="SpawnMarkers" type="Node2D" parent="Board"]
+
+[node name="spawn1" type="Marker2D" parent="Board/SpawnMarkers"]
+position = Vector2(160.5, 88.16667)
+
+[node name="spawn2" type="Marker2D" parent="Board/SpawnMarkers"]
+position = Vector2(96.66667, 58.16667)
+
+[node name="spawn3" type="Marker2D" parent="Board/SpawnMarkers"]
+position = Vector2(220.16667, 118.333336)
+
+[node name="spawn4" type="Marker2D" parent="Board/SpawnMarkers"]
+position = Vector2(220.16667, 58.166668)
+
+[node name="spawn5" type="Marker2D" parent="Board/SpawnMarkers"]
+position = Vector2(96.66666, 118.333336)
+
+[node name="spawn6" type="Marker2D" parent="Board/SpawnMarkers"]
+position = Vector2(160, 58.166668)
+
+[node name="spawn7" type="Marker2D" parent="Board/SpawnMarkers"]
+position = Vector2(96.66667, 88.16667)
+
+[node name="spawn8" type="Marker2D" parent="Board/SpawnMarkers"]
+position = Vector2(220.16667, 88.16667)
+
+[node name="spawn9" type="Marker2D" parent="Board/SpawnMarkers"]
+position = Vector2(160.49998, 118.333336)
+
+[node name="spawn10" type="Marker2D" parent="Board/SpawnMarkers"]
+position = Vector2(40, 140)
+
+[node name="spawn11" type="Marker2D" parent="Board/SpawnMarkers"]
+position = Vector2(40, 34.166664)
+
+[node name="spawn12" type="Marker2D" parent="Board/SpawnMarkers"]
+position = Vector2(282.6667, 34.166668)
+
+[node name="spawn13" type="Marker2D" parent="Board/SpawnMarkers"]
+position = Vector2(108.16666, 34.166664)
+
+[node name="spawn14" type="Marker2D" parent="Board/SpawnMarkers"]
+position = Vector2(282.6667, 140)
+
+[node name="spawn15" type="Marker2D" parent="Board/SpawnMarkers"]
+position = Vector2(204.83334, 140)
+
+[node name="spawn16" type="Marker2D" parent="Board/SpawnMarkers"]
+position = Vector2(204.83334, 34.166664)
+
+[node name="spawn17" type="Marker2D" parent="Board/SpawnMarkers"]
+position = Vector2(108.16666, 140)
+
+[node name="spawn18" type="Marker2D" parent="Board/SpawnMarkers"]
+position = Vector2(62.166668, 88)
+
+[node name="spawn19" type="Marker2D" parent="Board/SpawnMarkers"]
+position = Vector2(259.5, 88)
+
+[node name="spawn20" type="Marker2D" parent="Board/SpawnMarkers"]
+position = Vector2(126.666664, 76.833336)
+
+[node name="spawn21" type="Marker2D" parent="Board/SpawnMarkers"]
+position = Vector2(187.83333, 76.833336)
+
+[node name="spawn22" type="Marker2D" parent="Board/SpawnMarkers"]
+position = Vector2(126.66666, 109.833336)
+
+[node name="spawn23" type="Marker2D" parent="Board/SpawnMarkers"]
+position = Vector2(187.83334, 109.833336)
+
+[node name="spawn24" type="Marker2D" parent="Board/SpawnMarkers"]
+position = Vector2(40, 63)
+
+[node name="spawn25" type="Marker2D" parent="Board/SpawnMarkers"]
+position = Vector2(282.6667, 63)
+
+[node name="spawn26" type="Marker2D" parent="Board/SpawnMarkers"]
+position = Vector2(282.66666, 109.833336)
+
+[node name="spawn27" type="Marker2D" parent="Board/SpawnMarkers"]
+position = Vector2(39.999985, 109.833336)
+
 [node name="ConfirmDoorPanel" parent="." instance=ExtResource("12_jdw8i")]
 unique_name_in_owner = true
 visible = false

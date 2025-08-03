@@ -171,12 +171,12 @@ func _on_state_changed(old_state: Variant) -> void:
 			hero.can_attack = false
 			if type == level_type.NORMAL:
 				BackgroundMusic.fade_into("level_complete", 0, 1)
-				%TileMapLayerObjects.set_cell(Vector2(1,0), 0, Vector2(5,2))
-				%TileMapLayerObjects.set_cell(Vector2(18,0), 0, Vector2(5,2))
-				%TileMapLayerObjects.set_cell(Vector2(4,0), 0, Vector2(8, 1))
-				%TileMapLayerObjects.set_cell(Vector2(15,0), 0, Vector2(8, 1))
-				%TileMapLayerObjects.set_cell(Vector2(4,1), 0, Vector2(8, 2))
-				%TileMapLayerObjects.set_cell(Vector2(15,1), 0, Vector2(8, 2))
+				#%TileMapLayerObjects.set_cell(Vector2(1,0), 0, Vector2(5,2))
+				#%TileMapLayerObjects.set_cell(Vector2(18,0), 0, Vector2(5,2))
+				#%TileMapLayerObjects.set_cell(Vector2(4,0), 0, Vector2(8, 1))
+				#%TileMapLayerObjects.set_cell(Vector2(15,0), 0, Vector2(8, 1))
+				#%TileMapLayerObjects.set_cell(Vector2(4,1), 0, Vector2(8, 2))
+				#%TileMapLayerObjects.set_cell(Vector2(15,1), 0, Vector2(8, 2))
 
 			if Globals.coming_from != Globals.dir.LEFT:
 				left_door.get_node("DetectionArea/Collision").set_deferred("disabled", false)
