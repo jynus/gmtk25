@@ -28,7 +28,7 @@ On-screen keys,On-screen keys,Interfaz táctil
 no,no,no
 always on,always on,siempre
 autodetect,autodetect,autodetectar
-"Press 'A'/'Cross' button or 'Enter' key", "Press 'A'/'Cross' button or 'Enter' key", "Pulsa el botón 'A'/'Cruz' o la tecla 'Intro'"
+"Press 'A' button or 'Enter' key","Press 'A' button or 'Enter' key","Pulse el botón 'A' o la tecla 'Intro'"
 on,on,sí
 off,off,no
 ghost,ghost,fantasma
@@ -70,3 +70,7 @@ Yes,Yes,Sí
 "Congratulations.","Congratulations.","Enhorabuena."
 "You reached the last level of this mace.","You reached the last level of this mace.","Has alcanzado del último nivel de este laberinto."
 "Please consider [color=darkblue][url=https://itch.io/jam/gmtk-2025/rate/3627164]rating this game for the GMTK Jam[/url][/color] or leaving [color=darkblue][url=https://jynus.itch.io/cursed-room]a comment[/url][/color].","Please consider [color=darkblue][url=https://itch.io/jam/gmtk-2025/rate/3627164]rating this game for the GMTK Jam[/url][/color] or leaving [color=darkblue][url=https://jynus.itch.io/cursed-room]a comment[/url][/color].","Por favor, considera [color=darkblue][url=https://itch.io/jam/gmtk-2025/rate/3627164]votar por este título en la GMTK Jam[/url][/color] o dejarme [color=darkblue][url=https://jynus.itch.io/cursed-room]a un comentario[/url][/color]."
+labelrange,"   J ,         or          \nfor Range attack","   J ,         o           \npara Ataque de rango"
+"Controller is recommended but not necessary","Controller is recommended but not necessary","Se recomienda un mando, pero no es necesario"
+labelmelee,"   H ,          or            \nfor Melee attack","   H ,          o             \npara Ataque de melé"
+labelwasd,"WASD or       \nto Move","WASD o        \npara Moverse"

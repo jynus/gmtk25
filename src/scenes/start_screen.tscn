@@ -1,8 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://djsn6u6bq4qmm"]
+[gd_scene load_steps=17 format=3 uid="uid://djsn6u6bq4qmm"]
 
 [ext_resource type="Script" uid="uid://btk33bl428dss" path="res://scripts/start_screen.gd" id="1_he1sj"]
 [ext_resource type="PackedScene" uid="uid://k635iu86fy37" path="res://scene_objects/menu_background.tscn" id="2_o30b1"]
+[ext_resource type="FontFile" uid="uid://dqjrcjd2fdulc" path="res://assets/fonts/Tiny5-Regular.ttf" id="3_ka6nf"]
+[ext_resource type="PackedScene" uid="uid://cbbf1sclpb2aw" path="res://scene_objects/hero.tscn" id="4_o30b1"]
 [ext_resource type="PackedScene" uid="uid://oq5258by1a1k" path="res://scene_objects/menu_button.tscn" id="4_ws7p0"]
+[ext_resource type="Texture2D" uid="uid://uyulb7cdmgrr" path="res://assets/textures/xbox-series_sheet_default.png" id="6_ka6nf"]
+[ext_resource type="Texture2D" uid="uid://gd4v4r63y667" path="res://assets/textures/keyboard-&-mouse_sheet_default.png" id="7_ws7p0"]
+[ext_resource type="Texture2D" uid="uid://boqax66a0370t" path="res://assets/textures/tilemap_packed.png" id="8_ecdxc"]
+
+[sub_resource type="Curve2D" id="Curve2D_ecdxc"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 400, 452, 0, 0, 0, 0, 321, 452, 0, 0, 0, 0, 251, 381, 0, 0, 0, 0, 246, 239, 0, 0, 0, 0, 326, 179, 0, 0, 0, 0, 461, 180, 0, 0, 0, 0, 530, 240, 0, 0, 0, 0, 528, 385, 0, 0, 0, 0, 464, 450, 0, 0, 0, 0, 401, 452)
+}
+point_count = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r2jwc"]
 content_margin_left = 4.0
@@ -25,6 +36,154 @@ expand_margin_top = 5.0
 expand_margin_right = 5.0
 expand_margin_bottom = 5.0
 
+[sub_resource type="LabelSettings" id="LabelSettings_ws7p0"]
+line_spacing = 30.0
+font = ExtResource("3_ka6nf")
+font_size = 60
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qls88"]
+load_path = "res://.godot/imported/xbox-series_sheet_default.png-2c04980880f8b07418b8bc68c7a68347.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pcj7n"]
+load_path = "res://.godot/imported/keyboard-&-mouse_sheet_default.png-961d912c04dacd27d71a5c9824f94877.ctex"
+
+[sub_resource type="Animation" id="Animation_qls88"]
+resource_name = "tutorial"
+length = 5.0
+loop_mode = 1
+step = 0.016666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path2D/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hero2")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.0333333, 2.0333333, 3.0666666, 4.01),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"melee_attack"
+}, {
+"args": [],
+"method": &"melee_attack"
+}, {
+"args": [],
+"method": &"melee_attack"
+}, {
+"args": [],
+"method": &"melee_attack"
+}, {
+"args": [],
+"method": &"melee_attack"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TilemapPacked:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.53333336, 0.55, 2.3, 2.7333333, 2.75, 4.4333334, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1645, 412.00003), Vector2(2041, 412), Vector2(1645, 412.00003), Vector2(1645, 412.00003), Vector2(2041, 412), Vector2(1645, 412.00003), Vector2(1645, 412.00003), Vector2(2041, 412)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TilemapPacked:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.53333336, 0.55, 2.7333333, 2.75, 5, 5.0166664),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("XboxSeriesSheetDefault3:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.6166667, 1.1906548, 1.8201964, 2.4223666, 3.0833333, 3.7, 4.4, 5.016667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_pcj7n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path2D/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TilemapPacked:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1645, 412.00003)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TilemapPacked:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("XboxSeriesSheetDefault3:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bdg0b"]
+_data = {
+&"RESET": SubResource("Animation_pcj7n"),
+&"tutorial": SubResource("Animation_qls88")
+}
+
 [node name="startScreen" type="Node2D"]
 script = ExtResource("1_he1sj")
 
@@ -33,13 +192,44 @@ anchors_preset = -1
 offset_right = 1920.0
 offset_bottom = 1080.0
 
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(0, 55)
+curve = SubResource("Curve2D_ecdxc")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(401, 452)
+rotation = -0.72854894
+progress = 946.4997
+rotates = false
+
+[node name="Hero" parent="Path2D/PathFollow2D" instance=ExtResource("4_o30b1")]
+rotation = 0.72854894
+scale = Vector2(10.000001, 10.000001)
+
+[node name="MeleeWeapon" parent="Path2D/PathFollow2D/Hero/Marker2D" index="0"]
+visible = false
+
+[node name="Hero2" parent="." instance=ExtResource("4_o30b1")]
+position = Vector2(932, 504)
+scale = Vector2(10, 10)
+
+[node name="Hero3" parent="." instance=ExtResource("4_o30b1")]
+position = Vector2(1547, 504)
+scale = Vector2(10, 10)
+
+[node name="CollisionPolygon2D" parent="Hero3/Hurtbox" index="0"]
+position = Vector2(8.499999, 0)
+
+[node name="MeleeWeapon" parent="Hero3/Marker2D" index="0"]
+visible = false
+
 [node name="menuContainer" type="CenterContainer" parent="."]
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 680.0
+offset_top = 732.0
 offset_right = 1920.0
-offset_bottom = 1080.0
+offset_bottom = 1132.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -47,13 +237,122 @@ size_flags_vertical = 3
 
 [node name="PlayButton" parent="menuContainer" instance=ExtResource("4_ws7p0")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(800, 100)
+custom_minimum_size = Vector2(800, 150)
 layout_mode = 2
 size_flags_vertical = 10
 theme_override_colors/font_pressed_color = Color(0.52156866, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 50
 theme_override_styles/focus = SubResource("StyleBoxFlat_r2jwc")
-text = "Press 'A'/'Cross' button or 'Enter' key"
+text = "Press 'A' button or 'Enter' key"
+autowrap_mode = 3
+
+[node name="LabelRange" type="Label" parent="."]
+unique_name_in_owner = true
+anchors_preset = -1
+offset_left = 1312.0
+offset_top = 613.0
+offset_right = 1838.0
+offset_bottom = 779.0
+text = "   J ,         or          
+for Range attack"
+label_settings = SubResource("LabelSettings_ws7p0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label4" type="Label" parent="."]
+anchors_preset = -1
+offset_left = 367.0
+offset_right = 1765.0
+offset_bottom = 166.0
+text = "Controller is recommended but not necessary"
+label_settings = SubResource("LabelSettings_ws7p0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LabelMelee" type="Label" parent="."]
+unique_name_in_owner = true
+anchors_preset = -1
+offset_left = 670.0
+offset_top = 613.0
+offset_right = 1189.0
+offset_bottom = 779.0
+text = "   H ,          or            
+for Melee attack"
+label_settings = SubResource("LabelSettings_ws7p0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LabelWASD" type="Label" parent="."]
+unique_name_in_owner = true
+anchors_preset = -1
+offset_left = 227.0
+offset_top = 613.0
+offset_right = 558.0
+offset_bottom = 779.0
+text = "WASD or       
+to Move"
+label_settings = SubResource("LabelSettings_ws7p0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="XboxSeriesSheetDefault2" type="Sprite2D" parent="."]
+position = Vector2(530, 646)
+scale = Vector2(2, 2)
+texture = ExtResource("6_ka6nf")
+region_enabled = true
+region_rect = Rect2(63, 64, 65, 64)
+
+[node name="XboxSeriesSheetDefault3" type="Sprite2D" parent="."]
+position = Vector2(367, 89)
+scale = Vector2(2, 2)
+texture = SubResource("CompressedTexture2D_qls88")
+region_enabled = true
+region_rect = Rect2(129, 584, 62, 50)
+
+[node name="XboxSeriesSheetDefault4" type="Sprite2D" parent="."]
+position = Vector2(1076, 644)
+scale = Vector2(2, 2)
+texture = ExtResource("6_ka6nf")
+region_enabled = true
+region_rect = Rect2(512, 128, 64, 64)
+
+[node name="Keyboard&MouseSheetDefault" type="Sprite2D" parent="."]
+position = Vector2(867, 643)
+scale = Vector2(2, 2)
+texture = ExtResource("7_ws7p0")
+region_enabled = true
+region_rect = Rect2(260, 66, 56, 60)
+
+[node name="Keyboard&MouseSheetDefault2" type="Sprite2D" parent="."]
+position = Vector2(1520, 643)
+scale = Vector2(2, 2)
+texture = SubResource("CompressedTexture2D_pcj7n")
+region_enabled = true
+region_rect = Rect2(516, 66, 60, 62)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_bdg0b")
+}
+autoplay = "tutorial"
+
+[node name="XboxSeriesSheetDefault" type="Sprite2D" parent="."]
+position = Vector2(1726, 637)
+scale = Vector2(2, 2)
+texture = ExtResource("6_ka6nf")
+region_enabled = true
+region_rect = Rect2(128, 128, 64, 64)
+
+[node name="TilemapPacked" type="Sprite2D" parent="."]
+position = Vector2(1645, 412.00003)
+rotation = 1.5707964
+scale = Vector2(10, 10)
+texture = ExtResource("8_ecdxc")
+region_enabled = true
+region_rect = Rect2(112, 128, 16, 16)
 
 [connection signal="button_down" from="menuContainer/PlayButton" to="." method="_on_play_button_button_down"]
 [connection signal="pressed" from="menuContainer/PlayButton" to="." method="_on_play_button_pressed"]
+
+[editable path="Path2D/PathFollow2D/Hero"]
+[editable path="Hero3"]

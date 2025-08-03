@@ -15,7 +15,7 @@ var _virtual_joystick_direction: = Vector2.ZERO
 @export var facing: Vector2 = Vector2.RIGHT:
 	set(value):
 		facing = value
-		if facing.x > 0 and is_inside_tree():
+		if facing.x >= 0 and is_inside_tree():
 			sprite_2d.flip_h = false
 			%MeleeWeapon.position.x = 7
 		if facing.x < 0 and is_inside_tree():
@@ -100,11 +100,11 @@ func melee_attack():
 	%SwordCollision.set_deferred("disabled", false)
 	%SFX.stream = melee_attack_sound
 	%SFX.play()
-	if facing.x > 0:
-		tween.tween_property(%MeleeWeapon, "rotation_degrees", 90, 0.1)
+	if facing.x >= 0:
+		tween.tween_property(%MeleeWeapon, "rotation_degrees", 90, Globals.attack_speed/5)
 	else:
-		tween.tween_property(%MeleeWeapon, "rotation_degrees", -90, 0.1)
-	tween.tween_callback(finish_melee_attack).set_delay(0.2)
+		tween.tween_property(%MeleeWeapon, "rotation_degrees", -90, Globals.attack_speed/5)
+	tween.tween_callback(finish_melee_attack).set_delay(Globals.attack_speed/2)
 
 func finish_melee_attack():
 	can_melee_attack = true

@@ -428,6 +428,18 @@ tracks/30/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/31/type = "value"
+tracks/31/imported = false
+tracks/31/enabled = true
+tracks/31/path = NodePath("Board/Hero:facing")
+tracks/31/interp = 1
+tracks/31/loop_wrap = true
+tracks/31/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_g4y0y"]
 resource_name = "bars_go_up"
@@ -1019,7 +1031,6 @@ metadata/_edit_lock_ = true
 [node name="Hero" parent="Board" groups=["hero"] instance=ExtResource("4_be1gn")]
 unique_name_in_owner = true
 position = Vector2(-8, 94)
-facing = Vector2(-1, 0)
 
 [node name="Doors" type="Node2D" parent="Board"]
 y_sort_enabled = true

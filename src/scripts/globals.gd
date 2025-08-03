@@ -2,7 +2,7 @@ extends Node
 
 signal hero_health_update
 
-const DEFAULT_HEALTH: int = 6
+const DEFAULT_HEALTH: int = 10
 const TOP_HEALTH: int = 16
 const DEFAULT_SPEED: float = 400
 const DEFAULT_ATTACK_SPEED: float = 0.5
@@ -110,15 +110,15 @@ func get_challenge_info(c: challenge) -> Dictionary:
 func get_powerup_info(p: powerup) -> Dictionary:
 	match p:
 		powerup.PLUS_LIFE:
-			return {'texture': preload("res://resources/plus_life_texture.tres"), 'cost': 10, 'text': "+2 hearts"}
+			return {'texture': preload("res://resources/plus_life_texture.tres"), 'cost': 2, 'text': "+2 hearts"}
 		powerup.PLUS_MAX_LIFE:
-			return {'texture': preload("res://resources/plus_max_life_texture.tres"), 'cost': 40, 'text': "+1 max life"}
+			return {'texture': preload("res://resources/plus_max_life_texture.tres"), 'cost': 20, 'text': "+1 max life"}
 		powerup.PLUS_MOVE_SPEED:
-			return {'texture': preload("res://resources/plus_move_speed.tres"), 'cost': 30, 'text': "+1 move speed"}
+			return {'texture': preload("res://resources/plus_move_speed.tres"), 'cost': 15, 'text': "+1 move speed"}
 		powerup.PLUS_ATTACK_DAMAGE:
-			return {'texture': preload("res://resources/plus_attack_damage.tres"), 'cost': 40, 'text': "+1 attack damage"}
+			return {'texture': preload("res://resources/plus_attack_damage.tres"), 'cost': 20, 'text': "+1 attack damage"}
 		powerup.PLUS_ATTACK_SPEED:
-			return {'texture': preload("res://resources/plus_attack_speed.tres"), 'cost': 50, 'text': "+1 attack speed"}
+			return {'texture': preload("res://resources/plus_attack_speed.tres"), 'cost': 25, 'text': "+1 attack speed"}
 		_:
 			return {'texture': preload("res://resources/plus_life_texture.tres"), 'cost': 0, 'text': ""}
 
@@ -149,10 +149,10 @@ func apply_powerup(selected_powerup: powerup):
 		powerup.PLUS_MAX_LIFE:
 			max_health += 2
 		powerup.PLUS_MOVE_SPEED:
-			max_speed += 150
+			max_speed += 200
 		powerup.PLUS_ATTACK_DAMAGE:
 			attack_damage += 1
 			melee_attack_damage += 2
 		powerup.PLUS_ATTACK_SPEED:
-			attack_speed *= 0.75
+			attack_speed *= 0.66
 			hero.update_speed_attack(attack_speed)

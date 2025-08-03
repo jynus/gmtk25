@@ -5,6 +5,9 @@ extends Node2D
 func _ready() -> void:
 	play_button.disconnect("button_down", play_button._on_button_down)
 	play_button.grab_focus()
+	%LabelRange.text = tr("labelrange")
+	%LabelMelee.text = tr("labelmelee")
+	%LabelWASD.text = tr("labelwasd")
 
 func _on_play_button_button_down() -> void:
 	Fx.big_click.play()
