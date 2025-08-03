@@ -1,4 +1,4 @@
-# Game Title
+# The Cursed Room
 
 A GMTK Game Jam 2025 submission about "loop".
 

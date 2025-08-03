@@ -34,6 +34,6 @@ jobs:
         with:
           butler_key: ${{secrets.ITCHIO_TOKEN}}
           itch_user: jynus
-          itch_game: gmtk25
+          itch_game: cursed-room
           version: ${{ github.ref_name }}
           files: "${{ steps.export.outputs.archive_directory }}/*.zip"
