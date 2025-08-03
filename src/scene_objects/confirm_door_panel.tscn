@@ -22,6 +22,7 @@ border_width_top = 5
 border_width_right = 5
 border_width_bottom = 5
 border_color = Color(0.648909, 0.279105, 0.262213, 1)
+anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f5byo"]
 content_margin_left = 5.0
@@ -34,6 +35,7 @@ border_width_top = 5
 border_width_right = 5
 border_width_bottom = 5
 border_color = Color(0.521569, 0, 0, 1)
+anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vyxkf"]
 content_margin_left = 5.0
@@ -46,6 +48,7 @@ border_width_top = 5
 border_width_right = 5
 border_width_bottom = 5
 border_color = Color(0.648909, 0.279105, 0.262213, 1)
+anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_26hkk"]
 content_margin_left = 0.0
@@ -183,7 +186,6 @@ theme_override_colors/font_color = Color(0.9936057, 0.9669202, 0.9640382, 1)
 theme_override_colors/font_focus_color = Color(0.9541066, 0.75979954, 0.7407282, 1)
 theme_override_colors/font_disabled_color = Color(0.53, 0.53, 0.53, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 1
 theme_override_fonts/font = ExtResource("3_26hkk")
 theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxFlat_dqdpu")
