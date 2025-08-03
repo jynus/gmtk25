@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cvt3pqpae1rpf"
+path="res://.godot/imported/ES_Notification, Video Game, Error, Wrong, Negative 02 - Epidemic Sound.ogg-61c772fa61e3c11d5970ba5aad5ac77d.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sfx/ES_Notification, Video Game, Error, Wrong, Negative 02 - Epidemic Sound.ogg"
+dest_files=["res://.godot/imported/ES_Notification, Video Game, Error, Wrong, Negative 02 - Epidemic Sound.ogg-61c772fa61e3c11d5970ba5aad5ac77d.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

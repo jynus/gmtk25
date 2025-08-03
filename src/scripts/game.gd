@@ -24,6 +24,7 @@ var level_completion_sound = preload("res://assets/sfx/ES_Notification, Video Ga
 var die_sound = preload("res://assets/sfx/ES_Retro, Lose, Negative 03 - Epidemic Sound.ogg")
 var bar_sound = preload("res://assets/sfx/ES_Metal, Scrape, Wheel, Barrow - Epidemic Sound.ogg")
 var powerup_sound = preload("res://assets/sfx/ES_Achievement, Level Up, Notification, Goal Achieved, Positive 06 - Epidemic Sound.ogg")
+var wrong_door_sound = preload("res://assets/sfx/ES_Notification, Video Game, Error, Wrong, Negative 02 - Epidemic Sound.ogg")
 
 var crab_scene = preload("res://scene_objects/enemies/crab.tscn")
 var bat_scene = preload("res://scene_objects/enemies/bat.tscn")
@@ -47,6 +48,8 @@ var current_state : state:
 		var old_state: state = current_state
 		current_state = value
 		state_changed.emit(old_state)
+
+@onready var _this_room_coming_from : Globals.dir = Globals.coming_from
  
 func _ready() -> void:
 	if type == level_type.SHOP:
@@ -71,6 +74,8 @@ func _process(_delta: float) -> void:
 
 func randomize_doors():
 	for door in [left_door, right_door, top_door, bottom_door]:
+		if door.coming_from == Globals.coming_from:
+			continue
 		if Globals.level == Globals.last_level:
 			door.challenge = Globals.challenge.END
 		else:
@@ -184,14 +189,6 @@ func _on_state_changed(_old_state: Variant) -> void:
 				%TileMapLayerObjects.set_cell(Vector2(4,1), 0, Vector2(8, 2))
 				%TileMapLayerObjects.set_cell(Vector2(15,1), 0, Vector2(8, 2))
 
-			if Globals.coming_from != Globals.dir.LEFT:
-				left_door.get_node("DetectionArea/Collision").set_deferred("disabled", false)
-			if Globals.coming_from != Globals.dir.TOP:
-				top_door.get_node("DetectionArea/Collision").set_deferred("disabled", false)
-			if Globals.coming_from != Globals.dir.RIGHT:
-				right_door.get_node("DetectionArea/Collision").set_deferred("disabled", false)
-			if Globals.coming_from != Globals.dir.BOTTOM:
-				bottom_door.get_node("DetectionArea/Collision").set_deferred("disabled", false)
 		state.GAME_OVER:
 			hero.can_attack = false
 			sfx.stream = die_sound
@@ -224,34 +221,58 @@ func open_bars():
 			%TileMapLayerFloor.set_cell(Vector2(10,10), 0, Vector2(11, 3))
 			%TileMapLayerObjects.set_cell(Vector2(9,10), 0, Vector2(5, 6))
 			%TileMapLayerObjects.set_cell(Vector2(10,10), 0, Vector2(5, 6))
-	#state_transition_player.play_backwards("bars_go_up")
+	state_transition_player.play_backwards("bars_go_up")
 
 func close_bars():
 	state_transition_player.play("bars_go_up")
 	
 func _on_left_door_detected(_body: Node2D) -> void:
-	show_door_dialog(left_door)
+	if current_state == state.CHOOSE_DOOR:
+		if _this_room_coming_from == Globals.dir.LEFT:
+			play_error_sound()
+		else:
+			show_door_dialog(left_door)
 
 func _on_left_door_undetected(_body: Node2D) -> void:
-	hide_door_dialog(left_door)
+	if current_state == state.CHOOSE_DOOR and _this_room_coming_from != Globals.dir.LEFT:
+		hide_door_dialog(left_door)
 	
 func _on_right_door_detected(_body: Node2D) -> void:
-	show_door_dialog(right_door)
+	if current_state == state.CHOOSE_DOOR:
+		if _this_room_coming_from == Globals.dir.RIGHT:
+			play_error_sound()
+		else:
+			show_door_dialog(right_door)
 
 func _on_right_door_undetected(_body: Node2D) -> void:
-	hide_door_dialog(right_door)
+	if current_state == state.CHOOSE_DOOR and _this_room_coming_from != Globals.dir.RIGHT:
+		hide_door_dialog(right_door)
 
 func _on_top_door_detected(_body: Node2D) -> void:
-	show_door_dialog(top_door)
+	if current_state == state.CHOOSE_DOOR:
+		if _this_room_coming_from == Globals.dir.TOP:
+			play_error_sound()
+		else:
+			show_door_dialog(top_door)
 
 func _on_top_door_undetected(_body: Node2D) -> void:
-	hide_door_dialog(top_door)
+	if current_state == state.CHOOSE_DOOR and _this_room_coming_from != Globals.dir.TOP:
+		hide_door_dialog(top_door)
 
 func _on_bottom_door_detected(_body: Node2D) -> void:
-	show_door_dialog(bottom_door)
+	if current_state == state.CHOOSE_DOOR:
+		if _this_room_coming_from == Globals.dir.BOTTOM:
+			play_error_sound()
+		else:
+			show_door_dialog(bottom_door)
 
 func _on_bottom_door_undetected(_body: Node2D) -> void:
-	hide_door_dialog(bottom_door)
+	if current_state == state.CHOOSE_DOOR and _this_room_coming_from != Globals.dir.BOTTOM:
+		hide_door_dialog(bottom_door)
+
+func play_error_sound():
+	sfx.stream = wrong_door_sound
+	sfx.play()
 
 func show_door_dialog(door: Node2D):
 	Globals.coming_from = door.coming_from

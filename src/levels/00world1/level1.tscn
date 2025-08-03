@@ -992,7 +992,6 @@ collision_mask = 2
 [node name="Collision" type="CollisionShape2D" parent="Board/Doors/LeftDoor/DetectionArea"]
 position = Vector2(10.4167, 0.166672)
 shape = SubResource("RectangleShape2D_al22y")
-disabled = true
 debug_color = Color(0.957109, 1.82897e-06, 0.536946, 0.419608)
 
 [node name="barsSprite" type="Sprite2D" parent="Board/Doors/LeftDoor"]
@@ -1026,7 +1025,6 @@ collision_mask = 2
 [node name="Collision" type="CollisionShape2D" parent="Board/Doors/RightDoor/DetectionArea"]
 position = Vector2(-10.375, 0.166672)
 shape = SubResource("RectangleShape2D_xout0")
-disabled = true
 debug_color = Color(0.957109, 1.82897e-06, 0.536946, 0.419608)
 
 [node name="barsSprite" type="Sprite2D" parent="Board/Doors/RightDoor"]
@@ -1060,7 +1058,6 @@ collision_mask = 2
 [node name="Collision" type="CollisionShape2D" parent="Board/Doors/TopDoor/DetectionArea"]
 position = Vector2(0, 10.0417)
 shape = SubResource("RectangleShape2D_p1rvu")
-disabled = true
 debug_color = Color(0.957109, 1.82897e-06, 0.536946, 0.419608)
 
 [node name="barsSprite" type="Sprite2D" parent="Board/Doors/TopDoor"]
@@ -1102,7 +1099,6 @@ collision_mask = 2
 [node name="Collision" type="CollisionShape2D" parent="Board/Doors/BottomDoor/DetectionArea"]
 position = Vector2(0.5, -10.9167)
 shape = SubResource("RectangleShape2D_jwvh5")
-disabled = true
 debug_color = Color(0.957109, 1.82897e-06, 0.536946, 0.419608)
 
 [node name="barsSprite" type="Sprite2D" parent="Board/Doors/BottomDoor"]
