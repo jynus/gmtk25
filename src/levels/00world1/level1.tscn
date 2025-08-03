@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://dcltua5522myp"]
+[gd_scene load_steps=42 format=4 uid="uid://dcltua5522myp"]
 
 [ext_resource type="Script" uid="uid://jwlqjsysikrc" path="res://scripts/game.gd" id="1_be1gn"]
 [ext_resource type="PackedScene" uid="uid://c4724smqdfkk6" path="res://scene_objects/pause_menu.tscn" id="1_xt3oq"]
@@ -13,6 +13,10 @@
 [ext_resource type="Texture2D" uid="uid://8cyk10lvghuv" path="res://assets/textures/hearts_full.webp" id="8_xout0"]
 [ext_resource type="Texture2D" uid="uid://c0xy5o2bphx0p" path="res://assets/textures/coin.webp" id="10_futjo"]
 [ext_resource type="PackedScene" uid="uid://ca2xagvsvid5s" path="res://scene_objects/confirm_door_panel.tscn" id="12_jdw8i"]
+[ext_resource type="Script" uid="uid://c37anjfwp1op0" path="res://addons/virtual_joystick/scripts/virtual_joystick.gd" id="14_tn7w2"]
+[ext_resource type="Texture2D" uid="uid://bc6paavcnnwf6" path="res://addons/virtual_joystick/sprites/stick_pressed.png" id="15_skwko"]
+[ext_resource type="Texture2D" uid="uid://404a3tnm1tiv" path="res://assets/textures/flat-dark.png" id="16_skwko"]
+[ext_resource type="Texture2D" uid="uid://b5pb6xesduy34" path="res://assets/textures/flat-light.png" id="17_iqtqf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ju71w"]
 size = Vector2(16, 16)
@@ -975,6 +979,30 @@ _data = {
 &"enter_from_top": SubResource("Animation_h4th0")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqtqf"]
+atlas = ExtResource("16_skwko")
+region = Rect2(233, 401.69864, 80.42731, 79.30136)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i5a2n"]
+atlas = ExtResource("17_iqtqf")
+region = Rect2(233, 401.69864, 80.42731, 79.30136)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nbl0d"]
+atlas = ExtResource("16_skwko")
+region = Rect2(313, 368, 80, 81)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehhep"]
+atlas = ExtResource("17_iqtqf")
+region = Rect2(313, 368, 80, 81)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7wn15"]
+atlas = ExtResource("16_skwko")
+region = Rect2(392, 320, 82, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xmrd5"]
+atlas = ExtResource("17_iqtqf")
+region = Rect2(392, 320, 82, 80)
+
 [node name="Level1" type="Node2D"]
 scale = Vector2(6, 6)
 script = ExtResource("1_be1gn")
@@ -1357,6 +1385,46 @@ unique_name_in_owner = true
 wait_time = 0.2
 autostart = true
 
+[node name="VirtualInterface" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="VirtualJoystick" type="Node2D" parent="VirtualInterface"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.34117648)
+position = Vector2(37.5, 139.5)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("14_tn7w2")
+zero_at_touch = true
+stick_pressed = ExtResource("15_skwko")
+metadata/_custom_type_script = "uid://c37anjfwp1op0"
+
+[node name="TouchScreenButtonAccept" type="TouchScreenButton" parent="VirtualInterface"]
+self_modulate = Color(1, 1, 1, 0.47843137)
+position = Vector2(292.16666, 149.5)
+scale = Vector2(0.2786516, 0.2786516)
+texture_normal = SubResource("AtlasTexture_iqtqf")
+texture_pressed = SubResource("AtlasTexture_i5a2n")
+action = "attack"
+visibility_mode = 1
+
+[node name="TouchScreenButtonRange" type="TouchScreenButton" parent="VirtualInterface"]
+self_modulate = Color(1, 1, 1, 0.47843137)
+position = Vector2(272.66666, 99.166664)
+scale = Vector2(0.5, 0.5)
+texture_normal = SubResource("AtlasTexture_nbl0d")
+texture_pressed = SubResource("AtlasTexture_ehhep")
+action = "range_attack"
+visibility_mode = 1
+
+[node name="TouchScreenButtonMelee" type="TouchScreenButton" parent="VirtualInterface"]
+self_modulate = Color(1, 1, 1, 0.47843137)
+position = Vector2(231.66666, 132.16667)
+scale = Vector2(0.5, 0.5)
+texture_normal = SubResource("AtlasTexture_7wn15")
+texture_pressed = SubResource("AtlasTexture_xmrd5")
+action = "melee_attack"
+visibility_mode = 1
+
 [connection signal="state_changed" from="." to="." method="_on_state_changed"]
 [connection signal="hero_died" from="Board/Hero" to="." method="_on_hero_died"]
 [connection signal="pickedup_coins" from="Board/Hero" to="." method="_on_hero_pickedup_coins"]
@@ -1370,3 +1438,4 @@ autostart = true
 [connection signal="body_exited" from="Board/Doors/BottomDoor/DetectionArea" to="." method="_on_bottom_door_undetected"]
 [connection signal="animation_finished" from="StateTransitionPlayer" to="." method="_on_state_transition_player_animation_finished"]
 [connection signal="timeout" from="CheckNoEnemyTimer" to="." method="_on_check_no_enemy_timer_timeout"]
+[connection signal="analogic_change" from="VirtualInterface/VirtualJoystick" to="Board/Hero" method="_on_virtual_joystick_analogic_change"]

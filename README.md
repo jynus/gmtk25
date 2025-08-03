@@ -1,6 +1,6 @@
 # Game Title
 
-A GMTK Game Jam 2025 submission about GAME JAM THEME.
+A GMTK Game Jam 2025 submission about "loop".
 
 Consider voting for my entry at: https://itch.io/jam/gmtk-2025/rate/XXXXXXX
 
@@ -17,7 +17,7 @@ More info at: https://jynus.itch.io/YYYYYYYY
 ## Credits
 
 <em>Game Title</em> is a game design and development for the `GMTK Game Jame 2025 <https://itch.io/jam/gmtk-2025>`_.
-Developed in 4 days for the theme "GAME JAM THEME" with Godot Engine 4.5.
+Developed in 4 days for the theme "GAME JAM THEME" with Godot Engine 4.5-beta4.
 
 All design and programming was made by Jynus. Code available under the `AGPL3 <LICENSE>`_
 Sound effects and music courtesy of `<www.epidemicsound.com>`_. See below for individual attribution.

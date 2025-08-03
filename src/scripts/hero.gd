@@ -11,6 +11,7 @@ signal exit_powerup_selection
 const DAMAGE_FORCE := 600.0
 var _acceleration: Vector2 = Vector2.ZERO
 var _friction: float = 5
+var _virtual_joystick_direction: = Vector2.ZERO
 @export var facing: Vector2 = Vector2.RIGHT:
 	set(value):
 		facing = value
@@ -45,6 +46,8 @@ func _ready() -> void:
 	Globals.hero = self
 	%MovingSFX.play()
 	%MovingSFX.stream_paused = true
+	if DisplayServer.is_touchscreen_available():
+		%VirtualInterface.show()
 
 func _physics_process(delta: float) -> void:
 	if not is_paused:
@@ -63,7 +66,11 @@ func move(delta: float) -> void:
 	move_and_slide()
 
 func normal_move(delta: float) -> void:
-	var direction := Input.get_vector("left", "right", "up", "down")
+	var direction : Vector2
+	if _virtual_joystick_direction != Vector2.ZERO:
+		direction = _virtual_joystick_direction
+	else:
+		direction = Input.get_vector("left", "right", "up", "down")
 	
 	if direction == Vector2.ZERO:
 		velocity /= _friction
@@ -169,3 +176,8 @@ func _on_weapon_range_area_entered(area: Node2D) -> void:
 			%SFX.play()
 		else:
 			body.damage(global_position, Globals.melee_attack_damage)
+
+
+func _on_virtual_joystick_analogic_change(dir: Vector2) -> void:
+	if can_move:
+		_virtual_joystick_direction = dir
