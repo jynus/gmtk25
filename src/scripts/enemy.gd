@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 signal update_health
+signal died(location: Vector2, coin_value: int)
 
 @export var speed : float = 3
 @export var max_health : float = 2:
@@ -17,6 +18,7 @@ signal update_health
 @export var damage_on_touch : int = 1
 @export var texture: Texture2D
 @export var detection_radius: float = 500
+@export var coin_value: int = 1
 	
 var hurt_vector : Vector2 = Vector2.ZERO
 @onready var max_life_bar: ColorRect = %MaxLifeBar
@@ -25,8 +27,6 @@ var hurt_vector : Vector2 = Vector2.ZERO
 var death_sound = preload("res://assets/sfx/ES_Retro, 8 Bit, Explosion, Damage - Epidemic Sound.ogg")
 var hit_sound = preload("res://assets/sfx/ES_Retro, 8 Bit, Character, Sword, Hit - Epidemic Sound.ogg")
 var default_position: Vector2
-var coin_scene = preload("res://scene_objects/coin.tscn")
-var _coin: Node2D
 
 
 func _ready() -> void:
@@ -71,26 +71,20 @@ func damage(from: Vector2, points: float = 1):
 func die():
 	%HitboxCollision.set_deferred("disabled", true)
 	%HurtboxCollision.set_deferred("disabled", true)
-	call_deferred("spawn_coin")
+	died.emit(global_position, coin_value)
 	var tween = create_tween()
 	tween.tween_property(self, "rotation_degrees", 90, 0.5)
 	tween.tween_property(self, "modulate", Color.TRANSPARENT, 0.5)
 	tween.play()
-	tween.finished.connect(die_end)
+	tween.tween_callback(die_end)
 	$SFX.stream = death_sound
 	$SFX.play()
 	hero = null
-
-func spawn_coin():
-	_coin = coin_scene.instantiate()
-	add_sibling(_coin)
-	_coin.hide()
 
 func damage_end():
 	modulate = Color.WHITE
 
 func die_end():
-	_coin.global_position = global_position
 	queue_free()
 
 func _on_update_health() -> void:

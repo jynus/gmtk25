@@ -7,7 +7,7 @@ enum level_type {
 	SHOP
 }
 @export var type: level_type = level_type.NORMAL
-const SHOP_CHANCE: float = 0.2
+const SHOP_CHANCE: float = 0.3
 
 @onready var level_complete_screen: Control = %LevelCompleteScreen
 @onready var hero: CharacterBody2D = %Hero
@@ -28,6 +28,7 @@ var powerup_sound = preload("res://assets/sfx/ES_Achievement, Level Up, Notifica
 var crab_scene = preload("res://scene_objects/enemies/crab.tscn")
 var bat_scene = preload("res://scene_objects/enemies/bat.tscn")
 var ghost_scene = preload("res://scene_objects/enemies/ghost.tscn")
+var coin_scene = preload("res://scene_objects/coin.tscn")
 
 enum state {
 	ENTER,
@@ -122,6 +123,14 @@ func spawn_enemy(enemy_scene: PackedScene):
 	enemy.global_position = pos
 	enemy.default_position = pos
 	enemy.hero = hero
+	enemy.died.connect(spawn_coin)
+
+func spawn_coin(location: Vector2, coin_value: int):
+	var coin = coin_scene.instantiate()
+	%Board.add_child(coin)
+	coin.global_position = location
+	coin.value = coin_value
+
 
 func _on_state_transition_player_animation_finished(_anim_name: StringName) -> void:
 	if current_state == state.ENTER:

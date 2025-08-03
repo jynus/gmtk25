@@ -944,6 +944,7 @@ scale = Vector2(6, 6)
 script = ExtResource("1_be1gn")
 
 [node name="Board" type="Node2D" parent="."]
+unique_name_in_owner = true
 z_as_relative = false
 y_sort_enabled = true
 
