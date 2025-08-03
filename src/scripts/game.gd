@@ -200,24 +200,24 @@ func open_bars():
 	match Globals.coming_from:
 		Globals.dir.LEFT:
 			left_door.hide()
-			%TileMapLayerFloor.set_cell(Vector2(0,5), 0, Vector2(9, 3))
-			%TileMapLayerObjects.set_cell(Vector2(0,5), 0, Vector2(5, 6))
+			#%TileMapLayerFloor.set_cell(Vector2(0,5), 0, Vector2(9, 3))
+			#%TileMapLayerObjects.set_cell(Vector2(0,5), 0, Vector2(5, 6))
 		Globals.dir.RIGHT:
 			right_door.hide()
-			%TileMapLayerFloor.set_cell(Vector2(19,5), 0, Vector2(9, 3))
-			%TileMapLayerObjects.set_cell(Vector2(19,5), 0, Vector2(5, 6))
+			#%TileMapLayerFloor.set_cell(Vector2(19,5), 0, Vector2(9, 3))
+			#%TileMapLayerObjects.set_cell(Vector2(19,5), 0, Vector2(5, 6))
 		Globals.dir.TOP:
 			top_door.hide()
-			%TileMapLayerFloor.set_cell(Vector2(9,0), 0, Vector2(10, 3))
-			%TileMapLayerFloor.set_cell(Vector2(10,0), 0, Vector2(11, 3))
-			%TileMapLayerObjects.set_cell(Vector2(9,0), 0, Vector2(5, 6))
-			%TileMapLayerObjects.set_cell(Vector2(10,0), 0, Vector2(5, 6))
+			#%TileMapLayerFloor.set_cell(Vector2(9,0), 0, Vector2(10, 3))
+			#%TileMapLayerFloor.set_cell(Vector2(10,0), 0, Vector2(11, 3))
+			#%TileMapLayerObjects.set_cell(Vector2(9,0), 0, Vector2(5, 6))
+			#%TileMapLayerObjects.set_cell(Vector2(10,0), 0, Vector2(5, 6))
 		Globals.dir.BOTTOM:
 			bottom_door.hide()
-			%TileMapLayerFloor.set_cell(Vector2(9,10), 0, Vector2(10, 3))
-			%TileMapLayerFloor.set_cell(Vector2(10,10), 0, Vector2(11, 3))
-			%TileMapLayerObjects.set_cell(Vector2(9,10), 0, Vector2(5, 6))
-			%TileMapLayerObjects.set_cell(Vector2(10,10), 0, Vector2(5, 6))
+			#%TileMapLayerFloor.set_cell(Vector2(9,10), 0, Vector2(10, 3))
+			#%TileMapLayerFloor.set_cell(Vector2(10,10), 0, Vector2(11, 3))
+			#%TileMapLayerObjects.set_cell(Vector2(9,10), 0, Vector2(5, 6))
+			#%TileMapLayerObjects.set_cell(Vector2(10,10), 0, Vector2(5, 6))
 	state_transition_player.play_backwards("bars_go_up")
 
 func close_bars():

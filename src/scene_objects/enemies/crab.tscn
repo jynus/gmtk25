@@ -7,3 +7,4 @@
 damage_force = 500.0
 damage_on_touch = 2
 texture = ExtResource("2_w2wvi")
+coin_value = 2
